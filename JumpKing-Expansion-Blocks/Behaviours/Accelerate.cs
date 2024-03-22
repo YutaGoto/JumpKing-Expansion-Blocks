@@ -1,13 +1,13 @@
 ﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
-using JumpKing.Player;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
-    public class Reflector: IBlockBehaviour
+    public class Accelerate: IBlockBehaviour
     {
-        public float BlockPriority => 2f;
+        public float BlockPriority => 3f;
+
         public bool IsPlayerOnBlock { get; set; }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
@@ -20,37 +20,33 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             return false;
         }
 
+        public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
+        {
+            if (behaviourContext?.CollisionInfo?.PreResolutionCollisionInfo != null)
+            {
+                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.Accelerate>();
+            }
+            return true;
+        }
+
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext)
         {
-            return inputXVelocity;
+            return inputXVelocity * GetDeepWaterMultiplier();
         }
 
         public float ModifyYVelocity(float inputYVelocity, BehaviourContext behaviourContext)
         {
-            return inputYVelocity;
+            return inputYVelocity * GetDeepWaterMultiplier();
         }
-
 
         public float ModifyGravity(float inputGravity, BehaviourContext behaviourContext)
         {
-            return inputGravity;
+            return inputGravity * GetDeepWaterMultiplier();
         }
 
-        public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
+        public float GetDeepWaterMultiplier()
         {
-            BodyComp bodyComp = behaviourContext.BodyComp;
-
-            if (behaviourContext?.CollisionInfo?.PreResolutionCollisionInfo != null)
-            {
-                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.Reflector>();
-            }
-
-            if (IsPlayerOnBlock && !bodyComp.IsOnGround)
-            {
-                bodyComp.Velocity.X *= 2f;
-            }
-
-            return true;
+            return IsPlayerOnBlock ? 2f : 1f;
         }
     }
 }

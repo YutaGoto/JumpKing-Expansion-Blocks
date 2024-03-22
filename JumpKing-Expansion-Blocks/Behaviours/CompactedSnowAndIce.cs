@@ -6,11 +6,12 @@ using JumpKing.Player;
 using System;
 using ErikMaths;
 
+
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
-    public class SlipperyIce: IBlockBehaviour 
+    public class CompactedSnowAndIce: IBlockBehaviour
     {
-        public float BlockPriority => 2f;
+        public float BlockPriority => 1f;
         public bool IsPlayerOnBlock
         {
             get
@@ -25,10 +26,12 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         private bool isPlayerOnBlock = false;
         private readonly BodyComp bodyComp;
+        private readonly PlayerEntity player;
 
-        public SlipperyIce(BodyComp bodyComp)
+        public CompactedSnowAndIce(BodyComp bodyComp, PlayerEntity player)
         {
             this.bodyComp = bodyComp ?? throw new ArgumentNullException(nameof(bodyComp));
+            this.player = player ?? throw new ArgumentNullException(nameof(player));
         }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
@@ -46,7 +49,6 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             return inputXVelocity;
         }
 
-
         public float ModifyYVelocity(float inputYVelocity, BehaviourContext behaviourContext)
         {
             return inputYVelocity;
@@ -60,15 +62,16 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
-            // Check if the player is on the block or not
+
             if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
-                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.SlipperyIce>();
+                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.CompactedSnowAndIce>();
             }
 
-            if (IsPlayerOnBlock && bodyComp.IsOnGround)
+            if (IsPlayerOnBlock)
             {
-                bodyComp.Velocity.X = ErikMath.MoveTowards(bodyComp.Velocity.X, 0f, PlayerValues.ICE_FRICTION / 3f);
+                   
+                bodyComp.Velocity.X = ErikMath.MoveTowards(bodyComp.Velocity.X, 0f, PlayerValues.ICE_FRICTION);
             }
 
             return true;

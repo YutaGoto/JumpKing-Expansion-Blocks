@@ -11,6 +11,7 @@
     <RootNamespace>JumpKing_Expansion_Blocks</RootNamespace>
     <AssemblyName>JumpKing-Expansion-Blocks</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,25 +53,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\Accelerate.cs" />
+    <Compile Include="Behaviours\CompactedSnowAndIce.cs" />
+    <Compile Include="Behaviours\Conveyor.cs" />
     <Compile Include="Behaviours\CopiedThinSnow.cs" />
+    <Compile Include="Behaviours\DeepWater.cs" />
     <Compile Include="Behaviours\HighGravity.cs" />
     <Compile Include="Behaviours\Reflector.cs" />
+    <Compile Include="Behaviours\SideSand.cs" />
     <Compile Include="Behaviours\SlipperyIce.cs" />
     <Compile Include="Behaviours\Quicksand.cs" />
+    <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
+    <Compile Include="Blocks\Accelerate.cs" />
+    <Compile Include="Blocks\CompactedSnowAndIce.cs" />
+    <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\CopiedThinSnow.cs" />
+    <Compile Include="Blocks\DeepWater.cs" />
     <Compile Include="Blocks\HighGravity.cs" />
     <Compile Include="Blocks\Reflector.cs" />
+    <Compile Include="Blocks\SideSand.cs" />
     <Compile Include="Blocks\SlipperyIce.cs" />
     <Compile Include="Blocks\Quicksand.cs" />
+    <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="ModEntry.cs" />
+    <Compile Include="Nodes\IsOnQuickSand.cs" />
+    <Compile Include="Nodes\IsOnSideSand.cs" />
+    <Compile Include="Nodes\NoWalkCompactedSnowAndIce.cs" />
+    <Compile Include="Nodes\WalkAnimReset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

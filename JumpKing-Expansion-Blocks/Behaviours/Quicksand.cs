@@ -10,6 +10,7 @@ using ErikMaths;
 using BehaviorTree;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
+using HarmonyLib;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
@@ -31,7 +32,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
-            if (info.Sand)
+            if (info.IsCollidingWith<Blocks.Quicksand>())
             {
                 return !IsPlayerOnBlock;
             }
@@ -40,8 +41,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public bool AdditionalYCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
-
-            if (info.Sand && !IsPlayerOnBlock)
+            if (info.IsCollidingWith<Blocks.Quicksand>() && !IsPlayerOnBlock)
             {
                 return behaviourContext.BodyComp.Velocity.Y < 0f;
             }
@@ -50,8 +50,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext)
         {
-            float num = (IsPlayerOnBlock ? 0.5f : 1f);
-            return inputXVelocity * num;
+            return inputXVelocity;
         }
 
         public float ModifyYVelocity(float inputYVelocity, BehaviourContext behaviourContext)
@@ -61,7 +60,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             float result = inputYVelocity * num;
             if (!IsPlayerOnBlock && bodyComp.IsOnGround && bodyComp.Velocity.Y > 0f)
             {
-                bodyComp.Position.Y += 2f;
+                bodyComp.Position.Y += 1.5f;
             }
             return result;
         }
@@ -76,12 +75,13 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             BodyComp bodyComp = behaviourContext.BodyComp;
             Rectangle hitbox = bodyComp.GetHitbox();
             m_collisionQuery.CheckCollision(hitbox, out Rectangle _, out AdvCollisionInfo info);
-            IsPlayerOnBlock = info.Sand;
+            IsPlayerOnBlock = info.IsCollidingWith<Blocks.Quicksand>();
             if (IsPlayerOnBlock)
             {
-                bodyComp.Velocity.Y = Math.Min(1f, bodyComp.Velocity.Y);
-                
+                bodyComp.Velocity.Y = Math.Min(1.0f, bodyComp.Velocity.Y);
+                Traverse.Create(bodyComp).Field("_knocked").SetValue(false);
             }
+            
             return true;
         }
     }

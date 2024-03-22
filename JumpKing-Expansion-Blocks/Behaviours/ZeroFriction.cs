@@ -1,14 +1,12 @@
-﻿using JumpKing;
+﻿using System;
 using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
-using System;
-using ErikMaths;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
-    public class SlipperyIce: IBlockBehaviour 
+    public class ZeroFriction: IBlockBehaviour
     {
         public float BlockPriority => 2f;
         public bool IsPlayerOnBlock
@@ -26,7 +24,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         private bool isPlayerOnBlock = false;
         private readonly BodyComp bodyComp;
 
-        public SlipperyIce(BodyComp bodyComp)
+        public ZeroFriction(BodyComp bodyComp)
         {
             this.bodyComp = bodyComp ?? throw new ArgumentNullException(nameof(bodyComp));
         }
@@ -60,15 +58,14 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
-            // Check if the player is on the block or not
             if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
-                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.SlipperyIce>();
+                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.ZeroFriction>();
             }
 
             if (IsPlayerOnBlock && bodyComp.IsOnGround)
             {
-                bodyComp.Velocity.X = ErikMath.MoveTowards(bodyComp.Velocity.X, 0f, PlayerValues.ICE_FRICTION / 3f);
+                bodyComp.Velocity.X = bodyComp.Velocity.X - 0f;
             }
 
             return true;

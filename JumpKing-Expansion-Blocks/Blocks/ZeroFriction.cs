@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework;
 
 namespace JumpKing_Expansion_Blocks.Blocks
 {
-    public class Reflector: BoxBlock
+    public class ZeroFriction: BoxBlock
     {
-        public Reflector(Rectangle p_collider) : base(p_collider) { }  
+        public ZeroFriction(Rectangle p_collider): base(p_collider) { }
     }
 }
