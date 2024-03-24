@@ -58,6 +58,8 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor(player.m_body));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DeepWater), new Behaviours.DeepWater());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Accelerate), new Behaviours.Accelerate());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.InfinityJump), new Behaviours.InfinityJump(collisionQuery));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.WallJump), new Behaviours.WallJump(collisionQuery));
             }
         }
 
@@ -65,9 +67,7 @@ namespace JumpKing_Expansion_Blocks
         /// Called by Jump King when the Level Ends
         /// </summary>
         [OnLevelEnd]
-        public static void OnLevelEnd() {
-            
-        }
+        public static void OnLevelEnd() { }
 
         /// <summary>
         /// Setups the Harmony patching
@@ -94,26 +94,29 @@ namespace JumpKing_Expansion_Blocks
             {
                 __result = (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(IceBlock) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.SlipperyIce) }) ||
-                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.ZeroFriction) });
-
-                return;
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.ZeroFriction) }) ||
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.InfinityJump) });
             }
 
             if (__0 == typeof(WaterBlock) && originalIsOnBlock != null)
             {
                 __result = (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(WaterBlock) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.DeepWater) });
+            }
 
-                return;
+            if (__0 == typeof(SnowBlock) && originalIsOnBlock != null)
+            {
+                __result = (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(SnowBlock) }) ||
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.WallJump) });
             }
 
             if (__0 == typeof(SandBlock) && originalIsOnBlock != null)
             {
                 __result = (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(SandBlock) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.Quicksand) }) ||
-                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.SideSand) });
-
-                return;
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.SideSand) }) ||
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.InfinityJump) }) ||
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.WallJump) });
             }
         }
 
@@ -125,11 +128,11 @@ namespace JumpKing_Expansion_Blocks
             collisionQuery.CheckCollision(hitbox, out Rectangle _, out AdvCollisionInfo info);
             if (info.IsCollidingWith<Blocks.DeepWater>())
             {
-                __result = 0.25f;
+                __result *= 0.25f;
             }
             else if (info.IsCollidingWith<Blocks.Accelerate>())
             {
-                __result = 2f;
+                __result *= 2f;
             }
         }
     }

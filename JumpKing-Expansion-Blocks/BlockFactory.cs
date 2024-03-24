@@ -15,6 +15,8 @@ namespace JumpKing_Expansion_Blocks
         private static readonly Color CODE_HIGH_GRAVITY = new Color(128, 0, 0);
         private static readonly Color CODE_DEEP_WATER = new Color(0, 172, 172);
         private static readonly Color CODE_ACCELERATE = new Color(180, 255, 0);
+        private static readonly Color CODE_INFINITY_JUMP = new Color(64, 255, 255);
+        private static readonly Color CODE_WALL_JUMP = new Color(1, 1, 1);
 
         private static readonly Color CODE_SLIPPERY_ICE = new Color(0, 192, 255);
         private static readonly Color CODE_ZERO_FRICTION = new Color(0, 193, 255);
@@ -35,6 +37,8 @@ namespace JumpKing_Expansion_Blocks
             CODE_HIGH_GRAVITY,
             CODE_DEEP_WATER,
             CODE_ACCELERATE,
+            CODE_INFINITY_JUMP,
+            CODE_WALL_JUMP,
             CODE_SLIPPERY_ICE,
             CODE_ZERO_FRICTION,
             CODE_REFLECTOR,
@@ -51,6 +55,8 @@ namespace JumpKing_Expansion_Blocks
             CODE_REFLECTOR,
             CODE_QUICKSAND,
             CODE_SIDESAND,
+            CODE_INFINITY_JUMP,
+            CODE_WALL_JUMP,
             CODE_COMPACTED_SNOW_AND_ICE,
             CODE_COPIED_THIN_SNOW
         };
@@ -98,6 +104,14 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == CODE_ACCELERATE)
             {
                 return new Accelerate(blockRect);
+            }
+            else if (blockCode == CODE_INFINITY_JUMP)
+            {
+                return new InfinityJump(blockRect);
+            }
+            else if (blockCode == CODE_WALL_JUMP)
+            {
+                return new WallJump(blockRect);
             }
             else if (blockCode == CODE_SLIPPERY_ICE)
             {
