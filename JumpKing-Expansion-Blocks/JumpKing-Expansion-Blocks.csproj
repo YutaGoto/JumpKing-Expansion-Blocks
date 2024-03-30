@@ -54,12 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviours\Accelerate.cs" />
-    <Compile Include="Behaviours\CompactedSnowAndIce.cs" />
+    <Compile Include="Behaviours\CursedIce.cs" />
     <Compile Include="Behaviours\Conveyor.cs" />
     <Compile Include="Behaviours\CopiedThinSnow.cs" />
     <Compile Include="Behaviours\DeepWater.cs" />
     <Compile Include="Behaviours\HighGravity.cs" />
     <Compile Include="Behaviours\InfinityJump.cs" />
+    <Compile Include="Behaviours\MagicSand.cs" />
     <Compile Include="Behaviours\Reflector.cs" />
     <Compile Include="Behaviours\SideSand.cs" />
     <Compile Include="Behaviours\SlipperyIce.cs" />
@@ -68,12 +69,13 @@
     <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
     <Compile Include="Blocks\Accelerate.cs" />
-    <Compile Include="Blocks\CompactedSnowAndIce.cs" />
+    <Compile Include="Blocks\CursedIce.cs" />
     <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\CopiedThinSnow.cs" />
     <Compile Include="Blocks\DeepWater.cs" />
     <Compile Include="Blocks\HighGravity.cs" />
     <Compile Include="Blocks\InfinityJump.cs" />
+    <Compile Include="Blocks\MagicSand.cs" />
     <Compile Include="Blocks\Reflector.cs" />
     <Compile Include="Blocks\SideSand.cs" />
     <Compile Include="Blocks\SlipperyIce.cs" />
@@ -81,8 +83,6 @@
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="ModEntry.cs" />
-    <Compile Include="Nodes\IsOnQuickSand.cs" />
-    <Compile Include="Nodes\IsOnSideSand.cs" />
     <Compile Include="Nodes\NoWalkCompactedSnowAndIce.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

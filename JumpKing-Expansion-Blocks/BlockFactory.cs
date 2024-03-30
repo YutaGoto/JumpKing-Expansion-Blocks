@@ -23,7 +23,8 @@ namespace JumpKing_Expansion_Blocks
         private static readonly Color CODE_REFLECTOR = new Color(192, 0, 192);
         private static readonly Color CODE_QUICKSAND = new Color(255, 108, 0);
         private static readonly Color CODE_SIDESAND = new Color(255, 109, 0);
-        private static readonly Color CODE_COMPACTED_SNOW_AND_ICE = new Color(128, 128, 0);
+        private static readonly Color CODE_MAGIC_SAND = new Color(255, 110, 0);
+        private static readonly Color CODE_CURSED_ICE = new Color(128, 128, 0);
         private static readonly Color CODE_COPIED_THIN_SNOW = new Color(255, 255, 129);
 
         private static readonly int CONVEYOR_R_MIN = 1;
@@ -44,7 +45,8 @@ namespace JumpKing_Expansion_Blocks
             CODE_REFLECTOR,
             CODE_QUICKSAND,
             CODE_SIDESAND,
-            CODE_COMPACTED_SNOW_AND_ICE,
+            CODE_MAGIC_SAND,
+            CODE_CURSED_ICE,
             CODE_COPIED_THIN_SNOW
         };
 
@@ -55,9 +57,10 @@ namespace JumpKing_Expansion_Blocks
             CODE_REFLECTOR,
             CODE_QUICKSAND,
             CODE_SIDESAND,
+            CODE_MAGIC_SAND,
             CODE_INFINITY_JUMP,
             CODE_WALL_JUMP,
-            CODE_COMPACTED_SNOW_AND_ICE,
+            CODE_CURSED_ICE,
             CODE_COPIED_THIN_SNOW
         };
 
@@ -65,7 +68,7 @@ namespace JumpKing_Expansion_Blocks
         {
             if (!supportedBlockCodes.Contains(blockCode))
             {
-                if(IsConveyorBlock(blockCode))
+                if (IsConveyorBlock(blockCode))
                 {
                     return true;
                 }
@@ -133,9 +136,13 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new SideSand(blockRect);
             }
-            else if (blockCode == CODE_COMPACTED_SNOW_AND_ICE)
+            else if (blockCode == CODE_MAGIC_SAND)
             {
-                return new CompactedSnowAndIce(blockRect);
+                return new MagicSand(blockRect);
+            }
+            else if (blockCode == CODE_CURSED_ICE)
+            {
+                return new CursedIce(blockRect);
             }
             else if (blockCode == CODE_COPIED_THIN_SNOW)
             {

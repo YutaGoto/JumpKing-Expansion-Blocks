@@ -1,13 +1,9 @@
 ﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
-using JumpKing.MiscEntities.WorldItems.Inventory;
-using JumpKing.MiscEntities.WorldItems;
 using JumpKing.Player;
 using System;
 using System.Linq;
-using JumpKing;
-using ErikMaths;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {

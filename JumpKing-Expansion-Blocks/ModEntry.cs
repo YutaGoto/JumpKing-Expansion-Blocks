@@ -1,15 +1,14 @@
-﻿using BehaviorTree;
-using EntityComponent;
+﻿using EntityComponent;
 using HarmonyLib;
 using JumpKing.API;
 using JumpKing.Level;
+using JumpKing.MiscEntities.WorldItems;
 using JumpKing.Mods;
 using JumpKing.Player;
-using JumpKing_Expansion_Blocks.Nodes;
 using Microsoft.Xna.Framework;
 using System;
+using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace JumpKing_Expansion_Blocks
 {
@@ -41,18 +40,16 @@ namespace JumpKing_Expansion_Blocks
         {
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             ICollisionQuery collisionQuery = LevelManager.Instance;
-            BTselector bTselector = new BTselector();
             
             if (player != null)
             {
-                bTselector.AddChild(new IsOnQuickSand(player));
-                bTselector.AddChild(new IsOnSideSand(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.HighGravity), new Behaviours.HighGravity());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SlipperyIce), new Behaviours.SlipperyIce(player.m_body));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ZeroFriction), new Behaviours.ZeroFriction(player.m_body));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Quicksand), new Behaviours.Quicksand(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideSand), new Behaviours.SideSand(collisionQuery));
-                // player.m_body.RegisterBlockBehaviour(typeof(Blocks.CompactedSnowAndIce), new Behaviours.CompactedSnowAndIce(player.m_body, player));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.MagicSand), new Behaviours.MagicSand(collisionQuery));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CursedIce), new Behaviours.CursedIce(player.m_body));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CopiedThinSnow), new Behaviours.CopiedThinSnow(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor(player.m_body));
@@ -84,6 +81,10 @@ namespace JumpKing_Expansion_Blocks
             MethodInfo isGetMultipliers = typeof(BodyComp).GetMethod("GetMultipliers");
             MethodInfo postfixGetMultipliers = typeof(ModEntry).GetMethod("GetMultipliersPostfix");
             harmony.Patch(isGetMultipliers, postfix: new HarmonyMethod(postfixGetMultipliers));
+
+            MethodInfo isWearingSkin = AccessTools.TypeByName("SkinManager").GetMethod("IsWearingSkin", new Type[] {typeof(Items)});
+            MethodInfo postfixIsWearingSkin = typeof(ModEntry).GetMethod("IsWearingSkinPostfix");
+            harmony.Patch(isWearingSkin, postfix: new HarmonyMethod(postfixIsWearingSkin));
         }
 
         private static MethodInfo originalIsOnBlock;
@@ -95,6 +96,7 @@ namespace JumpKing_Expansion_Blocks
                 __result = (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(IceBlock) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.SlipperyIce) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.ZeroFriction) }) ||
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.CursedIce) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.InfinityJump) });
             }
 
@@ -115,6 +117,7 @@ namespace JumpKing_Expansion_Blocks
                 __result = (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(SandBlock) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.Quicksand) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.SideSand) }) ||
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.MagicSand) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.InfinityJump) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.WallJump) });
             }
@@ -133,6 +136,15 @@ namespace JumpKing_Expansion_Blocks
             else if (info.IsCollidingWith<Blocks.Accelerate>())
             {
                 __result *= 2f;
+            }
+        }
+
+        public static void IsWearingSkinPostfix(ref bool __result, Items p_item)
+        {
+            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            if (player.m_body.IsOnBlock<Blocks.CursedIce>() && p_item == Items.GiantBoots)
+            {
+                __result = true;
             }
         }
     }

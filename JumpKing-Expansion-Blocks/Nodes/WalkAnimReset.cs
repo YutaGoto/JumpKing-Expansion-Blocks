@@ -16,7 +16,7 @@ namespace JumpKing_Expansion_Blocks.Nodes
 
         protected override BTresult MyRun(TickData p_data)
         {
-            if (GetComponent<BodyComp>().IsOnBlock(typeof(Blocks.CompactedSnowAndIce)))
+            if (GetComponent<BodyComp>().IsOnBlock(typeof(Blocks.CursedIce)))
             {
                 base.player.SetSprite(Game1.instance.contentManager.playerSprites.idle);
                 walkAnimNode?.Reset();

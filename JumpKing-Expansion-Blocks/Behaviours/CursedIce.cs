@@ -4,12 +4,16 @@ using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
 using System;
+using System.Collections.Generic;
 using ErikMaths;
-
+using HarmonyLib;
+using JumpKing.MiscEntities.WorldItems;
+using JumpKing.Player.Skins;
+using JumpKing.MiscEntities.WorldItems.Inventory;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
-    public class CompactedSnowAndIce: IBlockBehaviour
+    public class CursedIce: IBlockBehaviour
     {
         public float BlockPriority => 1f;
         public bool IsPlayerOnBlock
@@ -25,13 +29,11 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         }
 
         private bool isPlayerOnBlock = false;
-        private readonly BodyComp bodyComp;
-        private readonly PlayerEntity player;
+        private readonly BodyComp m_bodyComp;
 
-        public CompactedSnowAndIce(BodyComp bodyComp, PlayerEntity player)
+        public CursedIce(BodyComp bodyComp)
         {
-            this.bodyComp = bodyComp ?? throw new ArgumentNullException(nameof(bodyComp));
-            this.player = player ?? throw new ArgumentNullException(nameof(player));
+            m_bodyComp = bodyComp ?? throw new ArgumentNullException(nameof(bodyComp));
         }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
@@ -65,12 +67,11 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
-                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.CompactedSnowAndIce>();
+                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.CursedIce>();
             }
 
             if (IsPlayerOnBlock)
-            {
-                   
+            {                
                 bodyComp.Velocity.X = ErikMath.MoveTowards(bodyComp.Velocity.X, 0f, PlayerValues.ICE_FRICTION);
             }
 
