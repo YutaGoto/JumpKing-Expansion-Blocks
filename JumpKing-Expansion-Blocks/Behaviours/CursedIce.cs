@@ -3,23 +3,24 @@ using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
-using System;
-using System.Collections.Generic;
 using ErikMaths;
-using HarmonyLib;
-using JumpKing.MiscEntities.WorldItems;
-using JumpKing.Player.Skins;
 using JumpKing.MiscEntities.WorldItems.Inventory;
+using JumpKing.MiscEntities.WorldItems;
+using System;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
     public class CursedIce: IBlockBehaviour
     {
-        public float BlockPriority => 1f;
+        public float BlockPriority => 2f;
         public bool IsPlayerOnBlock
         {
             get
             {
+                if (InventoryManager.HasItemEnabled(Items.SnakeRing))
+                {
+                    return m_bodyComp.IsOnGround;
+                }
                 return isPlayerOnBlock;
             }
             set
@@ -33,7 +34,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public CursedIce(BodyComp bodyComp)
         {
-            m_bodyComp = bodyComp ?? throw new ArgumentNullException(nameof(bodyComp));
+            m_bodyComp = bodyComp ?? throw new ArgumentNullException("bodyComp");
         }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)

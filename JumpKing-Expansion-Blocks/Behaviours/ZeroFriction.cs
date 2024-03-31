@@ -22,12 +22,6 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         }
 
         private bool isPlayerOnBlock = false;
-        private readonly BodyComp bodyComp;
-
-        public ZeroFriction(BodyComp bodyComp)
-        {
-            this.bodyComp = bodyComp ?? throw new ArgumentNullException(nameof(bodyComp));
-        }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {

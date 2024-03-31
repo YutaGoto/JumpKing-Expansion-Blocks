@@ -22,8 +22,6 @@ namespace JumpKing_Expansion_Blocks
         public static void BeforeLevelLoad()
         {
             LevelManager.RegisterBlockFactory(new BlockFactory());
-            Harmony harmony = new Harmony("YutaGoto.JumpKing_Expansion_Blocks");
-            PatchWithHarmony(harmony);
         }
 
         /// <summary>
@@ -38,14 +36,17 @@ namespace JumpKing_Expansion_Blocks
         [OnLevelStart]
         public static void OnLevelStart()
         {
+            Harmony harmony = new Harmony("YutaGoto.JumpKing_Expansion_Blocks");
+            PatchWithHarmony(harmony);
+
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             ICollisionQuery collisionQuery = LevelManager.Instance;
             
             if (player != null)
             {
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.HighGravity), new Behaviours.HighGravity());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SlipperyIce), new Behaviours.SlipperyIce(player.m_body));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ZeroFriction), new Behaviours.ZeroFriction(player.m_body));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SlipperyIce), new Behaviours.SlipperyIce());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ZeroFriction), new Behaviours.ZeroFriction());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Quicksand), new Behaviours.Quicksand(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideSand), new Behaviours.SideSand(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.MagicSand), new Behaviours.MagicSand(collisionQuery));
@@ -64,7 +65,11 @@ namespace JumpKing_Expansion_Blocks
         /// Called by Jump King when the Level Ends
         /// </summary>
         [OnLevelEnd]
-        public static void OnLevelEnd() { }
+        public static void OnLevelEnd() {
+            Harmony harmony = new Harmony("YutaGoto.JumpKing_Expansion_Blocks");
+            // Unpatch all patches for touching Babes
+            harmony.UnpatchAll();
+        }
 
         /// <summary>
         /// Setups the Harmony patching
@@ -123,6 +128,11 @@ namespace JumpKing_Expansion_Blocks
             }
         }
 
+        /// <summary>
+        /// for DeepWater and Accelerate block. patch for GetMultipliers method that is attatch to BodyComp to modify the player's speed
+        /// </summary>
+        /// <param name="__result"></param>
+        /// <param name="__instance"></param>
         public static void GetMultipliersPostfix(ref float __result, BodyComp __instance)
         {
             ICollisionQuery collisionQuery = LevelManager.Instance;
@@ -139,6 +149,11 @@ namespace JumpKing_Expansion_Blocks
             }
         }
 
+        /// <summary>
+        /// for CursedIce block. patch for IsWearingSkin method that is attatch to Skin to wearing GiantBoots
+        /// </summary>
+        /// <param name="__result"></param>
+        /// <param name="p_item"></param>
         public static void IsWearingSkinPostfix(ref bool __result, Items p_item)
         {
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
