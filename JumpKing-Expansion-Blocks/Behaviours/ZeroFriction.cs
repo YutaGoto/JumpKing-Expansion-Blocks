@@ -59,7 +59,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (IsPlayerOnBlock && bodyComp.IsOnGround)
             {
-                bodyComp.Velocity.X = bodyComp.Velocity.X - 0f;
+                bodyComp.Velocity.X -= 0f;
             }
 
             return true;

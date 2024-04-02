@@ -11,7 +11,6 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     {
         public float BlockPriority => 1f;
         private bool m_isPlayerOnBlock;
-        private readonly BodyComp m_bodyComp;
 
         public bool IsPlayerOnBlock
         {
@@ -25,10 +24,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             }
         }
 
-        public Conveyor(BodyComp bodyComp)
-        {
-            m_bodyComp = bodyComp ?? throw new ArgumentNullException(nameof(bodyComp));
-        }
+
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
