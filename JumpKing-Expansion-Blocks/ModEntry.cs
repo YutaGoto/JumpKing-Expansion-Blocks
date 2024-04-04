@@ -3,11 +3,10 @@ using HarmonyLib;
 using JumpKing.API;
 using JumpKing.Level;
 using JumpKing.MiscEntities.WorldItems;
+using JumpKing.MiscEntities.WorldItems.Inventory;
 using JumpKing.Mods;
 using JumpKing.Player;
-using Microsoft.Xna.Framework;
 using System;
-using System.Diagnostics;
 using System.Reflection;
 
 namespace JumpKing_Expansion_Blocks
@@ -51,6 +50,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.MagicSand), new Behaviours.MagicSand(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RestrainedIce), new Behaviours.RestrainedIce());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CursedIce), new Behaviours.CursedIce());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedWalk), new Behaviours.ReversedWalk());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CopiedThinSnow), new Behaviours.CopiedThinSnow(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor());
@@ -80,12 +80,16 @@ namespace JumpKing_Expansion_Blocks
             harmony.Patch(isOnBlockMethodBlock, postfix: new HarmonyMethod(postfixIsOnBlockPostfixMethod));
 
             MethodInfo isGetMultipliers = typeof(BodyComp).GetMethod("GetMultipliers");
-            MethodInfo postfixGetMultipliers = typeof(ModEntry).GetMethod("GetMultipliersPostfix");
+            MethodInfo postfixGetMultipliers = typeof(Patches.BodyComp).GetMethod("GetMultipliersPostfix");
             harmony.Patch(isGetMultipliers, postfix: new HarmonyMethod(postfixGetMultipliers));
 
             MethodInfo isWearingSkin = AccessTools.TypeByName("SkinManager").GetMethod("IsWearingSkin", new Type[] {typeof(Items)});
-            MethodInfo postfixIsWearingSkin = typeof(ModEntry).GetMethod("IsWearingSkinPostfix");
+            MethodInfo postfixIsWearingSkin = typeof(Patches.SkinManager).GetMethod("IsWearingSkinPostfix");
             harmony.Patch(isWearingSkin, postfix: new HarmonyMethod(postfixIsWearingSkin));
+
+            MethodInfo hasItemEnabled = typeof(InventoryManager).GetMethod("HasItemEnabled", new Type[] { typeof(Items) });
+            MethodInfo postfixHasItemEnabled = typeof(Patches.InventoryManager).GetMethod("HasItemEnabledPostfix");
+            harmony.Patch(hasItemEnabled, postfix: new HarmonyMethod(postfixHasItemEnabled));
         }
 
         private static MethodInfo originalIsOnBlock;
@@ -122,44 +126,6 @@ namespace JumpKing_Expansion_Blocks
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.MagicSand) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.InfinityJump) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.WallJump) });
-            }
-        }
-
-        /// <summary>
-        /// for DeepWater and Accelerate block. patch for GetMultipliers method that is attatch to BodyComp to modify the player's speed
-        /// </summary>
-        /// <param name="__result"></param>
-        /// <param name="__instance"></param>
-        public static void GetMultipliersPostfix(ref float __result, BodyComp __instance)
-        {
-            ICollisionQuery collisionQuery = LevelManager.Instance;
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
-            Rectangle hitbox = player.m_body.GetHitbox();
-            collisionQuery.CheckCollision(hitbox, out Rectangle _, out AdvCollisionInfo info);
-            if (info.IsCollidingWith<Blocks.DeepWater>())
-            {
-                __result *= 0.25f;
-            }
-            else if (info.IsCollidingWith<Blocks.Accelerate>())
-            {
-                __result *= 2f;
-            }
-        }
-
-        /// <summary>
-        /// for CursedIce block. patch for IsWearingSkin method that is attatch to Skin to wearing GiantBoots
-        /// </summary>
-        /// <param name="__result"></param>
-        /// <param name="p_item"></param>
-        public static void IsWearingSkinPostfix(ref bool __result, Items p_item)
-        {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
-            if (player != null)
-            {
-                if (player.m_body.IsOnBlock<Blocks.RestrainedIce>() && p_item == Items.GiantBoots)
-                {
-                    __result = true;
-                }
             }
         }
     }

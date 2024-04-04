@@ -63,6 +63,7 @@
     <Compile Include="Behaviours\MagicSand.cs" />
     <Compile Include="Behaviours\Reflector.cs" />
     <Compile Include="Behaviours\CursedIce.cs" />
+    <Compile Include="Behaviours\ReversedWalk.cs" />
     <Compile Include="Behaviours\SideSand.cs" />
     <Compile Include="Behaviours\SlipperyIce.cs" />
     <Compile Include="Behaviours\Quicksand.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Blocks\MagicSand.cs" />
     <Compile Include="Blocks\Reflector.cs" />
     <Compile Include="Blocks\CursedIce.cs" />
+    <Compile Include="Blocks\ReversedWalk.cs" />
     <Compile Include="Blocks\SideSand.cs" />
     <Compile Include="Blocks\SlipperyIce.cs" />
     <Compile Include="Blocks\Quicksand.cs" />
@@ -86,6 +88,9 @@
     <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
+    <Compile Include="Patches\BodyComp.cs" />
+    <Compile Include="Patches\InventoryManager.cs" />
+    <Compile Include="Patches\SkinManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

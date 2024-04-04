@@ -16,7 +16,7 @@ namespace JumpKing_Expansion_Blocks
         private static readonly Color CODE_DEEP_WATER = new Color(0, 172, 172);
         private static readonly Color CODE_ACCELERATE = new Color(180, 255, 0);
         private static readonly Color CODE_INFINITY_JUMP = new Color(64, 255, 255);
-        private static readonly Color CODE_WALL_JUMP = new Color(1, 1, 1);
+        private static readonly Color CODE_WALL_JUMP = new Color(16, 16, 16);
 
         private static readonly Color CODE_SLIPPERY_ICE = new Color(0, 192, 255);
         private static readonly Color CODE_ZERO_FRICTION = new Color(0, 193, 255);
@@ -26,6 +26,7 @@ namespace JumpKing_Expansion_Blocks
         private static readonly Color CODE_MAGIC_SAND = new Color(255, 110, 0);
         private static readonly Color CODE_RESTRAINED_ICE = new Color(128, 128, 0);
         private static readonly Color CODE_CURSED_ICE = new Color(129, 129, 0);
+        private static readonly Color CODE_REVERSE_CONTROL = new Color(32, 32, 32);
         private static readonly Color CODE_COPIED_THIN_SNOW = new Color(255, 255, 129);
 
         private static readonly int CONVEYOR_R_MIN = 1;
@@ -49,6 +50,7 @@ namespace JumpKing_Expansion_Blocks
             CODE_MAGIC_SAND,
             CODE_RESTRAINED_ICE,
             CODE_CURSED_ICE,
+            CODE_REVERSE_CONTROL,
             CODE_COPIED_THIN_SNOW
         };
 
@@ -64,6 +66,7 @@ namespace JumpKing_Expansion_Blocks
             CODE_WALL_JUMP,
             CODE_RESTRAINED_ICE,
             CODE_CURSED_ICE,
+            CODE_REVERSE_CONTROL,
             CODE_COPIED_THIN_SNOW
         };
 
@@ -150,6 +153,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == CODE_CURSED_ICE)
             {
                 return new CursedIce(blockRect);
+            }
+            else if (blockCode == CODE_REVERSE_CONTROL)
+            {
+                return new ReversedWalk(blockRect);
             }
             else if (blockCode == CODE_COPIED_THIN_SNOW)
             {
