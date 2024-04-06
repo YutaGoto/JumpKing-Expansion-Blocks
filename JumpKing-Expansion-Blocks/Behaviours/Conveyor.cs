@@ -2,7 +2,6 @@
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
-using System;
 using System.Linq;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
@@ -23,9 +22,6 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 m_isPlayerOnBlock = value;
             }
         }
-
-
-
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
             return false;
@@ -76,6 +72,27 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             {
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.Conveyor>();
             }
+
+            //BodyComp bodyComp = behaviourContext.BodyComp;
+
+            //if (IsPlayerOnBlock && bodyComp.IsOnGround)
+            //{
+            //    if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
+            //    {
+            //        Blocks.Conveyor conveyor = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.Conveyor>().FirstOrDefault() as Blocks.Conveyor;
+
+            //        // TODO: Wall and slope Collision check
+
+            //        if (conveyor.Direction == 30) // LEFT
+            //        {
+            //            bodyComp.Position.X += (float)conveyor.Speed * -0.2f;
+            //        }
+            //        else // RIGHT
+            //        {
+            //            bodyComp.Position.X += (float)conveyor.Speed * 0.2f;
+            //        }
+            //    }
+            //}
             return true;
         }
     }

@@ -16,25 +16,8 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     public class CopiedThinSnow: IBlockBehaviour
     {
         public float BlockPriority => 1f;
-        public bool IsPlayerOnBlock
-        {
-            get
-            {
-                return m_isPlayerOnBlock;
-            }
-            set
-            {
-                m_isPlayerOnBlock = value;
-            }
-        }
+        public bool IsPlayerOnBlock { get; set;  }
 
-        private bool m_isPlayerOnBlock;
-        private readonly PlayerEntity player;
-
-        public CopiedThinSnow(PlayerEntity player)
-        {
-            this.player = player ?? throw new ArgumentNullException(nameof(player));
-        }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {

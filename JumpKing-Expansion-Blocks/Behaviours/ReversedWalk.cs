@@ -8,6 +8,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     public class ReversedWalk: IBlockBehaviour
     {
         public float BlockPriority => 2f;
+
         public bool IsPlayerOnBlock { get; set; }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
@@ -23,10 +24,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext)
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
-            if (IsPlayerOnBlock && bodyComp.IsOnBlock<Blocks.ReversedWalk>() && bodyComp.IsOnGround)
-            {
-                return -inputXVelocity;
-            }
+            if (IsPlayerOnBlock && bodyComp.IsOnBlock<Blocks.ReversedWalk>() && bodyComp.IsOnGround) return -inputXVelocity;
             return inputXVelocity;
         }
 
