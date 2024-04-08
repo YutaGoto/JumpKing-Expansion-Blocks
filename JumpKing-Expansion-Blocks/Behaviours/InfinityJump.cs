@@ -46,6 +46,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         public float ModifyGravity(float inputGravity, BehaviourContext behaviourContext)
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
+
             if (IsPlayerOnBlock && bodyComp.Velocity.Y > PlayerValues.MAX_FALL - 1f)
             {
                 return 0f;

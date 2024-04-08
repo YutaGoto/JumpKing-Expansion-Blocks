@@ -10,19 +10,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     public class RestrainedIce : IBlockBehaviour
     {
         public float BlockPriority => 2f;
-        public bool IsPlayerOnBlock
-        {
-            get
-            {
-                return isPlayerOnBlock;
-            }
-            set
-            {
-                isPlayerOnBlock = value;
-            }
-        }
-
-        private bool isPlayerOnBlock = false;
+        public bool IsPlayerOnBlock { get; set; }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {

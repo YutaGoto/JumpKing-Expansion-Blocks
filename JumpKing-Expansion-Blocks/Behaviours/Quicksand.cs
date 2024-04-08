@@ -1,14 +1,8 @@
-﻿using JumpKing;
-using JumpKing.API;
+﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
-using JumpKing.MiscEntities.WorldItems.Inventory;
-using JumpKing.MiscEntities.WorldItems;
 using JumpKing.Player;
 using System;
-using ErikMaths;
-using BehaviorTree;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using HarmonyLib;
 
@@ -17,11 +11,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     public  class Quicksand: IBlockBehaviour
     {
         public float BlockPriority => 1f;
-        public bool IsPlayerOnBlock
-        {
-            set;
-            get;
-        }
+        public bool IsPlayerOnBlock { set; get; }
 
         private readonly ICollisionQuery m_collisionQuery;
 

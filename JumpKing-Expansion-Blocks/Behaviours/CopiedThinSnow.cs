@@ -1,15 +1,6 @@
-﻿using JumpKing;
-using JumpKing.BodyCompBehaviours;
+﻿using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
-using JumpKing.MiscEntities.WorldItems.Inventory;
-using JumpKing.MiscEntities.WorldItems;
-using JumpKing.Player;
-using System;
-using ErikMaths;
-using BehaviorTree;
-using System.Diagnostics;
 using JumpKing.API;
-using JumpKing_Expansion_Blocks.Blocks;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
@@ -17,7 +8,6 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     {
         public float BlockPriority => 1f;
         public bool IsPlayerOnBlock { get; set;  }
-
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
@@ -34,6 +24,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             if (behaviourContext?.LastFrameCollisionInfo?.PreResolutionCollisionInfo != null)
             {
                 IsPlayerOnBlock = behaviourContext.LastFrameCollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.CopiedThinSnow>();
+
                 if (IsPlayerOnBlock)
                 {
                     return 0f;

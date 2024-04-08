@@ -9,19 +9,8 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     public class Conveyor: IBlockBehaviour
     {
         public float BlockPriority => 1f;
-        private bool m_isPlayerOnBlock;
 
-        public bool IsPlayerOnBlock
-        {
-            get
-            {
-                return m_isPlayerOnBlock;
-            }
-            set
-            {
-                m_isPlayerOnBlock = value;
-            }
-        }
+        public bool IsPlayerOnBlock { get; set; }
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
             return false;
@@ -73,26 +62,6 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.Conveyor>();
             }
 
-            //BodyComp bodyComp = behaviourContext.BodyComp;
-
-            //if (IsPlayerOnBlock && bodyComp.IsOnGround)
-            //{
-            //    if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
-            //    {
-            //        Blocks.Conveyor conveyor = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.Conveyor>().FirstOrDefault() as Blocks.Conveyor;
-
-            //        // TODO: Wall and slope Collision check
-
-            //        if (conveyor.Direction == 30) // LEFT
-            //        {
-            //            bodyComp.Position.X += (float)conveyor.Speed * -0.2f;
-            //        }
-            //        else // RIGHT
-            //        {
-            //            bodyComp.Position.X += (float)conveyor.Speed * 0.2f;
-            //        }
-            //    }
-            //}
             return true;
         }
     }

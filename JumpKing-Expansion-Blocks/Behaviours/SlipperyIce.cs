@@ -3,7 +3,6 @@ using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
-using System;
 using ErikMaths;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
