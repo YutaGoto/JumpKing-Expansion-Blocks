@@ -24,6 +24,7 @@ namespace JumpKing_Expansion_Blocks
         private static readonly Color CODE_QUICKSAND = new Color(255, 108, 0);
         private static readonly Color CODE_SIDESAND = new Color(255, 109, 0);
         private static readonly Color CODE_MAGIC_SAND = new Color(255, 110, 0);
+        private static readonly Color CODE_UP_SAND = new Color(255, 111, 0);
         private static readonly Color CODE_RESTRAINED_ICE = new Color(128, 128, 0);
         private static readonly Color CODE_CURSED_ICE = new Color(144, 144, 0);
         private static readonly Color CODE_REVERSED_WALK = new Color(32, 32, 32);
@@ -48,6 +49,7 @@ namespace JumpKing_Expansion_Blocks
             CODE_QUICKSAND,
             CODE_SIDESAND,
             CODE_MAGIC_SAND,
+            CODE_UP_SAND,
             CODE_RESTRAINED_ICE,
             CODE_CURSED_ICE,
             CODE_REVERSED_WALK,
@@ -62,6 +64,7 @@ namespace JumpKing_Expansion_Blocks
             CODE_QUICKSAND,
             CODE_SIDESAND,
             CODE_MAGIC_SAND,
+            CODE_UP_SAND,
             CODE_INFINITY_JUMP,
             CODE_WALL_JUMP,
             CODE_RESTRAINED_ICE,
@@ -145,6 +148,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == CODE_MAGIC_SAND)
             {
                 return new MagicSand(blockRect);
+            }
+            else if (blockCode == CODE_UP_SAND)
+            {
+                return new UpSand(blockRect);
             }
             else if (blockCode == CODE_RESTRAINED_ICE)
             {
