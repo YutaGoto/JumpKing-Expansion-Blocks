@@ -67,6 +67,7 @@
     <Compile Include="Behaviours\SideSand.cs" />
     <Compile Include="Behaviours\SlipperyIce.cs" />
     <Compile Include="Behaviours\Quicksand.cs" />
+    <Compile Include="Behaviours\RainGravity.cs" />
     <Compile Include="Behaviours\UpSand.cs" />
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Blocks\SideSand.cs" />
     <Compile Include="Blocks\SlipperyIce.cs" />
     <Compile Include="Blocks\Quicksand.cs" />
+    <Compile Include="Blocks\RainGravity.cs" />
     <Compile Include="Blocks\UpSand.cs" />
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />
