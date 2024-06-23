@@ -8,6 +8,7 @@ using JumpKing.Mods;
 using JumpKing.Player;
 using System;
 using System.Reflection;
+using JumpKing_Expansion_Blocks.Models;
 
 namespace JumpKing_Expansion_Blocks
 {
@@ -75,6 +76,7 @@ namespace JumpKing_Expansion_Blocks
         private static void PatchWithHarmony(Harmony harmony)
         {
             // harmony.PatchAll(Assembly.GetExecutingAssembly());
+            new JumpChargeCalc(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });
             MethodInfo postfixIsOnBlockPostfixMethod = typeof(ModEntry).GetMethod("IsOnBlockPostfix");

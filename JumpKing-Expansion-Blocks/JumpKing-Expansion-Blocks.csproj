@@ -68,6 +68,7 @@
     <Compile Include="Behaviours\SlipperyIce.cs" />
     <Compile Include="Behaviours\Quicksand.cs" />
     <Compile Include="Behaviours\RainGravity.cs" />
+    <Compile Include="Behaviours\SpecialHighGravity.cs" />
     <Compile Include="Behaviours\UpSand.cs" />
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
@@ -87,9 +88,11 @@
     <Compile Include="Blocks\SlipperyIce.cs" />
     <Compile Include="Blocks\Quicksand.cs" />
     <Compile Include="Blocks\RainGravity.cs" />
+    <Compile Include="Blocks\SpecialHighGravity.cs" />
     <Compile Include="Blocks\UpSand.cs" />
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />
+    <Compile Include="Models\JumpChargeCalc.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
     <Compile Include="Patches\BodyComp.cs" />

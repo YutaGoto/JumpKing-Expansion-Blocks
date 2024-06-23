@@ -13,7 +13,9 @@ namespace JumpKing_Expansion_Blocks
     class BlockFactory: IBlockFactory
     {
         private static readonly Color CODE_HIGH_GRAVITY = new Color(128, 0, 0);
-        private static readonly Color CODE_RAIN_GRAVITY = new Color(129, 0, 0);
+        private static readonly Color CODE_RAIN_GRAVITY = new Color(255, 192, 192);
+        private static readonly Color CODE_SPECIAL_HIGH_GRAVITY = new Color(255, 190, 190);
+
         private static readonly Color CODE_DEEP_WATER = new Color(0, 172, 172);
         private static readonly Color CODE_ACCELERATE = new Color(180, 255, 0);
         private static readonly Color CODE_INFINITY_JUMP = new Color(64, 255, 255);
@@ -41,6 +43,7 @@ namespace JumpKing_Expansion_Blocks
         {
             CODE_HIGH_GRAVITY,
             CODE_RAIN_GRAVITY,
+            CODE_SPECIAL_HIGH_GRAVITY,
             CODE_DEEP_WATER,
             CODE_ACCELERATE,
             CODE_INFINITY_JUMP,
@@ -114,6 +117,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == CODE_RAIN_GRAVITY)
             {
                 return new RainGravity(blockRect);
+            }
+            else if (blockCode == CODE_SPECIAL_HIGH_GRAVITY)
+            {
+                return new SpecialHighGravity(blockRect);
             }
             else if (blockCode == CODE_DEEP_WATER)
             {
