@@ -62,6 +62,7 @@
     <Compile Include="Behaviours\MagicSand.cs" />
     <Compile Include="Behaviours\Reflector.cs" />
     <Compile Include="Behaviours\CursedIce.cs" />
+    <Compile Include="Behaviours\ReversedCharge.cs" />
     <Compile Include="Behaviours\ReversedWalk.cs" />
     <Compile Include="Behaviours\SideSand.cs" />
     <Compile Include="Behaviours\SlipperyIce.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Blocks\MagicSand.cs" />
     <Compile Include="Blocks\Reflector.cs" />
     <Compile Include="Blocks\CursedIce.cs" />
+    <Compile Include="Blocks\ReversedCharge.cs" />
     <Compile Include="Blocks\ReversedWalk.cs" />
     <Compile Include="Blocks\SideSand.cs" />
     <Compile Include="Blocks\SlipperyIce.cs" />
