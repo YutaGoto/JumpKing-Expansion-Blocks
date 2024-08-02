@@ -5,7 +5,6 @@ using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Models;
 using System;
 
-
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
     public class SpecialHighGravity : IBlockBehaviour

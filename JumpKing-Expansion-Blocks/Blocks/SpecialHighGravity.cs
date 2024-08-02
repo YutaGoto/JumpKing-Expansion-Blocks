@@ -3,14 +3,13 @@ using Microsoft.Xna.Framework;
 
 namespace JumpKing_Expansion_Blocks.Blocks
 {
-    internal class SpecialHighGravity : IBlock
+    internal class SpecialHighGravity : IBlock, IBlockDebugColor
     {
         private readonly Rectangle m_collider;
 
-        public SpecialHighGravity(Rectangle collider)
-        {
-            m_collider = collider;
-        }
+        public SpecialHighGravity(Rectangle collider) { m_collider = collider; }
+
+        public Color DebugColor { get { return Constants.ColorCodes.CODE_SPECIAL_HIGH_GRAVITY; } }
 
         public Rectangle GetRect()
         {

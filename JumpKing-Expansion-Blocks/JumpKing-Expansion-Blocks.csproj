@@ -56,7 +56,6 @@
     <Compile Include="Behaviours\Accelerate.cs" />
     <Compile Include="Behaviours\RestrainedIce.cs" />
     <Compile Include="Behaviours\Conveyor.cs" />
-    <Compile Include="Behaviours\CopiedThinSnow.cs" />
     <Compile Include="Behaviours\DeepWater.cs" />
     <Compile Include="Behaviours\HighGravity.cs" />
     <Compile Include="Behaviours\InfinityJump.cs" />
@@ -76,7 +75,6 @@
     <Compile Include="Blocks\Accelerate.cs" />
     <Compile Include="Blocks\RestrainedIce.cs" />
     <Compile Include="Blocks\Conveyor.cs" />
-    <Compile Include="Blocks\CopiedThinSnow.cs" />
     <Compile Include="Blocks\DeepWater.cs" />
     <Compile Include="Blocks\HighGravity.cs" />
     <Compile Include="Blocks\InfinityJump.cs" />
@@ -92,6 +90,8 @@
     <Compile Include="Blocks\UpSand.cs" />
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />
+    <Compile Include="Constants\ColorCodes.cs" />
+    <Compile Include="Constants\ConveyorSpeedCodes.cs" />
     <Compile Include="Models\JumpChargeCalc.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />

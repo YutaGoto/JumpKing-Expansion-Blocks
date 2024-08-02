@@ -3,14 +3,13 @@ using Microsoft.Xna.Framework;
 
 namespace JumpKing_Expansion_Blocks.Blocks
 {
-    internal class RainGravity: IBlock
+    internal class RainGravity : IBlock, IBlockDebugColor
     {
         private readonly Rectangle m_collider;
 
-        public RainGravity(Rectangle collider)
-        {
-            m_collider = collider;
-        }
+        public RainGravity(Rectangle collider) { m_collider = collider; }
+        
+        public Color DebugColor { get { return Constants.ColorCodes.CODE_RAIN_GRAVITY; } }
 
         public Rectangle GetRect()
         {
