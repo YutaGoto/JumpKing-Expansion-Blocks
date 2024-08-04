@@ -1,18 +1,19 @@
 ﻿using BehaviorTree;
 using EntityComponent;
 using HarmonyLib;
+using JumpKing;
 using JumpKing.Player;
 
-namespace JumpKing_Expansion_Blocks.Models
+namespace JumpKing_Expansion_Blocks.Patches
 {
     [HarmonyPatch(typeof(JumpState))]
-    internal class JumpChargeCalc
+    internal class PatchedJumpState
     {
         private static float previous_timer { get; set; }
 
         public static int JumpFrames { get; internal set; }
 
-        public JumpChargeCalc(Harmony harmony)
+        public PatchedJumpState(Harmony harmony)
         {
             harmony.Patch(AccessTools.Method(typeof(JumpState), "MyRun"), null, new HarmonyMethod(AccessTools.Method(GetType(), "Run")));
             harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), "DoJumpReverse")), null);
@@ -43,7 +44,7 @@ namespace JumpKing_Expansion_Blocks.Models
             {
                 if (player.m_body.IsOnBlock<Blocks.ReversedCharge>())
                 {
-                    p_intensity = 1.0f - p_intensity;
+                    p_intensity = (1.0f + 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME)) - p_intensity;
                 }
             }
         }

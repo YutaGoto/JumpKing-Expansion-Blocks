@@ -94,12 +94,12 @@
     <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="Constants\ColorCodes.cs" />
     <Compile Include="Constants\ConveyorSpeedCodes.cs" />
-    <Compile Include="Models\JumpChargeCalc.cs" />
+    <Compile Include="Patches\PatchedJumpState.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
-    <Compile Include="Patches\BodyComp.cs" />
-    <Compile Include="Patches\InventoryManager.cs" />
-    <Compile Include="Patches\SkinManager.cs" />
+    <Compile Include="Patches\PatchedBodyComp.cs" />
+    <Compile Include="Patches\PatchedInventoryManager.cs" />
+    <Compile Include="Patches\PatchedSkinManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

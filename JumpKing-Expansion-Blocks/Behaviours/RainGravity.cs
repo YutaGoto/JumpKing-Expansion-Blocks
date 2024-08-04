@@ -2,7 +2,7 @@
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
-using JumpKing_Expansion_Blocks.Models;
+using JumpKing_Expansion_Blocks.Patches;
 using System;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
@@ -64,7 +64,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         private float AdjustYVelocity()
         {
-            int baseFrame = JumpChargeCalc.JumpFrames;
+            int baseFrame = PatchedJumpState.JumpFrames;
             return baseFrame switch
             {
                 0 => 0.000f,
