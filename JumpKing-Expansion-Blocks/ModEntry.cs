@@ -6,15 +6,17 @@ using JumpKing.MiscEntities.WorldItems;
 using JumpKing.MiscEntities.WorldItems.Inventory;
 using JumpKing.Mods;
 using JumpKing.Player;
+using JumpKing_Expansion_Blocks.Patches;
 using System;
 using System.Reflection;
-using JumpKing_Expansion_Blocks.Models;
 
 namespace JumpKing_Expansion_Blocks
 {
     [JumpKingMod("YutaGoto.JumpKing_Expansion_Blocks")]
     public static class ModEntry
     {
+        private static readonly string harmonyId = "YutaGoto.JumpKing_Expansion_Blocks";
+        public static Harmony harmony = new Harmony(harmonyId);
         /// <summary>
         /// Called by Jump King before the level loads
         /// </summary>
@@ -22,7 +24,6 @@ namespace JumpKing_Expansion_Blocks
         public static void BeforeLevelLoad()
         {
             LevelManager.RegisterBlockFactory(new BlockFactory());
-            Harmony harmony = new Harmony("YutaGoto.JumpKing_Expansion_Blocks");
             PatchWithHarmony(harmony);
         }
 
@@ -54,6 +55,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RestrainedIce), new Behaviours.RestrainedIce());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CursedIce), new Behaviours.CursedIce());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedWalk), new Behaviours.ReversedWalk());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedCharge), new Behaviours.ReversedCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DeepWater), new Behaviours.DeepWater());
@@ -75,7 +77,7 @@ namespace JumpKing_Expansion_Blocks
         private static void PatchWithHarmony(Harmony harmony)
         {
             // harmony.PatchAll(Assembly.GetExecutingAssembly());
-            new JumpChargeCalc(harmony);
+            new PatchedJumpState(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });
             MethodInfo postfixIsOnBlockPostfixMethod = typeof(ModEntry).GetMethod("IsOnBlockPostfix");
@@ -83,15 +85,15 @@ namespace JumpKing_Expansion_Blocks
             harmony.Patch(isOnBlockMethodBlock, postfix: new HarmonyMethod(postfixIsOnBlockPostfixMethod));
 
             MethodInfo isGetMultipliers = typeof(BodyComp).GetMethod("GetMultipliers");
-            MethodInfo postfixGetMultipliers = typeof(Patches.BodyComp).GetMethod("GetMultipliersPostfix");
+            MethodInfo postfixGetMultipliers = typeof(PatchedBodyComp).GetMethod("GetMultipliersPostfix");
             harmony.Patch(isGetMultipliers, postfix: new HarmonyMethod(postfixGetMultipliers));
 
             MethodInfo isWearingSkin = AccessTools.TypeByName("SkinManager").GetMethod("IsWearingSkin", new Type[] {typeof(Items)});
-            MethodInfo postfixIsWearingSkin = typeof(Patches.SkinManager).GetMethod("IsWearingSkinPostfix");
+            MethodInfo postfixIsWearingSkin = typeof(PatchedSkinManager).GetMethod("IsWearingSkinPostfix");
             harmony.Patch(isWearingSkin, postfix: new HarmonyMethod(postfixIsWearingSkin));
 
             MethodInfo hasItemEnabled = typeof(InventoryManager).GetMethod("HasItemEnabled", new Type[] { typeof(Items) });
-            MethodInfo postfixHasItemEnabled = typeof(Patches.InventoryManager).GetMethod("HasItemEnabledPostfix");
+            MethodInfo postfixHasItemEnabled = typeof(PatchedInventoryManager).GetMethod("HasItemEnabledPostfix");
             harmony.Patch(hasItemEnabled, postfix: new HarmonyMethod(postfixHasItemEnabled));
         }
 

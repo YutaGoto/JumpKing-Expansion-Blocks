@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
-    internal class BodyComp
+    internal class PatchedBodyComp
     {
         public static void GetMultipliersPostfix(ref float __result)
         {

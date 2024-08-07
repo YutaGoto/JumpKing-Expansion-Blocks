@@ -4,7 +4,7 @@ using JumpKing.Player;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
-    internal class SkinManager
+    internal class PatchedSkinManager
     {
         /// <summary>
         /// for CursedIce block. patch for IsWearingSkin method that is attatch to Skin to wearing GiantBoots

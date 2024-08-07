@@ -30,7 +30,8 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_UP_SAND,
             Constants.ColorCodes.CODE_RESTRAINED_ICE,
             Constants.ColorCodes.CODE_CURSED_ICE,
-            Constants.ColorCodes.CODE_REVERSED_WALK
+            Constants.ColorCodes.CODE_REVERSED_WALK,
+            Constants.ColorCodes.CODE_REVERSED_CHARGE
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -148,6 +149,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_REVERSED_WALK)
             {
                 return new ReversedWalk(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_REVERSED_CHARGE)
+            {
+                return new ReversedCharge(blockRect);
             }
             else if (IsConveyorBlock(blockCode))
             {

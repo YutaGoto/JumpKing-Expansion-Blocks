@@ -4,7 +4,7 @@ using JumpKing.Player;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
-    internal class InventoryManager
+    internal class PatchedInventoryManager
     {
         /// <summary>
         /// for SnakeRing item. patch for HasItemEnabled method that is attatch to InventoryManager to disable SnakeRing item
