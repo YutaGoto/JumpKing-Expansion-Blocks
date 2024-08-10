@@ -76,7 +76,6 @@ namespace JumpKing_Expansion_Blocks
         /// </summary>
         private static void PatchWithHarmony(Harmony harmony)
         {
-            // harmony.PatchAll(Assembly.GetExecutingAssembly());
             new PatchedJumpState(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });

@@ -1,6 +1,7 @@
 ﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
+using JumpKing.Player;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
@@ -22,29 +23,31 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
         {
+
             if (behaviourContext?.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.Accelerate>();
             }
+
             return true;
         }
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext)
         {
-            return inputXVelocity * GetDeepWaterMultiplier();
+            return inputXVelocity * GetAccelerateMultiplier();
         }
 
         public float ModifyYVelocity(float inputYVelocity, BehaviourContext behaviourContext)
         {
-            return inputYVelocity * GetDeepWaterMultiplier();
+            return inputYVelocity * GetAccelerateMultiplier();
         }
 
         public float ModifyGravity(float inputGravity, BehaviourContext behaviourContext)
         {
-            return inputGravity * GetDeepWaterMultiplier();
+            return inputGravity * GetAccelerateMultiplier();
         }
 
-        public float GetDeepWaterMultiplier()
+        public float GetAccelerateMultiplier()
         {
             return IsPlayerOnBlock ? 2f : 1f;
         }
