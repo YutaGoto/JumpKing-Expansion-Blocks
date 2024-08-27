@@ -62,6 +62,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Accelerate), new Behaviours.Accelerate());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.InfinityJump), new Behaviours.InfinityJump(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.WallJump), new Behaviours.WallJump(collisionQuery));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.DoubleJump), new Behaviours.DoubleJump(player));
             }
         }
 
