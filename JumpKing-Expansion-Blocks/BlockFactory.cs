@@ -81,7 +81,7 @@ namespace JumpKing_Expansion_Blocks
             }
         }
 
-        public IBlock GetBlock(Color blockCode, Rectangle blockRect, JumpKing.Workshop.Level level, LevelTexture textureSrc, int currentScreem, int x, int y)
+        public IBlock GetBlock(Color blockCode, Rectangle blockRect, JumpKing.Workshop.Level level, LevelTexture textureSrc, int currentScreen, int x, int y)
         {
             if (blockCode == Constants.ColorCodes.CODE_HIGH_GRAVITY)
             {

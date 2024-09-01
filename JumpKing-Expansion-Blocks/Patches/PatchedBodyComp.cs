@@ -18,7 +18,6 @@ namespace JumpKing_Expansion_Blocks.Patches
             if (info.IsCollidingWith<Blocks.SpecialHighGravity>()) __result *= 1.28f;
             if (info.IsCollidingWith<Blocks.RainGravity>()) __result *= 1.28f;
             if (info.IsCollidingWith<Blocks.Accelerate>()) __result *= 2f;
-
         }
     }
 }
