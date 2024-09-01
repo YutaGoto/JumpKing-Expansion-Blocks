@@ -47,12 +47,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
             float num = ((IsPlayerOnBlock && bodyComp.Velocity.Y <= 0f) ? 0.75f : 1f);
-            float result = inputYVelocity * num;
-            if (!IsPlayerOnBlock && bodyComp.IsOnGround && bodyComp.Velocity.Y > 0f)
-            {
-                bodyComp.Position.Y += 1.5f;
-            }
-            return result;
+            return inputYVelocity * num;
         }
 
         public float ModifyGravity(float inputGravity, BehaviourContext behaviourContext)
@@ -71,7 +66,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 bodyComp.Velocity.Y = Math.Min(1.0f, bodyComp.Velocity.Y);
                 Traverse.Create(bodyComp).Field("_knocked").SetValue(false);
             }
-            
+
             return true;
         }
     }

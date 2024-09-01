@@ -32,12 +32,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
             float num = ((IsPlayerOnBlock && bodyComp.Velocity.Y <= 0f) ? 0.5f : 1f);
-            float result = inputYVelocity * num;
-            if (!IsPlayerOnBlock && bodyComp.IsOnGround && bodyComp.Velocity.Y > 0f)
-            {
-                bodyComp.Position.Y += 1f;
-            }
-            return result;
+            return inputYVelocity * num;
         }
 
         /// <inheritdoc />
