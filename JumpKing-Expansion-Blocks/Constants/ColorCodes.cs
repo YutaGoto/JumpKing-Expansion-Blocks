@@ -5,7 +5,7 @@ namespace JumpKing_Expansion_Blocks.Constants
     public class ColorCodes
     {
         public static readonly Color CODE_HIGH_GRAVITY = new Color(128, 0, 0);
-        public static readonly Color CODE_RAIN_GRAVITY = new Color(255, 192, 192);
+        public static readonly Color CODE_RAIN_GRAVITY = new Color(255, 194, 194);
         public static readonly Color CODE_SPECIAL_HIGH_GRAVITY = new Color(255, 190, 190);
 
         public static readonly Color CODE_DEEP_WATER = new Color(0, 172, 172);

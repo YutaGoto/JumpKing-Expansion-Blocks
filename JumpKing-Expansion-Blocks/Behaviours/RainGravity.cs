@@ -45,7 +45,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (bodyComp.Velocity.Y > 0 && IsPlayerOnBlock)
             {
-                bodyComp.Velocity.Y = Math.Min(bodyComp.Velocity.Y + 0.15f, 10);
+                bodyComp.Velocity.Y = Math.Min(bodyComp.Velocity.Y, 10f);
             }
 
             return inputYVelocity;
@@ -54,7 +54,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public float ModifyGravity(float inputGravity, BehaviourContext behaviourContext)
         {
-            return inputGravity;
+            return inputGravity * (IsPlayerOnBlock ? 1.15f : 1.0f);
         }
 
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
@@ -98,6 +98,5 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 _ => -7.435f,
             };
         }
-
     }
 }
