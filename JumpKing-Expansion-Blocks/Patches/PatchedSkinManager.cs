@@ -20,6 +20,11 @@ namespace JumpKing_Expansion_Blocks.Patches
                 {
                     __result = true;
                 }
+
+                if (player.m_body.IsOnBlock<Blocks.CursedIce>() && p_item == Items.GiantBoots)
+                {
+                    __result = true;
+                }
             }
         }
     }
