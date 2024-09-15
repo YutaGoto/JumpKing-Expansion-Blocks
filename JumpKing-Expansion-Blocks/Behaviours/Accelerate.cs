@@ -1,7 +1,6 @@
 ﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
-using JumpKing.Player;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
