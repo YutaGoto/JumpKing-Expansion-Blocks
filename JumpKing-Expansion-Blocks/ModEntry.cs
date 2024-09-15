@@ -16,7 +16,7 @@ namespace JumpKing_Expansion_Blocks
     public static class ModEntry
     {
         private static readonly string harmonyId = "YutaGoto.JumpKing_Expansion_Blocks";
-        public static Harmony harmony = new Harmony(harmonyId);
+        public static readonly Harmony harmony = new Harmony(harmonyId);
         /// <summary>
         /// Called by Jump King before the level loads
         /// </summary>
@@ -46,6 +46,7 @@ namespace JumpKing_Expansion_Blocks
             {
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.HighGravity), new Behaviours.HighGravity());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RainGravity), new Behaviours.RainGravity());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SpecialHighGravity), new Behaviours.SpecialHighGravity());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SlipperyIce), new Behaviours.SlipperyIce());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ZeroFriction), new Behaviours.ZeroFriction());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Quicksand), new Behaviours.Quicksand(collisionQuery));
@@ -63,6 +64,8 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.InfinityJump), new Behaviours.InfinityJump(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.WallJump), new Behaviours.WallJump(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DoubleJump), new Behaviours.DoubleJump(player));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CloudJump), new Behaviours.CloudJump(player));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledJump), new Behaviours.DisabledJump());
             }
         }
 

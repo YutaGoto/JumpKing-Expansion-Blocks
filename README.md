@@ -78,6 +78,12 @@ charge speed and moving are 2 times slower than water block.
 
 1 frame charge then full jump. max frame charge then the smallest jump.
 
+### Disabled Jump
+
+`#e9e9ec` `RGB(233, 233, 236)`
+
+you can only 1 frame jump.
+
 ## Other
 
 ### Conveyor
@@ -92,6 +98,14 @@ it acts like a conveyor belt. the blue channel is direction. the red channel is 
 `#e9e9eb` `RGB(233, 233, 235)`
 
 you can jump again while in the air.
+
+### Cloud Jump
+
+`#e9e9ea` `RGB(233, 233, 234)`
+
+same effect from Ghost of the Immortal Babe.
+
+you can jump again with automatic while in the air.
 
 ### HighGravity
 

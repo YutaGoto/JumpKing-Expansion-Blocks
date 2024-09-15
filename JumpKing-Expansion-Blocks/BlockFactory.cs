@@ -33,6 +33,8 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_REVERSED_WALK,
             Constants.ColorCodes.CODE_REVERSED_CHARGE,
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
+            Constants.ColorCodes.CODE_CLOUD_JUMP,
+            Constants.ColorCodes.CODE_DISABLED_JUMP,
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -159,6 +161,14 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new DoubleJump(blockRect);
             }
+            else if (blockCode == Constants.ColorCodes.CODE_CLOUD_JUMP)
+            {
+                return new CloudJump(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
+            {
+                return new DisabledJump(blockRect);
+            }
             else if (IsConveyorBlock(blockCode))
             {
                 return new Conveyor(blockRect, blockCode.R, blockCode.B);
@@ -169,7 +179,7 @@ namespace JumpKing_Expansion_Blocks
             }
         }
 
-        private bool IsConveyorBlock(Color blockCode)
+        private static bool IsConveyorBlock(Color blockCode)
         {
             return blockCode.G == Constants.ConveyorSpeedCodes.CONVEYOR_G && blockCode.R <= Constants.ConveyorSpeedCodes.CONVEYOR_R_MAX && blockCode.R >= Constants.ConveyorSpeedCodes.CONVEYOR_R_MIN && (blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_RIGHT || blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_LEFT);
         }

@@ -16,7 +16,7 @@ namespace JumpKing_Expansion_Blocks.Patches
         public PatchedJumpState(Harmony harmony)
         {
             harmony.Patch(AccessTools.Method(typeof(JumpState), "MyRun"), null, new HarmonyMethod(AccessTools.Method(GetType(), "Run")));
-            harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), "DoJumpReverse")), null);
+            harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), "Jump")), null);
         }
 
         private static void Run(TickData p_data, BTresult __result, JumpState __instance)
@@ -37,7 +37,7 @@ namespace JumpKing_Expansion_Blocks.Patches
             }
         }
 
-        private static void DoJumpReverse(ref float p_intensity)
+        private static void Jump(ref float p_intensity)
         {
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             if (player != null)
@@ -45,6 +45,11 @@ namespace JumpKing_Expansion_Blocks.Patches
                 if (player.m_body.IsOnBlock<Blocks.ReversedCharge>())
                 {
                     p_intensity = (1.0f + 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME)) - p_intensity;
+                }
+
+                if (player.m_body.IsOnBlock<Blocks.DisabledJump>())
+                {
+                    p_intensity = 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME);
                 }
             }
         }
