@@ -43,6 +43,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             if (IsPlayerOnBlock && player.m_body.IsOnGround)
             {
                 doubleJumpFlag = true;
+                doubleJumpVelocity = 0f;
             }
             else if (!IsPlayerOnBlock && player.m_body.IsOnGround)
             {
