@@ -72,6 +72,7 @@
     <Compile Include="Behaviours\Quicksand.cs" />
     <Compile Include="Behaviours\RainGravity.cs" />
     <Compile Include="Behaviours\SpecialHighGravity.cs" />
+    <Compile Include="Behaviours\Trampoline.cs" />
     <Compile Include="Behaviours\UpSand.cs" />
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Blocks\Quicksand.cs" />
     <Compile Include="Blocks\RainGravity.cs" />
     <Compile Include="Blocks\SpecialHighGravity.cs" />
+    <Compile Include="Blocks\Trampoline.cs" />
     <Compile Include="Blocks\UpSand.cs" />
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />

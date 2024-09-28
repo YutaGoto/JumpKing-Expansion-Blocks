@@ -16,6 +16,7 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_SLIPPERY_ICE = new Color(0, 192, 255);
         public static readonly Color CODE_ZERO_FRICTION = new Color(0, 193, 255);
         public static readonly Color CODE_REFLECTOR = new Color(192, 0, 192);
+        public static readonly Color CODE_TRAMPOLINE = new Color(193, 0, 193);
         public static readonly Color CODE_QUICKSAND = new Color(255, 108, 0);
         public static readonly Color CODE_SIDE_SAND = new Color(255, 109, 0);
         public static readonly Color CODE_MAGIC_SAND = new Color(255, 110, 0);
