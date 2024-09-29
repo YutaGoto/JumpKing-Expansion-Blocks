@@ -135,6 +135,15 @@ the gravity is 1.15 times stronger than normal. 28 frames charge is full jump. a
 
 you knock it, it will reflect you same speed.
 
+### Trampoline Wall
+
+`#c100c1` `RGB(193, 0, 193)`
+
+you bounce back with 0.8x speed. when your Y-velocity is very small, you can stand on it.
+
+- It is solid.
+- you can walk on it.
+
 ### ReversedWalk
 
 `#202020` `RGB(32, 32, 32)`
