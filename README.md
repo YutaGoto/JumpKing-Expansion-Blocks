@@ -14,23 +14,39 @@ This mod adds custom blocks to Jump King.
 
 3 times slippery than normal ice.
 
+- It is solid.
+- You can walk on it.
+- You will slide on it no matter what.
+
 ### ZeroFriction
 
 `#00c1ff` `RGB(0, 193, 255)`
 
-no friction at all.
+No friction at all.
+
+- It is solid.
+- You can walk on it.
+- You will slide on it no matter what.
 
 ### CursedIce
 
 `#1e1e1f` `RGB(30, 30, 31)`
 
-no walk, ice platform and reverse jump.
+No walk, ice platform and reverse jump.
+
+- It is solid.
+- You can't walk on it.
+- You will slide on it no matter what.
 
 ### RestrainedIce
 
 `#808000` `RGB(128, 128, 0)`
 
-no walk and ice platform. like wearing a Giant Boots.
+No walk and ice platform. Like wearing a Giant Boots.
+
+- It is solid.
+- You can't walk on it.
+- You will slide on it no matter what.
 
 ## Sand
 
@@ -38,25 +54,45 @@ no walk and ice platform. like wearing a Giant Boots.
 
 `#ff6d00` `RGB(255, 109, 0)`
 
-you are able to enter from any side (top, left, bottom, right).
+You are able to enter from any side (top, left, bottom, right).
+
+- It is solid.
+- You can walk on it.
+- You can't slide on it.
+- You will sink down.
 
 ### Quicksand
 
 `#ff6c00` `RGB(255, 108, 0)`
 
-sinking speed is faster than normal sand.
+Sinking speed is faster than normal sand.
+
+- It is solid.
+- You can walk on it.
+- You can't slide on it.
+- You will sink down.
 
 ### UpSand
 
 `#ff6f00` `RGB(255, 111, 0)`
 
-you are able to enter from any side. flow up.
+You are able to enter from any side. flow up.
+
+- It is solid.
+- You can't walk in it. You can walk on it.
+- You can't slide in it. You can slide on it.
+- You will flow up.
 
 ### MagicSand
 
 `#ff6e00` `RGB(255, 110, 0)`
 
-you are able to enter from any side. if it go up, it will flow up. if it go down, it will flow down.
+You are able to enter from any side. If it go up, it will flow up. If it go down, it will flow down.
+
+- It is solid.
+- If you sink down, you can walk on it. If you flow up, you can't walk on it.
+- You can't slide in it.
+- You will flow up or down.
 
 ## Jump, Moving
 
@@ -64,25 +100,45 @@ you are able to enter from any side. if it go up, it will flow up. if it go down
 
 `#b4ff00` `RGB(180, 255, 0)`
 
-charge speed and moving are 2 times faster than normal.
+Charge speed and moving are 2 times faster than normal.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- It affects your direction (velocity, gravity and jump charge).
 
 ### DeepWater
 
 `#00acac` `RGB(0, 172, 172)`
 
-charge speed and moving are 2 times slower than water block.
+Charge speed and moving are 2 times slower than water block (4 times slower than normal).
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- It affects your direction (velocity, gravity and jump charge).
 
 ### ReversedCharge
 
 `#212121` `RGB(33, 33, 33)`
 
-1 frame charge then full jump. max frame charge then the smallest jump.
+1 frame charge then full jump. Maximum frame charge then the smallest jump.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- It affects your jump charge.
 
 ### Disabled Jump
 
 `#e9e9ec` `RGB(233, 233, 236)`
 
-you can only 1 frame jump.
+You can only 1 frame jump.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- You can only 1 frame jump.
 
 ## Other
 
@@ -91,13 +147,23 @@ you can only 1 frame jump.
 - left: `#011e1e` `RGB(1, 30, 30)` to `#1e1e1e` `RGB(30, 30, 30)`
 - right: `#011e1f` `RGB(1, 30, 31)` to `#1e1e1f` `RGB(30, 30, 31)`
 
-it acts like a conveyor belt. the blue channel is direction. the red channel is speed.
+It acts like a conveyor belt.
+
+The blue channel is direction. The red channel is speed.
+
+- It is solid.
+- You can walk on it.
+- You can't slide on it.
 
 ### DoubleJump
 
 `#e9e9eb` `RGB(233, 233, 235)`
 
-you can jump again while in the air.
+You can jump again while in the air.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
 
 ### Cloud Jump
 
@@ -105,21 +171,34 @@ you can jump again while in the air.
 
 same effect from Ghost of the Immortal Babe.
 
-you can jump again with automatic while in the air.
+You can jump again with automatic while in the air.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
 
 ### HighGravity
 
 `#800000` `RGB(128, 0, 0)`
 
-the gravity is 1.5 times stronger than normal. vertical speed is 0.9 times than normal.
+The gravity is 1.5 times stronger than normal. Vertical speed is 0.9 times than normal.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- It affects your direction (velocity, gravity and jump curve).
 
 ### InfinityJump
 
 `#40ffff` `RGB(64, 255, 255)`
 
-you can jump while on the block.
+You can jump while on the block.
 
 note: this is ice and sand.
+
+- It is solid.
+- You can walk on it.
+- You can slide on it.
 
 ### RainGravity
 
@@ -127,41 +206,64 @@ note: this is ice and sand.
 
 same high gravity from Ghost of the Immortal Babe.
 
-the gravity is 1.15 times stronger than normal. 28 frames charge is full jump. and it is adjusted horizontal speed.
+The gravity is about 1.15 times stronger than normal. 28 frames charge is full jump. and it is adjusted horizontal speed.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- It affects your direction (velocity, gravity, jump charge and jump curve).
 
 ### Reflector Wall
 
 `#c000c0` `RGB(192, 0, 192)`
 
-you knock it, it will reflect you same speed.
+You knock it, it will reflect you same speed.
+
+- It is solid.
+- You can walk on it.
+- You can't slide on it.
 
 ### Trampoline Wall
 
 `#c100c1` `RGB(193, 0, 193)`
 
-you bounce back with 0.8x speed. when your Y-velocity is very small, you can stand on it.
+You bounce back with 0.8x speed. when your Y-velocity is very small, you can stand on it.
 
 - It is solid.
-- you can walk on it.
+- You can walk on it.
+- You can't slide on it.
 
 ### ReversedWalk
 
 `#202020` `RGB(32, 32, 32)`
 
-you can walk backward.
+You can walk backward.
 
 problem: you can't hug the wall and slope. you through these.
+
+- It is solid.
+- You can walk on it.
+- You can't slide on it.
 
 ### SpecialHighGravity
 
 `#ffbebe` `RGB(255, 190, 190)`
 
-28 frames charge is full jump. and you can jump almost same height between 22 frames charge and 28 frames charge.
+28 frames charge is full jump. And you can jump almost same height between 22 frames charge and 28 frames charge.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- It affects your direction (velocity, gravity, jump charge and jump curve).
 
 ### WallJump
 
 `#101010` `RGB(16, 16, 16)`
 
-you can stand on the wall and jump from it.
+You can stand on the wall and jump from it. You needs at least 7 frames to jump from this block.
 
 note: this is snow and sand.
+
+- It is solid.
+- You can't walk on it.
+- You can't slide on it no matter what.
