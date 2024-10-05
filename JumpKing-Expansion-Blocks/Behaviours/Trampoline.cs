@@ -40,17 +40,17 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (behaviourContext?.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
-                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.Trampoline>() && yVelocity >= 1.0f;
+                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.Trampoline>() && yVelocity >= 1.9f;
             }
 
             yVelocity = Math.Max(yVelocity, bodyComp.Velocity.Y);
             xVelocity = bodyComp.Velocity.X;
 
-            if (yVelocity < 1.0f) Reset();
+            if (yVelocity < 1.9f) Reset();
 
             if (IsPlayerOnBlock && !xCollisionCheck)
             {
-                bodyComp.Velocity.Y = (yVelocity * -0.8f);
+                bodyComp.Velocity.Y = (yVelocity * -0.80f);
                 bodyComp.Velocity.X = xVelocity;
                 Reset();
             }
