@@ -223,7 +223,7 @@ You knock it, it will reflect you same speed.
 - You can walk on it.
 - You can't slide on it.
 
-### Trampoline Wall
+### Trampoline
 
 `#c100c1` `RGB(193, 0, 193)`
 
