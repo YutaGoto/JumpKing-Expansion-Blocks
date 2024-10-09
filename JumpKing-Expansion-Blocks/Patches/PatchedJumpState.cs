@@ -3,7 +3,6 @@ using EntityComponent;
 using HarmonyLib;
 using JumpKing;
 using JumpKing.Player;
-using static JumpKing.JKContentManager.Audio;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
