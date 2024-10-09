@@ -3,6 +3,7 @@ using EntityComponent;
 using HarmonyLib;
 using JumpKing;
 using JumpKing.Player;
+using static JumpKing.JKContentManager.Audio;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
@@ -15,8 +16,21 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         public PatchedJumpState(Harmony harmony)
         {
-            harmony.Patch(AccessTools.Method(typeof(JumpState), "MyRun"), null, new HarmonyMethod(AccessTools.Method(GetType(), "Run")));
+            harmony.Patch(AccessTools.Method(typeof(JumpState), "MyRun"), new HarmonyMethod(AccessTools.Method(GetType(), "PrefixRun")), new HarmonyMethod(AccessTools.Method(GetType(), "Run")));
             harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), "Jump")), null);
+        }
+
+        private static bool PrefixRun(ref BTresult __result)
+        {
+            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+
+            if (player != null && player.m_body.IsOnBlock<Blocks.Trampoline>())
+            {
+                __result = BTresult.Failure;
+                return false;
+            }
+
+            return true;
         }
 
         private static void Run(TickData p_data, BTresult __result, JumpState __instance)
