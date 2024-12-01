@@ -63,6 +63,10 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
+                if(IsMultiWarpBlock(blockCode))
+                {
+                    return true;
+                }
                 return false;
             }
 
@@ -179,6 +183,10 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new Conveyor(blockRect, blockCode.R, blockCode.B);
             }
+            else if (IsMultiWarpBlock(blockCode))
+            {
+                return new MultiWarp(blockRect, blockCode.R);
+            }
             else
             {
                 throw new InvalidOperationException($"{typeof(BlockFactory).Name} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
@@ -188,6 +196,11 @@ namespace JumpKing_Expansion_Blocks
         private static bool IsConveyorBlock(Color blockCode)
         {
             return blockCode.G == Constants.ConveyorSpeedCodes.CONVEYOR_G && blockCode.R <= Constants.ConveyorSpeedCodes.CONVEYOR_R_MAX && blockCode.R >= Constants.ConveyorSpeedCodes.CONVEYOR_R_MIN && (blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_RIGHT || blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_LEFT);
+        }
+
+        private static bool IsMultiWarpBlock(Color blockCode)
+        {
+            return blockCode.G == Constants.MultiWarpColorCodes.MULTI_WARP_G && blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B && blockCode.R >= Constants.MultiWarpColorCodes.MULTI_WARP_R_MIN && blockCode.R <= Constants.MultiWarpColorCodes.MULTI_WARP_R_MAX;
         }
     }
 }

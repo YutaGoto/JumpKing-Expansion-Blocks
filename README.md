@@ -142,6 +142,18 @@ You can only 1 frame jump.
 
 ## Other
 
+### Multi Side Teleport block
+
+- `#0100fa` `RGB(1, 0, 250)` to `#a900fa` `RGB(169, 0, 250)`
+
+The teleport block has a range of values that goes from 1 to 169. The value is the number of frames that the player will be teleported to the next block.
+
+You must put the side. (the block checks that the player is on the side of the block)
+
+- It is not solid.
+- You can walk on it.
+- You can't slide on it.
+
 ### Conveyor
 
 - left: `#011e1e` `RGB(1, 30, 30)` to `#1e1e1e` `RGB(30, 30, 30)`

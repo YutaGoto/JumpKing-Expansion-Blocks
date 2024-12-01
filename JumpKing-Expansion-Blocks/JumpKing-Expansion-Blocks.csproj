@@ -57,6 +57,7 @@
     <Compile Include="Behaviours\CloudJump.cs" />
     <Compile Include="Behaviours\DisabledJump.cs" />
     <Compile Include="Behaviours\DoubleJump.cs" />
+    <Compile Include="Behaviours\MultiWarp.cs" />
     <Compile Include="Behaviours\RestrainedIce.cs" />
     <Compile Include="Behaviours\Conveyor.cs" />
     <Compile Include="Behaviours\DeepWater.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Blocks\CloudJump.cs" />
     <Compile Include="Blocks\DisabledJump.cs" />
     <Compile Include="Blocks\DoubleJump.cs" />
+    <Compile Include="Blocks\MultiWarp.cs" />
     <Compile Include="Blocks\RestrainedIce.cs" />
     <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\DeepWater.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="Constants\ColorCodes.cs" />
     <Compile Include="Constants\ConveyorSpeedCodes.cs" />
+    <Compile Include="Constants\MultiWarpColorCodes.cs" />
     <Compile Include="Patches\PatchedJumpState.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
