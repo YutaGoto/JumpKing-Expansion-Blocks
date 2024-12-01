@@ -63,11 +63,11 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 {
                     if (center.X <= 0)
                     {
-                        num = 480.0f;
+                        num = 479.8f;
                     }
                     else if (center.X >= 480)
                     {
-                        num = -480.0f;
+                        num = -479.8f;
                     }
 
                     m_bodyComp.Position.X += num;
