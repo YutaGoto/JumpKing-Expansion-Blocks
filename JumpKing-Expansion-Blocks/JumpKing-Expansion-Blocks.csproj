@@ -87,6 +87,7 @@
     <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\DeepWater.cs" />
     <Compile Include="Blocks\HighGravity.cs" />
+    <Compile Include="Blocks\SuperLowGravity.cs" />
     <Compile Include="Blocks\InfinityJump.cs" />
     <Compile Include="Blocks\MagicSand.cs" />
     <Compile Include="Blocks\Reflector.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Blocks\Quicksand.cs" />
     <Compile Include="Blocks\RainGravity.cs" />
     <Compile Include="Blocks\SpecialHighGravity.cs" />
+    <Compile Include="Blocks\SuperLowGravity.cs" />
     <Compile Include="Blocks\Trampoline.cs" />
     <Compile Include="Blocks\UpSand.cs" />
     <Compile Include="Blocks\WallJump.cs" />
