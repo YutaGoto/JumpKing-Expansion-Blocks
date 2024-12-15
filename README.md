@@ -1,5 +1,7 @@
 # JumpKing Expansion Blocks Mod
 
+![Jump King Mod Badge](https://img.shields.io/badge/Jump_King-Mod-61CE70?style=flat-square&labelColor=BA1313)
+
 ![thumbnail](https://steamuserimages-a.akamaihd.net/ugc/5838428307081072717/1CA52980181FF52EF1122EB3169F0AA583BB648B/)
 
 https://steamcommunity.com/sharedfiles/filedetails/?id=3214349391
@@ -76,7 +78,7 @@ Sinking speed is faster than normal sand.
 
 `#ff6f00` `RGB(255, 111, 0)`
 
-You are able to enter from any side. flow up.
+You are able to enter from the bottom. flow up.
 
 - It is solid.
 - You can't walk in it. You can walk on it.
