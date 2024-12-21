@@ -46,6 +46,13 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                     Blocks.QuickMove quickMove = behaviourContext.LastFrameCollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.QuickMove>().FirstOrDefault() as Blocks.QuickMove;
                     ratio = 1.0f + quickMove.Ratio * 0.1f;
                 }
+                else
+                {
+                    ratio = 1.0f;
+                }
+            } else
+            {
+                ratio = 1.0f;
             }
 
             return inputXVelocity * ratio;
