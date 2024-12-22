@@ -50,7 +50,8 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 {
                     ratio = 1.0f;
                 }
-            } else
+            }
+            else
             {
                 ratio = 1.0f;
             }
