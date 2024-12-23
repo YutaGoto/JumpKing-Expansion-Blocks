@@ -37,7 +37,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             BodyComp bodyComp = behaviourContext.BodyComp;
             if (IsPlayerOnBlock && bodyComp.Velocity.Y > 0f)
             {
-                return Math.Min(inputYVelocity * 0.5f, PlayerValues.MAX_FALL - 1f);
+                return Math.Min(inputYVelocity * 0.4f, PlayerValues.MAX_FALL - 1f);
             }
 
             return inputYVelocity;
