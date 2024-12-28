@@ -42,7 +42,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.OneWayIce>();
             }
 
-            if (IsPlayerOnBlock && bodyComp.IsOnGround)
+            if (IsPlayerOnBlock && bodyComp.IsOnGround && !behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<IceBlock>())
             {
                 bodyComp.Velocity.X = ErikMath.MoveTowards(bodyComp.Velocity.X, 0f, PlayerValues.ICE_FRICTION);
             }
