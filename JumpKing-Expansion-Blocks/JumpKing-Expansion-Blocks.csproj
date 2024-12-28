@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -46,7 +47,8 @@
       <Private>False</Private>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Jump King\JumpKing.exe</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
+    <Reference
+      Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Jump King\MonoGame.Framework.dll</HintPath>
@@ -58,6 +60,7 @@
     <Compile Include="Behaviours\DisabledJump.cs" />
     <Compile Include="Behaviours\DoubleJump.cs" />
     <Compile Include="Behaviours\MultiWarp.cs" />
+    <Compile Include="Behaviours\OneWayIce.cs" />
     <Compile Include="Behaviours\QuickMove.cs" />
     <Compile Include="Behaviours\RestrainedIce.cs" />
     <Compile Include="Behaviours\Conveyor.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Blocks\DisabledJump.cs" />
     <Compile Include="Blocks\DoubleJump.cs" />
     <Compile Include="Blocks\MultiWarp.cs" />
+    <Compile Include="Blocks\OneWayIce.cs" />
     <Compile Include="Blocks\QuickMove.cs" />
     <Compile Include="Blocks\RestrainedIce.cs" />
     <Compile Include="Blocks\Conveyor.cs" />

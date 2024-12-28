@@ -19,6 +19,7 @@ namespace JumpKing_Expansion_Blocks.Patches
                 if (
                     player.m_body.IsOnBlock<Blocks.SlipperyIce>() ||
                     player.m_body.IsOnBlock<Blocks.ZeroFriction>() ||
+                    player.m_body.IsOnBlock<Blocks.OneWayIce>() ||
                     player.m_body.IsOnBlock<Blocks.RestrainedIce>() ||
                     player.m_body.IsOnBlock<Blocks.CursedIce>() ||
                     player.m_body.IsOnBlock<Blocks.InfinityJump>()
