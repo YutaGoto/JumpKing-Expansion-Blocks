@@ -50,6 +50,16 @@ No walk and ice platform. Like wearing a Giant Boots.
 - You can't walk on it.
 - You will slide on it no matter what.
 
+### OneWay Ice
+
+`#4182ff` `RGB(65, 130, 255)`
+
+The semi-solid block is a Ice block that is solid only in one side.
+
+- It is solid. (only one side)
+- You can walk on it.
+- You will slide on it no matter what.
+
 ## Sand
 
 ### SideSand
