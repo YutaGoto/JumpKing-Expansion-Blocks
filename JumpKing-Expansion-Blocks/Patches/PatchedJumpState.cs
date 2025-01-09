@@ -64,6 +64,14 @@ namespace JumpKing_Expansion_Blocks.Patches
                 {
                     p_intensity = 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME);
                 }
+
+                if (player.m_body.IsOnBlock<Blocks.ChargeDecay>())
+                {
+                    if (p_intensity > 0.5f )
+                    {
+                        p_intensity = 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME);
+                    }
+                }
             }
         }
     }
