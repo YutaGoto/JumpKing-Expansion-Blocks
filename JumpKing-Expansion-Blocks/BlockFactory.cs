@@ -36,9 +36,11 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_REVERSED_WALK,
             Constants.ColorCodes.CODE_REVERSED_CHARGE,
             Constants.ColorCodes.CODE_REVERSED_GRAVITY,
+            Constants.ColorCodes.CODE_SUPER_CHARGE,
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
             Constants.ColorCodes.CODE_DISABLED_JUMP,
+            Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -183,6 +185,10 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new ReversedCharge(blockRect);
             }
+            else if (blockCode == Constants.ColorCodes.CODE_SUPER_CHARGE)
+            {
+                return new SuperCharge(blockRect);
+            }
             else if (blockCode == Constants.ColorCodes.CODE_REVERSED_GRAVITY)
             {
                 return new ReversedGravity(blockRect);
@@ -198,6 +204,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
             {
                 return new DisabledJump(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS)
+            {
+                return new AntiGiantBoots(blockRect);
             }
             else if (IsConveyorBlock(blockCode))
             {

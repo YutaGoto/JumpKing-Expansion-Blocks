@@ -23,7 +23,6 @@ namespace JumpKing_Expansion_Blocks
         [BeforeLevelLoad]
         public static void BeforeLevelLoad()
         {
-
             LevelManager.RegisterBlockFactory(new BlockFactory());
             PatchWithHarmony(harmony);
         }
@@ -60,6 +59,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CursedIce), new Behaviours.CursedIce());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedWalk), new Behaviours.ReversedWalk());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedCharge), new Behaviours.ReversedCharge());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SuperCharge), new Behaviours.SuperCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedGravity), new Behaviours.ReversedGravity());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Trampoline), new Behaviours.Trampoline());
@@ -71,6 +71,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DoubleJump), new Behaviours.DoubleJump(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CloudJump), new Behaviours.CloudJump(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledJump), new Behaviours.DisabledJump());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.AntiGiantBoots), new Behaviours.AntiGiantBoots());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.MultiWarp), new Behaviours.MultiWarp());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.QuickMove), new Behaviours.QuickMove());
             }
@@ -87,7 +88,7 @@ namespace JumpKing_Expansion_Blocks
         /// </summary>
         private static void PatchWithHarmony(Harmony harmony)
         {
-            new PatchedJumpState(harmony);
+            var _ = new PatchedJumpState(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });
             MethodInfo postfixIsOnBlockPostfixMethod = typeof(ModEntry).GetMethod("IsOnBlockPostfix");

@@ -141,6 +141,17 @@ Charge speed and moving are 2 times slower than water block (4 times slower than
 - You can’t slide on it.
 - It affects your jump charge.
 
+### Reversed Gravity
+
+`#21ffff` `RGB(33, 255, 255)`
+
+Gravity is reversed. It effects when you are in the air and X speed is more than `0.1` (Neutral Jumping is not affected).
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- Gravity is reversed.
+
 ### Disabled Jump
 
 `#e9e9ec` `RGB(233, 233, 236)`
