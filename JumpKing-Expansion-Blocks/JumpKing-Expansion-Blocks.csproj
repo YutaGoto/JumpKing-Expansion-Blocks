@@ -66,6 +66,7 @@
     <Compile Include="Behaviours\Conveyor.cs" />
     <Compile Include="Behaviours\DeepWater.cs" />
     <Compile Include="Behaviours\HighGravity.cs" />
+    <Compile Include="Behaviours\ReversedGravity.cs" />
     <Compile Include="Behaviours\SuperLowGravity.cs" />
     <Compile Include="Behaviours\InfinityJump.cs" />
     <Compile Include="Behaviours\MagicSand.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\DeepWater.cs" />
     <Compile Include="Blocks\HighGravity.cs" />
+    <Compile Include="Blocks\ReversedGravity.cs" />
     <Compile Include="Blocks\SuperLowGravity.cs" />
     <Compile Include="Blocks\InfinityJump.cs" />
     <Compile Include="Blocks\MagicSand.cs" />
