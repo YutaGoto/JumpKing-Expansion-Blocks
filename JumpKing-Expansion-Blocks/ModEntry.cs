@@ -61,6 +61,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedWalk), new Behaviours.ReversedWalk());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedCharge), new Behaviours.ReversedCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedGravity), new Behaviours.ReversedGravity());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.UpsideDown), new Behaviours.UpsideDown());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Trampoline), new Behaviours.Trampoline());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor());
@@ -87,7 +88,20 @@ namespace JumpKing_Expansion_Blocks
         /// </summary>
         private static void PatchWithHarmony(Harmony harmony)
         {
+            new Patches.Camera(harmony);
+            new Patches.LevelScreen(harmony);
+            new Patches.WaterParticleSpawningBehaviour(harmony);
+            new Patches.ResolveXCollisionBehaviour(harmony);
+            new Patches.ResolveYCollisionBehaviour(harmony);
+            new Patches.ApplyGravityBehaviour(harmony);
+            new Patches.SandBlockBehaviour(harmony);
+            new Patches.GuardtowerSoulBugFixBehaviour(harmony);
+            new Patches.FailState(harmony);
             new PatchedJumpState(harmony);
+            new Patches.AirAnim(harmony);
+            new Patches.Walk(harmony);
+            new Patches.FollyPlayer(harmony);
+            new Patches.PatchedPlayerEntity(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });
             MethodInfo postfixIsOnBlockPostfixMethod = typeof(ModEntry).GetMethod("IsOnBlockPostfix");
@@ -145,6 +159,18 @@ namespace JumpKing_Expansion_Blocks
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.InfinityJump) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.WallJump) });
             }
+        }
+
+        public static bool IsUpsideDown()
+        {
+            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+
+            if (player == null)
+            {
+                return false;
+            }
+
+            return player.m_body.IsOnBlock<Blocks.UpsideDown>();
         }
     }
 }
