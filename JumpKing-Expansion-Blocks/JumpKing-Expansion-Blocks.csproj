@@ -55,73 +55,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviours\Accelerate.cs" />
-    <Compile Include="Behaviours\CloudJump.cs" />
-    <Compile Include="Behaviours\DisabledJump.cs" />
-    <Compile Include="Behaviours\DoubleJump.cs" />
-    <Compile Include="Behaviours\MultiWarp.cs" />
-    <Compile Include="Behaviours\OneWayIce.cs" />
-    <Compile Include="Behaviours\QuickMove.cs" />
-    <Compile Include="Behaviours\RestrainedIce.cs" />
-    <Compile Include="Behaviours\Conveyor.cs" />
-    <Compile Include="Behaviours\DeepWater.cs" />
-    <Compile Include="Behaviours\HighGravity.cs" />
-    <Compile Include="Behaviours\ReversedGravity.cs" />
-    <Compile Include="Behaviours\SuperLowGravity.cs" />
-    <Compile Include="Behaviours\InfinityJump.cs" />
-    <Compile Include="Behaviours\MagicSand.cs" />
-    <Compile Include="Behaviours\Reflector.cs" />
-    <Compile Include="Behaviours\CursedIce.cs" />
-    <Compile Include="Behaviours\ReversedCharge.cs" />
-    <Compile Include="Behaviours\ReversedWalk.cs" />
-    <Compile Include="Behaviours\SideSand.cs" />
-    <Compile Include="Behaviours\SlipperyIce.cs" />
-    <Compile Include="Behaviours\Quicksand.cs" />
-    <Compile Include="Behaviours\RainGravity.cs" />
-    <Compile Include="Behaviours\SpecialHighGravity.cs" />
-    <Compile Include="Behaviours\Trampoline.cs" />
-    <Compile Include="Behaviours\UpSand.cs" />
-    <Compile Include="Behaviours\WallJump.cs" />
-    <Compile Include="Behaviours\ZeroFriction.cs" />
+    <Compile Include="Behaviours\*.cs" />
     <Compile Include="BlockFactory.cs" />
-    <Compile Include="Blocks\Accelerate.cs" />
-    <Compile Include="Blocks\CloudJump.cs" />
-    <Compile Include="Blocks\DisabledJump.cs" />
-    <Compile Include="Blocks\DoubleJump.cs" />
-    <Compile Include="Blocks\MultiWarp.cs" />
-    <Compile Include="Blocks\OneWayIce.cs" />
-    <Compile Include="Blocks\QuickMove.cs" />
-    <Compile Include="Blocks\RestrainedIce.cs" />
-    <Compile Include="Blocks\Conveyor.cs" />
-    <Compile Include="Blocks\DeepWater.cs" />
-    <Compile Include="Blocks\HighGravity.cs" />
-    <Compile Include="Blocks\ReversedGravity.cs" />
-    <Compile Include="Blocks\SuperLowGravity.cs" />
-    <Compile Include="Blocks\InfinityJump.cs" />
-    <Compile Include="Blocks\MagicSand.cs" />
-    <Compile Include="Blocks\Reflector.cs" />
-    <Compile Include="Blocks\CursedIce.cs" />
-    <Compile Include="Blocks\ReversedCharge.cs" />
-    <Compile Include="Blocks\ReversedWalk.cs" />
-    <Compile Include="Blocks\SideSand.cs" />
-    <Compile Include="Blocks\SlipperyIce.cs" />
-    <Compile Include="Blocks\Quicksand.cs" />
-    <Compile Include="Blocks\RainGravity.cs" />
-    <Compile Include="Blocks\SpecialHighGravity.cs" />
-    <Compile Include="Blocks\Trampoline.cs" />
-    <Compile Include="Blocks\UpSand.cs" />
-    <Compile Include="Blocks\WallJump.cs" />
-    <Compile Include="Blocks\ZeroFriction.cs" />
+    <Compile Include="Blocks\*.cs" />
     <Compile Include="Constants\ColorCodes.cs" />
     <Compile Include="Constants\ConveyorSpeedCodes.cs" />
     <Compile Include="Constants\MultiWarpColorCodes.cs" />
     <Compile Include="Constants\QuickMoveCodes.cs" />
-    <Compile Include="Patches\PatchedJumpState.cs" />
-    <Compile Include="ModEntry.cs" />
-    <Compile Include="Nodes\WalkAnimReset.cs" />
+    <Compile Include="Patches\AirAnim.cs" />
+    <Compile Include="Patches\ApplyGravityBehaviour.cs" />
+    <Compile Include="Patches\Camera.cs" />
+    <Compile Include="Patches\FailState.cs" />
+    <Compile Include="Patches\FollyPlayer.cs" />
+    <Compile Include="Patches\GuardtowerSoulBugFixBehaviour.cs" />
+    <Compile Include="Patches\LevelScreen.cs" />
     <Compile Include="Patches\PatchedBodyComp.cs" />
     <Compile Include="Patches\PatchedInventoryManager.cs" />
+    <Compile Include="Patches\PatchedJumpState.cs" />
+    <Compile Include="Patches\PatchedPlayerEntity.cs" />
     <Compile Include="Patches\PatchedSkinManager.cs" />
+    <Compile Include="Patches\ResolveXCollisionBehaviour.cs" />
+    <Compile Include="Patches\ResolveYCollisionBehaviour.cs" />
+    <Compile Include="Patches\SandBlockBehaviour.cs" />
+    <Compile Include="Patches\Walk.cs" />
+    <Compile Include="Patches\WaterParticleSpawningBehaviour.cs" />
+    <Compile Include="ModEntry.cs" />
+    <Compile Include="Nodes\WalkAnimReset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -129,6 +88,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
