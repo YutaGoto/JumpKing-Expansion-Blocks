@@ -302,3 +302,14 @@ note: this is snow and sand.
 - It is solid.
 - You can't walk on it.
 - You can't slide on it no matter what.
+
+### Upside-Down
+
+`#505050`, `RGB(80, 80, 80)`
+
+Gravity is reversed. You can walk and jump on the ceiling.
+
+- It isn't solid.
+- You can't walk on it.
+- You can’t slide on it.
+- Gravity is reversed.
