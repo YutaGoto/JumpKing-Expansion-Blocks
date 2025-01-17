@@ -3,8 +3,6 @@ using EntityComponent;
 using HarmonyLib;
 using JumpKing;
 using JumpKing.Player;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
@@ -18,13 +16,7 @@ namespace JumpKing_Expansion_Blocks.Patches
         public PatchedJumpState(Harmony harmony)
         {
             harmony.Patch(AccessTools.Method(typeof(JumpState), "MyRun"), new HarmonyMethod(AccessTools.Method(GetType(), "PrefixRun")), new HarmonyMethod(AccessTools.Method(GetType(), "Run")));
-            
-            harmony.Patch(
-                AccessTools.Method(typeof(JumpState), "DoJump"), 
-                new HarmonyMethod(AccessTools.Method(GetType(), "Jump")), 
-                null,
-                new HarmonyMethod(AccessTools.Method(typeof(PatchedJumpState), nameof(transpileDoJump)))
-            );
+            harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), "Jump")), null);
         }
 
         private static bool PrefixRun(ref BTresult __result)
@@ -73,34 +65,6 @@ namespace JumpKing_Expansion_Blocks.Patches
                     p_intensity = 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME);
                 }
             }
-        }
-
-        private static IEnumerable<CodeInstruction> transpileDoJump(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
-        {
-            CodeMatcher matcher = new CodeMatcher(instructions, generator);
-
-            matcher.MatchStartForward(
-                // base.body.Velocity.Y = JUMP_STRENGTH * p_intensity;
-                new CodeMatch(OpCodes.Ldarg_0),
-                new CodeMatch(OpCodes.Call, AccessTools.Method("JumpKing.Player.PlayerNode:get_body")),
-                new CodeMatch(OpCodes.Ldflda, AccessTools.Field("JumpKing.Player.BodyComp:Velocity")),
-                new CodeMatch(OpCodes.Ldarg_0),
-                new CodeMatch(OpCodes.Call, AccessTools.Method("JumpKing.Player.JumpState:get_JUMP_STRENGTH")),
-                new CodeMatch(OpCodes.Ldarg_1),
-                new CodeMatch(OpCodes.Mul),
-                new CodeMatch(OpCodes.Stfld, AccessTools.Field("Microsoft.Xna.Framework.Vector2:Y"))
-            ).ThrowIfInvalid($"Cant find code in {nameof(JumpState)}");
-            matcher.Advance(5);
-            matcher.InsertAndAdvance(
-                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(PatchedJumpState), nameof(negative)))
-            );
-
-            return matcher.Instructions();
-        }
-
-        private static float negative(float value)
-        {
-            return Utils.negative(value);
         }
     }
 }
