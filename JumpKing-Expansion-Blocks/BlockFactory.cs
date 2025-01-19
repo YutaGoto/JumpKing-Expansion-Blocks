@@ -39,6 +39,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
             Constants.ColorCodes.CODE_DISABLED_JUMP,
+            Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -198,6 +199,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
             {
                 return new DisabledJump(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS)
+            {
+                return new AntiGiantBoots(blockRect);
             }
             else if (IsConveyorBlock(blockCode))
             {
