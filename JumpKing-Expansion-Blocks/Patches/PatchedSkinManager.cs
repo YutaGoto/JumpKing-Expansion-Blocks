@@ -25,6 +25,11 @@ namespace JumpKing_Expansion_Blocks.Patches
                 {
                     __result = true;
                 }
+
+                if (player.m_body.IsOnBlock<Blocks.AntiGiantBoots>() && p_item == Items.GiantBoots)
+                {
+                    __result = false;
+                }
             }
         }
     }
