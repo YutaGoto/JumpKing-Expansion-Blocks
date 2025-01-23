@@ -53,6 +53,7 @@
     </Reference>
     <Reference Include="UpSideDownCore">
       <HintPath>..\..\packages\UpSideDownCore\UpSideDownCore.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
