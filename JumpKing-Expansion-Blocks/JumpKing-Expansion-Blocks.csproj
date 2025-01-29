@@ -51,10 +51,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Jump King\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="UpSideDownCore">
-      <HintPath>..\..\packages\UpSideDownCore\UpSideDownCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviours\Accelerate.cs" />
@@ -84,7 +80,6 @@
     <Compile Include="Behaviours\SpecialHighGravity.cs" />
     <Compile Include="Behaviours\Trampoline.cs" />
     <Compile Include="Behaviours\UpSand.cs" />
-    <Compile Include="Behaviours\UpsideDown.cs" />
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
@@ -115,7 +110,6 @@
     <Compile Include="Blocks\SpecialHighGravity.cs" />
     <Compile Include="Blocks\Trampoline.cs" />
     <Compile Include="Blocks\UpSand.cs" />
-    <Compile Include="Blocks\UpsideDown.cs" />
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="Constants\ColorCodes.cs" />
