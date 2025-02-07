@@ -26,6 +26,8 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_CURSED_ICE = new Color(144, 144, 0);
         public static readonly Color CODE_REVERSED_WALK = new Color(32, 32, 32);
         public static readonly Color CODE_REVERSED_CHARGE = new Color(33, 33, 33);
+        public static readonly Color CODE_SUPER_CHARGE = new Color(48, 48, 48);
+
         public static readonly Color CODE_SUPER_LOW_GRAVITY = new Color(129, 255, 255);
         public static readonly Color CODE_REVERSED_GRAVITY = new Color(33, 255, 255);
 
