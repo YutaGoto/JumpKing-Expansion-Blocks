@@ -15,6 +15,7 @@ namespace JumpKing_Expansion_Blocks.Patches
             Rectangle hitbox = player.m_body.GetHitbox();
             collisionQuery.CheckCollision(hitbox, out Rectangle _, out AdvCollisionInfo info);
             if (info.IsCollidingWith<Blocks.SuperCharge>()) __result *= 0.05f;
+            if (info.IsCollidingWith<Blocks.TripleCharge>()) __result *= (1 / 3f);
             if (info.IsCollidingWith<Blocks.DeepWater>())__result *= 0.25f;
             if (info.IsCollidingWith<Blocks.RainGravity>()) __result *= 1.28f;
             if (info.IsCollidingWith<Blocks.SpecialHighGravity>()) __result *= 1.28f;
