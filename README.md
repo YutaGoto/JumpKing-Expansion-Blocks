@@ -141,6 +141,28 @@ Charge speed and moving are 2 times slower than water block (4 times slower than
 - You can’t slide on it.
 - It affects your jump charge.
 
+### TripleCharge
+
+`#323030` `RGB(50, 48, 48)`
+
+be able to charge 3 times than normal.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- 1 - 35 frames charge is normal. over 35 frames charge is stronger.
+
+### SuperCharge
+
+`#303030` `RGB(48, 48, 48)`
+
+be able to charge 20 times than normal.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- 1 - 35 frames charge is normal. over 35 frames charge is stronger.
+
 ### Reversed Gravity
 
 `#21ffff` `RGB(33, 255, 255)`
