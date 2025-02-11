@@ -1,6 +1,7 @@
 ﻿using EntityComponent;
 using HarmonyLib;
 using JumpKing.API;
+using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.MiscEntities.WorldItems;
 using JumpKing.MiscEntities.WorldItems.Inventory;
@@ -107,6 +108,10 @@ namespace JumpKing_Expansion_Blocks
             MethodInfo hasItemEnabled = typeof(InventoryManager).GetMethod("HasItemEnabled", new Type[] { typeof(Items) });
             MethodInfo postfixHasItemEnabled = typeof(PatchedInventoryManager).GetMethod("HasItemEnabledPostfix");
             harmony.Patch(hasItemEnabled, postfix: new HarmonyMethod(postfixHasItemEnabled));
+
+            MethodInfo resolveXCollisionBehaviour = typeof(ResolveXCollisionBehaviour).GetMethod("ExecuteBehaviour", new Type[] { typeof(BehaviourContext) });
+            MethodInfo prefixResolveXCollisionBehaviour = typeof(PatchedResolveXCollisionBehaviour).GetMethod("UpdateXIfCompressedAgainstWall");
+            harmony.Patch(resolveXCollisionBehaviour, prefix: new HarmonyMethod(prefixResolveXCollisionBehaviour));
         }
 
         private static MethodInfo originalIsOnBlock;

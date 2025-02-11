@@ -2,6 +2,7 @@
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
+using Microsoft.Xna.Framework;
 using System.Linq;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
@@ -11,6 +12,12 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         public float BlockPriority => 1f;
 
         public bool IsPlayerOnBlock { get; set; }
+
+        public bool IsPlayerOnBlockLastFrame { get; set; }
+        public Vector2 IsPlayerOnLastFramePosition { get; set; }
+
+        public Blocks.Conveyor _conveyorBlock;
+
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
             return false;
@@ -29,15 +36,17 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             {
                 if (behaviourContext.LastFrameCollisionInfo?.PreResolutionCollisionInfo != null)
                 {
-                    Blocks.Conveyor conveyor = behaviourContext.LastFrameCollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.Conveyor>().FirstOrDefault() as Blocks.Conveyor;
+                    _conveyorBlock = (Blocks.Conveyor)behaviourContext.LastFrameCollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.Conveyor>().FirstOrDefault();
+                    IsPlayerOnBlockLastFrame = IsPlayerOnBlock;
+                    IsPlayerOnLastFramePosition = bodyComp.Position;
 
-                    if (conveyor.Direction == 30) // LEFT
+                    if (_conveyorBlock.Direction == 30) // LEFT
                     {
-                        return inputXVelocity + (float)conveyor.Speed * -0.2f;
+                        return inputXVelocity + (float)_conveyorBlock.Speed * -0.2f;
                     }
                     else // RIGHT
                     {
-                        return inputXVelocity + (float)conveyor.Speed * 0.2f;
+                        return inputXVelocity + (float)_conveyorBlock.Speed * 0.2f;
                     }
                 }
             }
