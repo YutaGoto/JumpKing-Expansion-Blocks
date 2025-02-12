@@ -36,8 +36,6 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_REVERSED_WALK,
             Constants.ColorCodes.CODE_REVERSED_CHARGE,
             Constants.ColorCodes.CODE_REVERSED_GRAVITY,
-            Constants.ColorCodes.CODE_SUPER_CHARGE,
-            Constants.ColorCodes.CODE_TRIPLE_CHARGE,
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
             Constants.ColorCodes.CODE_DISABLED_JUMP,
@@ -70,11 +68,15 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
-                if(IsMultiWarpBlock(blockCode))
+                if (IsMultiWarpBlock(blockCode))
                 {
                     return true;
                 }
-                if(IsQuickMoveBlock(blockCode))
+                if (IsQuickMoveBlock(blockCode))
+                {
+                    return true;
+                }
+                if (IsSuperChargeBlock(blockCode))
                 {
                     return true;
                 }
@@ -186,14 +188,6 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new ReversedCharge(blockRect);
             }
-            else if (blockCode == Constants.ColorCodes.CODE_TRIPLE_CHARGE)
-            {
-                return new TripleCharge(blockRect);
-            }
-            else if (blockCode == Constants.ColorCodes.CODE_SUPER_CHARGE)
-            {
-                return new SuperCharge(blockRect);
-            }
             else if (blockCode == Constants.ColorCodes.CODE_REVERSED_GRAVITY)
             {
                 return new ReversedGravity(blockRect);
@@ -226,6 +220,10 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new QuickMove(blockRect, blockCode.G);
             }
+            else if (IsSuperChargeBlock(blockCode))
+            {
+                return new SuperCharge(blockRect, blockCode.B);
+            }
             else
             {
                 throw new InvalidOperationException($"{typeof(BlockFactory).Name} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
@@ -245,6 +243,11 @@ namespace JumpKing_Expansion_Blocks
         private static bool IsQuickMoveBlock(Color blockCode)
         {
             return blockCode.R == Constants.QuickMoveCodes.QUICK_MOVE_R && blockCode.G >= Constants.QuickMoveCodes.QUICK_MOVE_G_MIN && blockCode.G <= Constants.QuickMoveCodes.QUICK_MOVE_G_MAX && blockCode.B == Constants.QuickMoveCodes.QUICK_MOVE_B;
+        }
+
+        private static bool IsSuperChargeBlock(Color blockCode)
+        {
+            return blockCode.R == Constants.SuperChargeCodes.SUPER_CHARGE_R && blockCode.G == Constants.SuperChargeCodes.SUPER_CHARGE_G && blockCode.B >= Constants.SuperChargeCodes.SUPER_CHARGE_B_MIN && blockCode.B <= Constants.SuperChargeCodes.SUPER_CHARGE_B_MAX;
         }
     }
 }
