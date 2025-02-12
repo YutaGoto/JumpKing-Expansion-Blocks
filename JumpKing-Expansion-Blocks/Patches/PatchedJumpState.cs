@@ -3,6 +3,7 @@ using EntityComponent;
 using HarmonyLib;
 using JumpKing;
 using JumpKing.Player;
+using JumpKing_Expansion_Blocks.Utils;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
@@ -65,14 +66,9 @@ namespace JumpKing_Expansion_Blocks.Patches
                     p_intensity = 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME);
                 }
 
-                if (player.m_body.IsOnBlock<Blocks.TripleCharge>())
-                {
-                    p_intensity *= 3.0f;
-                }
-
                 if (player.m_body.IsOnBlock<Blocks.SuperCharge>())
                 {
-                    p_intensity *= 20.0f;
+                    p_intensity *= GetSuperChargePower.Power(player);
                 }
             }
         }
