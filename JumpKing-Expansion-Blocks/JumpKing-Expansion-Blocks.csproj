@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build"
-  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -47,17 +46,74 @@
       <Private>False</Private>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Jump King\JumpKing.exe</HintPath>
     </Reference>
-    <Reference
-      Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Jump King\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviours\*.cs" />
+    <Compile Include="Behaviours\Accelerate.cs" />
+    <Compile Include="Behaviours\AntiGiantBoots.cs" />
+    <Compile Include="Behaviours\CloudJump.cs" />
+    <Compile Include="Behaviours\Conveyor.cs" />
+    <Compile Include="Behaviours\CursedIce.cs" />
+    <Compile Include="Behaviours\DeepWater.cs" />
+    <Compile Include="Behaviours\DisabledJump.cs" />
+    <Compile Include="Behaviours\DoubleJump.cs" />
+    <Compile Include="Behaviours\HighGravity.cs" />
+    <Compile Include="Behaviours\InfinityJump.cs" />
+    <Compile Include="Behaviours\MagicSand.cs" />
+    <Compile Include="Behaviours\MultiWarp.cs" />
+    <Compile Include="Behaviours\OneWayIce.cs" />
+    <Compile Include="Behaviours\QuickMove.cs" />
+    <Compile Include="Behaviours\Quicksand.cs" />
+    <Compile Include="Behaviours\RainGravity.cs" />
+    <Compile Include="Behaviours\Reflector.cs" />
+    <Compile Include="Behaviours\RestrainedIce.cs" />
+    <Compile Include="Behaviours\ReversedCharge.cs" />
+    <Compile Include="Behaviours\ReversedGravity.cs" />
+    <Compile Include="Behaviours\ReversedWalk.cs" />
+    <Compile Include="Behaviours\SideSand.cs" />
+    <Compile Include="Behaviours\SlipperyIce.cs" />
+    <Compile Include="Behaviours\SpecialHighGravity.cs" />
+    <Compile Include="Behaviours\SuperCharge.cs" />
+    <Compile Include="Behaviours\SuperLowGravity.cs" />
+    <Compile Include="Behaviours\Trampoline.cs" />
+    <Compile Include="Behaviours\UpSand.cs" />
+    <Compile Include="Behaviours\WallJump.cs" />
+    <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
-    <Compile Include="Blocks\*.cs" />
+    <Compile Include="Blocks\Accelerate.cs" />
+    <Compile Include="Blocks\AntiGiantBoots.cs" />
+    <Compile Include="Blocks\CloudJump.cs" />
+    <Compile Include="Blocks\Conveyor.cs" />
+    <Compile Include="Blocks\CursedIce.cs" />
+    <Compile Include="Blocks\DeepWater.cs" />
+    <Compile Include="Blocks\DisabledJump.cs" />
+    <Compile Include="Blocks\DoubleJump.cs" />
+    <Compile Include="Blocks\HighGravity.cs" />
+    <Compile Include="Blocks\InfinityJump.cs" />
+    <Compile Include="Blocks\MagicSand.cs" />
+    <Compile Include="Blocks\MultiWarp.cs" />
+    <Compile Include="Blocks\OneWayIce.cs" />
+    <Compile Include="Blocks\QuickMove.cs" />
+    <Compile Include="Blocks\Quicksand.cs" />
+    <Compile Include="Blocks\RainGravity.cs" />
+    <Compile Include="Blocks\Reflector.cs" />
+    <Compile Include="Blocks\RestrainedIce.cs" />
+    <Compile Include="Blocks\ReversedCharge.cs" />
+    <Compile Include="Blocks\ReversedGravity.cs" />
+    <Compile Include="Blocks\ReversedWalk.cs" />
+    <Compile Include="Blocks\SideSand.cs" />
+    <Compile Include="Blocks\SlipperyIce.cs" />
+    <Compile Include="Blocks\SpecialHighGravity.cs" />
+    <Compile Include="Blocks\SuperCharge.cs" />
+    <Compile Include="Blocks\SuperLowGravity.cs" />
+    <Compile Include="Blocks\Trampoline.cs" />
+    <Compile Include="Blocks\UpSand.cs" />
+    <Compile Include="Blocks\WallJump.cs" />
+    <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="Constants\*.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
@@ -69,6 +125,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Utils\GetSuperChargePower.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

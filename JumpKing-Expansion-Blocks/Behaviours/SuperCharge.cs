@@ -1,6 +1,7 @@
 ﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
+using System.Linq;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
@@ -8,6 +9,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
     {
         public float BlockPriority => 2f;
         public bool IsPlayerOnBlock { get; set; }
+        public int SuperChargeRatio { get; set; }
         public SuperCharge() { }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
@@ -40,6 +42,19 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.SuperCharge>();
+            }
+
+            if (IsPlayerOnBlock)
+            {
+                if (behaviourContext.LastFrameCollisionInfo?.PreResolutionCollisionInfo != null)
+                {
+                    Blocks.SuperCharge superChargeBlock = (Blocks.SuperCharge)behaviourContext.LastFrameCollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.SuperCharge>().FirstOrDefault();
+                    SuperChargeRatio = superChargeBlock.Ratio;
+                }
+                else
+                {
+                    SuperChargeRatio = 1;
+                }
             }
 
             return true;
