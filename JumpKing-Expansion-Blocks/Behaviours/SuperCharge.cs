@@ -46,9 +46,9 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (IsPlayerOnBlock)
             {
-                if (behaviourContext.LastFrameCollisionInfo?.PreResolutionCollisionInfo != null)
+                if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null && behaviourContext.CollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.SuperCharge>() != null)
                 {
-                    Blocks.SuperCharge superChargeBlock = (Blocks.SuperCharge)behaviourContext.LastFrameCollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.SuperCharge>().FirstOrDefault();
+                    Blocks.SuperCharge superChargeBlock = (Blocks.SuperCharge)behaviourContext.CollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.SuperCharge>().FirstOrDefault();
                     SuperChargeRatio = superChargeBlock.Ratio;
                 }
                 else
