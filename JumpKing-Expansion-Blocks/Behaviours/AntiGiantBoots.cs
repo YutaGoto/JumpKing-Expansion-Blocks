@@ -1,11 +1,11 @@
-﻿using JumpKing.API;
+﻿using HarmonyLib;
+using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
+using System.Reflection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JumpKing.MiscEntities.WorldItems;
+using JumpKing.MiscEntities.WorldItems.Inventory;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
@@ -30,10 +30,15 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
         {
-
             if (behaviourContext?.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.AntiGiantBoots>();
+            }
+
+            if (IsPlayerOnBlock && InventoryManager.HasItemEnabled(Items.GiantBoots))
+            {
+                MethodInfo disabledSkin = AccessTools.TypeByName("SkinManager").GetMethod("DisableSkin", new Type[] { typeof(Items) });
+                disabledSkin.Invoke(null, new object[] { Items.GiantBoots });
             }
 
             return true;
