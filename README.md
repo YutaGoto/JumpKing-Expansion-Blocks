@@ -60,6 +60,16 @@ The semi-solid block is a Ice block that is solid only in one side.
 - You can walk on it.
 - You will slide on it no matter what.
 
+### Heavy Ice
+
+`#00ffc8` `RGB(0, 255, 200)`
+
+Ice platform but you can't do small jump like Snow block.
+
+- It is solid.
+- You can walk on it.
+- You will slide on it no matter what.
+
 ## Sand
 
 ### SideSand
