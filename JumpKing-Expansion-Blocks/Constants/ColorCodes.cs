@@ -24,6 +24,7 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_UP_SAND = new Color(255, 111, 0);
         public static readonly Color CODE_RESTRAINED_ICE = new Color(128, 128, 0);
         public static readonly Color CODE_CURSED_ICE = new Color(144, 144, 0);
+        public static readonly Color CODE_HEAVY_ICE = new Color(0, 255, 200);
         public static readonly Color CODE_REVERSED_WALK = new Color(32, 32, 32);
         public static readonly Color CODE_REVERSED_CHARGE = new Color(33, 33, 33);
 
