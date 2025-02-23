@@ -51,7 +51,7 @@ namespace JumpKing_Expansion_Blocks.Patches
             }
         }
 
-        private static void Jump(ref float p_intensity)
+        private static bool Jump(ref float p_intensity)
         {
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             if (player != null)
@@ -70,7 +70,15 @@ namespace JumpKing_Expansion_Blocks.Patches
                 {
                     p_intensity *= GetSuperChargePower.Power(player);
                 }
+
+                if (player.m_body.IsOnBlock<Blocks.HeavyIce>() && p_intensity <= 0.2f)
+                {
+                    p_intensity = 0.0f;
+                    return false;
+                }
             }
+
+            return true;
         }
     }
 }
