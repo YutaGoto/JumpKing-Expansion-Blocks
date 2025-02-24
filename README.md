@@ -32,7 +32,7 @@ No friction at all.
 
 ### CursedIce
 
-`#1e1e1f` `RGB(30, 30, 31)`
+`#909000` `RGB(140, 140, 0)`
 
 No walk, ice platform and reverse jump.
 
