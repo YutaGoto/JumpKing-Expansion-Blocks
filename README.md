@@ -180,12 +180,23 @@ Gravity is reversed. It effects when you are in the air and X speed is more than
 
 `#e9e9ec` `RGB(233, 233, 236)`
 
-You can only 1 frame jump.
+You can do only 1 frame jump.
 
 - It isn't solid.
 - You can’t walk on it.
 - You can’t slide on it.
-- You can only 1 frame jump.
+- You can do only 1 frame jump.
+
+### Disabled Small Jump
+
+`#eaeaed` `RGB(234, 234, 237)`
+
+You can't jump under 7 frames charging.
+
+- It isn't solid.
+- You can't walk on it.
+- You can't slide on it.
+- You can jump only 7 frames or more charging.
 
 ## Other
 
