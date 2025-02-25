@@ -40,6 +40,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
             Constants.ColorCodes.CODE_DISABLED_JUMP,
+            Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
             Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS
         };
 
@@ -209,6 +210,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
             {
                 return new DisabledJump(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP)
+            {
+                return new DisabledSmallJump(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS)
             {

@@ -16,8 +16,12 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         public PatchedJumpState(Harmony harmony)
         {
-            harmony.Patch(AccessTools.Method(typeof(JumpState), "MyRun"), new HarmonyMethod(AccessTools.Method(GetType(), "PrefixRun")), new HarmonyMethod(AccessTools.Method(GetType(), "Run")));
-            harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), "Jump")), null);
+            harmony.Patch(
+                AccessTools.Method(typeof(JumpState), "MyRun"),
+                new HarmonyMethod(AccessTools.Method(GetType(), nameof(PrefixRun))),
+                new HarmonyMethod(AccessTools.Method(GetType(), nameof(Run)))
+            );
+            harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), nameof(Jump))), null);
         }
 
         private static bool PrefixRun(ref BTresult __result)
@@ -72,6 +76,12 @@ namespace JumpKing_Expansion_Blocks.Patches
                 }
 
                 if (player.m_body.IsOnBlock<Blocks.HeavyIce>() && p_intensity <= 0.2f)
+                {
+                    p_intensity = 0.0f;
+                    return false;
+                }
+
+                if (player.m_body.IsOnBlock<Blocks.DisabledSmallJump>() && p_intensity <= 0.2f)
                 {
                     p_intensity = 0.0f;
                     return false;
