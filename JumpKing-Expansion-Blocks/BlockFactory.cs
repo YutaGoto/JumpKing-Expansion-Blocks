@@ -83,6 +83,10 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
+                if (IsSideLockBlock(blockCode))
+                {
+                    return true;
+                }
                 return false;
             }
 
@@ -219,6 +223,7 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new AntiGiantBoots(blockRect);
             }
+            
             else if (IsConveyorBlock(blockCode))
             {
                 return new Conveyor(blockRect, blockCode.R, blockCode.B);
@@ -234,6 +239,10 @@ namespace JumpKing_Expansion_Blocks
             else if (IsSuperChargeBlock(blockCode))
             {
                 return new SuperCharge(blockRect, blockCode.B);
+            }
+            else if (IsSideLockBlock(blockCode))
+            {
+                return new SideLock(blockRect, blockCode.R);
             }
             else
             {
@@ -259,6 +268,11 @@ namespace JumpKing_Expansion_Blocks
         private static bool IsSuperChargeBlock(Color blockCode)
         {
             return blockCode.R == Constants.SuperChargeCodes.SUPER_CHARGE_R && blockCode.G == Constants.SuperChargeCodes.SUPER_CHARGE_G && blockCode.B >= Constants.SuperChargeCodes.SUPER_CHARGE_B_MIN && blockCode.B <= Constants.SuperChargeCodes.SUPER_CHARGE_B_MAX;
+        }
+
+        private static bool IsSideLockBlock(Color blockCode)
+        {
+            return (blockCode.R == Constants.SideLockColorCodes.SIDE_LOCK_R_RIGHT || blockCode.R == Constants.SideLockColorCodes.SIDE_LOCK_R_LEFT) && blockCode.G == Constants.SideLockColorCodes.SIDE_LOCK_G && blockCode.B == Constants.SideLockColorCodes.SIDE_LOCK_B;
         }
     }
 }

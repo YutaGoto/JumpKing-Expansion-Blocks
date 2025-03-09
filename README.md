@@ -337,3 +337,14 @@ note: this is snow and sand.
 - It is solid.
 - You can't walk on it.
 - You can't slide on it no matter what.
+
+### SideLock
+
+Only Right: `#620606` `RGB(98, 6, 6)`
+Only Left: `#630606` `RGB(99, 6, 6)`
+
+You are restricted from moving freely and can only proceed in the designated direction
+
+- It is not solid.
+- You can't walk on it.
+- You can't slide on it.

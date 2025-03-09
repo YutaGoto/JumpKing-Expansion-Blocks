@@ -75,6 +75,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledJump), new Behaviours.DisabledJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledSmallJump), new Behaviours.DisabledSmallJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.AntiGiantBoots), new Behaviours.AntiGiantBoots());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideLock), new Behaviours.SideLock());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.MultiWarp), new Behaviours.MultiWarp());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.QuickMove), new Behaviours.QuickMove());
             }
