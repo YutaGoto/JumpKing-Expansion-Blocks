@@ -41,7 +41,9 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_CLOUD_JUMP,
             Constants.ColorCodes.CODE_DISABLED_JUMP,
             Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
-            Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS
+            Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS,
+            Constants.ColorCodes.CODE_SOFT_PLATFORM,
+            Constants.ColorCodes.CODE_JKQ_PLATFORM,
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -223,7 +225,15 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new AntiGiantBoots(blockRect);
             }
-            
+            else if (blockCode == Constants.ColorCodes.CODE_SOFT_PLATFORM)
+            {
+                return new SoftPlatform(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_JKQ_PLATFORM)
+            {
+                return new JkqPlatform(blockRect);
+            }
+
             else if (IsConveyorBlock(blockCode))
             {
                 return new Conveyor(blockRect, blockCode.R, blockCode.B);

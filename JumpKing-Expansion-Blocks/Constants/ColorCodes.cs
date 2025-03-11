@@ -36,5 +36,8 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_DISABLED_JUMP = new Color(233, 233, 236);
         public static readonly Color CODE_DISABLED_SMALL_JUMP = new Color(234, 234, 237);
         public static readonly Color CODE_ANTI_GIANT_BOOTS = new Color(105, 143, 111);
+
+        public static readonly Color CODE_SOFT_PLATFORM = new Color(20, 20, 20);
+        public static readonly Color CODE_JKQ_PLATFORM = new Color(20, 20, 21);
     }
 }
