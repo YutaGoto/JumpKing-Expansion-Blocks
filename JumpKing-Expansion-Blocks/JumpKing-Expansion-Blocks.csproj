@@ -128,6 +128,7 @@
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
     <Compile Include="Patches\PatchedBodyComp.cs" />
+    <Compile Include="Patches\PatchedGameLoopDraw.cs" />
     <Compile Include="Patches\PatchedInventoryManager.cs" />
     <Compile Include="Patches\PatchedJumpState.cs" />
     <Compile Include="Patches\PatchedResolveXCollisionBehaviour.cs" />

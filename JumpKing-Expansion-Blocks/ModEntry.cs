@@ -92,9 +92,14 @@ namespace JumpKing_Expansion_Blocks
         /// <summary>
         /// Setups the Harmony patching
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S1848:Objects should not be created to be dropped immediately without being used", Justification = "<保留中>")]
         private static void PatchWithHarmony(Harmony harmony)
         {
-            var _ = new PatchedJumpState(harmony);
+#if DEBUG
+            new PatchedGameLoopDraw(harmony);
+#endif
+
+            new PatchedJumpState(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });
             MethodInfo postfixIsOnBlockPostfixMethod = typeof(ModEntry).GetMethod("IsOnBlockPostfix");
