@@ -37,6 +37,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_REVERSED_WALK,
             Constants.ColorCodes.CODE_REVERSED_CHARGE,
             Constants.ColorCodes.CODE_REVERSED_GRAVITY,
+            Constants.ColorCodes.CODE_ASCEND,
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
             Constants.ColorCodes.CODE_DISABLED_JUMP,
@@ -204,6 +205,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_REVERSED_GRAVITY)
             {
                 return new ReversedGravity(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_ASCEND)
+            {
+                return new Ascend(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_DOUBLE_JUMP)
             {
