@@ -63,6 +63,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedCharge), new Behaviours.ReversedCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SuperCharge), new Behaviours.SuperCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedGravity), new Behaviours.ReversedGravity());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Ascend), new Behaviours.Ascend());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Trampoline), new Behaviours.Trampoline());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor());
@@ -95,10 +96,6 @@ namespace JumpKing_Expansion_Blocks
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S1848:Objects should not be created to be dropped immediately without being used", Justification = "<保留中>")]
         private static void PatchWithHarmony(Harmony harmony)
         {
-#if DEBUG
-            new PatchedGameLoopDraw(harmony);
-#endif
-
             new PatchedJumpState(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });

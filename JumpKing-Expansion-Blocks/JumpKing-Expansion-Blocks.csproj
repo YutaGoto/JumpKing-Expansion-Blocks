@@ -68,6 +68,7 @@
     <Compile Include="Behaviours\MagicSand.cs" />
     <Compile Include="Behaviours\MultiWarp.cs" />
     <Compile Include="Behaviours\OneWayIce.cs" />
+    <Compile Include="Behaviours\Ascend.cs" />
     <Compile Include="Behaviours\SideLock.cs" />
     <Compile Include="Behaviours\QuickMove.cs" />
     <Compile Include="Behaviours\Quicksand.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Blocks\MagicSand.cs" />
     <Compile Include="Blocks\MultiWarp.cs" />
     <Compile Include="Blocks\OneWayIce.cs" />
+    <Compile Include="Blocks\Ascend.cs" />
     <Compile Include="Blocks\SideLock.cs" />
     <Compile Include="Blocks\QuickMove.cs" />
     <Compile Include="Blocks\Quicksand.cs" />
@@ -128,7 +130,6 @@
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
     <Compile Include="Patches\PatchedBodyComp.cs" />
-    <Compile Include="Patches\PatchedGameLoopDraw.cs" />
     <Compile Include="Patches\PatchedInventoryManager.cs" />
     <Compile Include="Patches\PatchedJumpState.cs" />
     <Compile Include="Patches\PatchedResolveXCollisionBehaviour.cs" />
