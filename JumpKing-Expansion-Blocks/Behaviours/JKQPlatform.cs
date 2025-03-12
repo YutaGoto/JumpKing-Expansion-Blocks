@@ -1,6 +1,5 @@
 ﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
-using JumpKing.Controller;
 using JumpKing.Level;
 using JumpKing.Player;
 
@@ -47,12 +46,12 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             if (bodyComp.IsOnGround)
             {
                 jumpYPosition = bodyComp.Position.Y;
-                isThorouhPlatform = false;
+                isThroughPlatform = false;
             }
 
             if (bodyComp.Position.Y < jumpYPosition && bodyComp.Velocity.Y <= 0.0f)
             {
-                isThorouhPlatform = isThorouhPlatform || IsPlayerOnBlock;
+                isThroughPlatform = isThroughPlatform || IsPlayerOnBlock;
             }
             
 
