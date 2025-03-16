@@ -116,7 +116,7 @@ You are able to enter from any side. If it go up, it will flow up. If it go down
 - You can't slide in it.
 - You will flow up or down.
 
-## Jump, Moving
+## Others
 
 ### Accelerate
 
@@ -198,8 +198,6 @@ You can't jump under 7 frames charging.
 - You can't slide on it.
 - You can jump only 7 frames or more charging.
 
-## Other
-
 ### Multi Side Teleport block
 
 - `#0100fa` `RGB(1, 0, 250)` to `#a900fa` `RGB(169, 0, 250)`
@@ -252,6 +250,17 @@ You can jump again with automatic while in the air.
 `#800000` `RGB(128, 0, 0)`
 
 The gravity is 1.5 times stronger than normal. Vertical speed is 0.9 times than normal.
+
+- It isn't solid.
+- You can’t walk on it.
+- You can’t slide on it.
+- It affects your direction (velocity, gravity and jump curve).
+
+### Super Low Gravity
+
+`#81ffff` `RGB(129, 255, 255)`
+
+The gravity is lower than that of JumpKingPlus mod's low gravity blocks.
 
 - It isn't solid.
 - You can’t walk on it.
@@ -347,4 +356,14 @@ You are restricted from moving freely and can only proceed in the designated dir
 
 - It is not solid.
 - You can't walk on it.
+- You can't slide on it.
+
+### Anti Giant Boots
+
+`#698f6f` `RGB(105, 143, 111)`
+
+when you are on Anti Giant Boots block, Giant Boots equipment is removed.
+
+- It is not solid.
+- You can walk on it.
 - You can't slide on it.
