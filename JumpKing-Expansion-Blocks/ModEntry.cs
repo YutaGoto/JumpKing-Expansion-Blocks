@@ -9,6 +9,7 @@ using JumpKing.Mods;
 using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Patches;
 using System;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace JumpKing_Expansion_Blocks
@@ -24,6 +25,12 @@ namespace JumpKing_Expansion_Blocks
         [BeforeLevelLoad]
         public static void BeforeLevelLoad()
         {
+//#if DEBUG
+//            Debug.WriteLine("-------");
+//            Debugger.Launch();
+//            Harmony.DEBUG = true;
+//#endif
+
             LevelManager.RegisterBlockFactory(new BlockFactory());
             PatchWithHarmony(harmony);
         }
@@ -130,7 +137,7 @@ namespace JumpKing_Expansion_Blocks
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.SlipperyIce) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.ZeroFriction) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.OneWayIce) }) ||
-                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.HeavyIce) }) ||
+                           (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.HeavyIce) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.RestrainedIce) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.CursedIce) }) ||
                            (bool)originalIsOnBlock.Invoke(null, new object[] { (BodyComp)__instance, typeof(Blocks.Trampoline) }) ||
