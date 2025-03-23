@@ -26,7 +26,6 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_ZERO_FRICTION,
             Constants.ColorCodes.CODE_ONE_WAY_ICE_BLOCK,
             Constants.ColorCodes.CODE_HEAVY_ICE,
-            Constants.ColorCodes.CODE_REFLECTOR,
             Constants.ColorCodes.CODE_TRAMPOLINE,
             Constants.ColorCodes.CODE_QUICKSAND,
             Constants.ColorCodes.CODE_SIDE_SAND,
@@ -53,7 +52,6 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_ZERO_FRICTION,
             Constants.ColorCodes.CODE_ONE_WAY_ICE_BLOCK,
             Constants.ColorCodes.CODE_HEAVY_ICE,
-            Constants.ColorCodes.CODE_REFLECTOR,
             Constants.ColorCodes.CODE_TRAMPOLINE,
             Constants.ColorCodes.CODE_QUICKSAND,
             Constants.ColorCodes.CODE_SIDE_SAND,
@@ -90,6 +88,10 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
+                if (IsReflectorWallBlock(blockCode))
+                {
+                    return true;
+                }
                 return false;
             }
 
@@ -103,6 +105,10 @@ namespace JumpKing_Expansion_Blocks
                 return true;
             }
             else if (IsConveyorBlock(blockCode))
+            {
+                return true;
+            }
+            else if (IsReflectorWallBlock(blockCode))
             {
                 return true;
             }
@@ -161,10 +167,6 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_HEAVY_ICE)
             {
                 return new HeavyIce(blockRect);
-            }
-            else if (blockCode == Constants.ColorCodes.CODE_REFLECTOR)
-            {
-                return new Reflector(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_TRAMPOLINE)
             {
@@ -259,6 +261,10 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new SideLock(blockRect, blockCode.R);
             }
+            else if (IsReflectorWallBlock(blockCode))
+            {
+                return new Reflector(blockRect, blockCode.R);
+            }
             else
             {
                 throw new InvalidOperationException($"{typeof(BlockFactory).Name} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
@@ -267,12 +273,16 @@ namespace JumpKing_Expansion_Blocks
 
         private static bool IsConveyorBlock(Color blockCode)
         {
-            return blockCode.G == Constants.ConveyorSpeedCodes.CONVEYOR_G && blockCode.R <= Constants.ConveyorSpeedCodes.CONVEYOR_R_MAX && blockCode.R >= Constants.ConveyorSpeedCodes.CONVEYOR_R_MIN && (blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_RIGHT || blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_LEFT);
+            return blockCode.G == Constants.ConveyorSpeedCodes.CONVEYOR_G
+                    && blockCode.R <= Constants.ConveyorSpeedCodes.CONVEYOR_R_MAX && blockCode.R >= Constants.ConveyorSpeedCodes.CONVEYOR_R_MIN
+                    && (blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_RIGHT || blockCode.B == Constants.ConveyorSpeedCodes.CONVEYOR_B_LEFT);
         }
 
         private static bool IsMultiWarpBlock(Color blockCode)
         {
-            return blockCode.G == Constants.MultiWarpColorCodes.MULTI_WARP_G && blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B && blockCode.R >= Constants.MultiWarpColorCodes.MULTI_WARP_R_MIN && blockCode.R <= Constants.MultiWarpColorCodes.MULTI_WARP_R_MAX;
+            return blockCode.G == Constants.MultiWarpColorCodes.MULTI_WARP_G 
+                    && blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B
+                    && blockCode.R >= Constants.MultiWarpColorCodes.MULTI_WARP_R_MIN && blockCode.R <= Constants.MultiWarpColorCodes.MULTI_WARP_R_MAX;
         }
 
         private static bool IsQuickMoveBlock(Color blockCode)
@@ -282,12 +292,23 @@ namespace JumpKing_Expansion_Blocks
 
         private static bool IsSuperChargeBlock(Color blockCode)
         {
-            return blockCode.R == Constants.SuperChargeCodes.SUPER_CHARGE_R && blockCode.G == Constants.SuperChargeCodes.SUPER_CHARGE_G && blockCode.B >= Constants.SuperChargeCodes.SUPER_CHARGE_B_MIN && blockCode.B <= Constants.SuperChargeCodes.SUPER_CHARGE_B_MAX;
+            return blockCode.R == Constants.SuperChargeCodes.SUPER_CHARGE_R
+                    && blockCode.G == Constants.SuperChargeCodes.SUPER_CHARGE_G
+                    && blockCode.B >= Constants.SuperChargeCodes.SUPER_CHARGE_B_MIN && blockCode.B <= Constants.SuperChargeCodes.SUPER_CHARGE_B_MAX;
         }
 
         private static bool IsSideLockBlock(Color blockCode)
         {
-            return (blockCode.R == Constants.SideLockColorCodes.SIDE_LOCK_R_RIGHT || blockCode.R == Constants.SideLockColorCodes.SIDE_LOCK_R_LEFT) && blockCode.G == Constants.SideLockColorCodes.SIDE_LOCK_G && blockCode.B == Constants.SideLockColorCodes.SIDE_LOCK_B;
+            return (blockCode.R == Constants.SideLockColorCodes.SIDE_LOCK_R_RIGHT || blockCode.R == Constants.SideLockColorCodes.SIDE_LOCK_R_LEFT)
+                    && blockCode.G == Constants.SideLockColorCodes.SIDE_LOCK_G
+                    && blockCode.B == Constants.SideLockColorCodes.SIDE_LOCK_B;
+        }
+
+        private static bool IsReflectorWallBlock(Color blockCode)
+        {
+            return blockCode.R >= Constants.ReflectorWallCodes.REFLECTOR_R_MIN && blockCode.R <= Constants.ReflectorWallCodes.REFLECTOR_R_MAX
+                    && blockCode.G == Constants.ReflectorWallCodes.REFLECTOR_G
+                    && blockCode.B == Constants.ReflectorWallCodes.REFLECTOR_B;
         }
     }
 }

@@ -35,10 +35,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         }
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext)
-        {
-            BodyComp bodyComp = behaviourContext.BodyComp;
-            
-
+        {            
             if (IsPlayerOnBlock)
             {
                 if (behaviourContext.LastFrameCollisionInfo?.PreResolutionCollisionInfo != null)
