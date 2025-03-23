@@ -2,20 +2,46 @@
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
+using System.Diagnostics;
+using System.Linq;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
     internal class JkqPlatform : IBlockBehaviour
     {
-
         public float BlockPriority => 2f;
 
         public bool IsPlayerOnBlock { get; set; }
         internal static bool isThroughPlatform { get; set; } = false;
-        internal static float jumpYPosition { get; set; }
+        private static Form formType { get; set; }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
+            if (info != null && behaviourContext != null)
+            {
+                BodyComp bodyComp = behaviourContext.BodyComp;
+
+                if (
+                    info.IsCollidingWith<Blocks.JkqPlatform>()
+                    && !behaviourContext.CollisionInfo.StartOfFrameCollisionInfo.IsCollidingWith<Blocks.JkqPlatform>()
+                    && !isThroughPlatform
+                )
+                {
+                    GetForm(behaviourContext);
+                    switch (formType)
+                    {
+                        case Form.Platform:
+                            return false;
+                        case Form.RightWall:
+                            return bodyComp.Velocity.X <= 0f;
+                        case Form.LeftWall:
+                            return bodyComp.Velocity.X >= 0f;
+                        default:
+                            return true;
+                    }
+                }
+            }
+
             return false;
         }
 
@@ -25,10 +51,23 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             {
                 BodyComp bodyComp = behaviourContext.BodyComp;
 
-                return info.IsCollidingWith<Blocks.JkqPlatform>()
+                if (
+                    info.IsCollidingWith<Blocks.JkqPlatform>()
                     && !behaviourContext.CollisionInfo.StartOfFrameCollisionInfo.IsCollidingWith<Blocks.JkqPlatform>()
                     && !isThroughPlatform
-                    && bodyComp.Velocity.Y >= -0.01f;
+                )
+                {
+                    GetForm(behaviourContext);
+                    switch (formType)
+                    {
+                        case Form.Ceil:
+                            return bodyComp.Velocity.Y <= 0.0f;
+                        default:
+                            if (bodyComp.IsOnGround) return true;
+
+                            return bodyComp.Velocity.Y >= 0.0f;
+                    }
+                }
             }
 
             return false;
@@ -38,23 +77,18 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
 
-            if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
+            if (behaviourContext.CollisionInfo?.StartOfFrameCollisionInfo != null)
             {
-                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.JkqPlatform>();
+                IsPlayerOnBlock = behaviourContext.CollisionInfo.StartOfFrameCollisionInfo.IsCollidingWith<Blocks.JkqPlatform>();
             }
 
             if (bodyComp.IsOnGround)
             {
-                jumpYPosition = bodyComp.Position.Y;
                 isThroughPlatform = false;
             }
 
-            if (bodyComp.Position.Y < jumpYPosition && bodyComp.Velocity.Y <= 0.0f)
-            {
-                isThroughPlatform = isThroughPlatform || IsPlayerOnBlock;
-            }
+            isThroughPlatform = isThroughPlatform || IsPlayerOnBlock;
             
-
             return true;
         }
 
@@ -72,5 +106,44 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         {
             return inputYVelocity;
         }
+
+        private void GetForm(BehaviourContext behaviourContext)
+        {
+            if (behaviourContext?.CollisionInfo?.PreResolutionCollisionInfo != null)
+            {
+                Blocks.JkqPlatform jkqPlatform = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.JkqPlatform>().FirstOrDefault() as Blocks.JkqPlatform;
+                switch (jkqPlatform.Form)
+                {
+                    case 21:
+                        formType = Form.Platform;
+                        return;
+                    case 22:
+                        formType = Form.RightWall;
+                        return;
+                    case 23:
+                        formType = Form.LeftWall;
+                        return;
+                    case 24:
+                        formType = Form.BothWall;
+                        return;
+                    case 25:
+                        formType = Form.Ceil;
+                        return;
+                    default:
+                        formType = Form.None;
+                        return;
+                }
+            }
+        }
+    }
+
+    internal enum Form
+    {
+        Platform,
+        RightWall,
+        LeftWall,
+        BothWall,
+        Ceil,
+        None
     }
 }
