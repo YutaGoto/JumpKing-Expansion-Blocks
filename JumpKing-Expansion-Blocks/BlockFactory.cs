@@ -43,7 +43,6 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
             Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS,
             Constants.ColorCodes.CODE_SOFT_PLATFORM,
-            Constants.ColorCodes.CODE_JKQ_PLATFORM,
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -92,6 +91,11 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
+                if (IsJkqPlatformBlock(blockCode))
+                {
+                    return true;
+                }
+
                 return false;
             }
 
@@ -236,10 +240,6 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new SoftPlatform(blockRect);
             }
-            else if (blockCode == Constants.ColorCodes.CODE_JKQ_PLATFORM)
-            {
-                return new JkqPlatform(blockRect);
-            }
 
             else if (IsConveyorBlock(blockCode))
             {
@@ -264,6 +264,10 @@ namespace JumpKing_Expansion_Blocks
             else if (IsReflectorWallBlock(blockCode))
             {
                 return new Reflector(blockRect, blockCode.R);
+            }
+            else if (IsJkqPlatformBlock(blockCode))
+            {
+                return new JkqPlatform(blockRect, blockCode.B);
             }
             else
             {
@@ -309,6 +313,13 @@ namespace JumpKing_Expansion_Blocks
             return blockCode.R >= Constants.ReflectorWallCodes.REFLECTOR_R_MIN && blockCode.R <= Constants.ReflectorWallCodes.REFLECTOR_R_MAX
                     && blockCode.G == Constants.ReflectorWallCodes.REFLECTOR_G
                     && blockCode.B == Constants.ReflectorWallCodes.REFLECTOR_B;
+        }
+
+        private static bool IsJkqPlatformBlock(Color blockCode)
+        {
+            return blockCode.R == Constants.JkqPlatformsCodes.JKQ_R
+                    && blockCode.G <= Constants.JkqPlatformsCodes.JKQ_G
+                    && (blockCode.B >= Constants.JkqPlatformsCodes.PLATFORM || blockCode.B <= Constants.JkqPlatformsCodes.CEIL);
         }
     }
 }
