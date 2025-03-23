@@ -322,18 +322,7 @@ problem: you can't hug the wall and slope. you through these.
 
 - It is solid.
 - You can walk on it.
-- You can't slide on it.
-
-### SpecialHighGravity
-
-`#ffbebe` `RGB(255, 190, 190)`
-
-28 frames charge is full jump. And you can jump almost same height between 22 frames charge and 28 frames charge.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- It affects your direction (velocity, gravity, jump charge and jump curve).
+- You can't slide on it
 
 ### WallJump
 
