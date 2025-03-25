@@ -319,7 +319,7 @@ namespace JumpKing_Expansion_Blocks
         {
             return blockCode.R == Constants.JkqPlatformsCodes.JKQ_R
                     && blockCode.G <= Constants.JkqPlatformsCodes.JKQ_G
-                    && (blockCode.B >= Constants.JkqPlatformsCodes.PLATFORM || blockCode.B <= Constants.JkqPlatformsCodes.CEIL);
+                    && (blockCode.B >= Constants.JkqPlatformsCodes.PLATFORM && blockCode.B <= Constants.JkqPlatformsCodes.CEIL);
         }
     }
 }
