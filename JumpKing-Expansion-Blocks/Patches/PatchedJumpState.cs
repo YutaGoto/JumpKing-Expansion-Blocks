@@ -22,6 +22,7 @@ namespace JumpKing_Expansion_Blocks.Patches
                 new HarmonyMethod(AccessTools.Method(GetType(), nameof(Run)))
             );
             harmony.Patch(AccessTools.Method(typeof(JumpState), "DoJump"), new HarmonyMethod(AccessTools.Method(GetType(), nameof(Jump))), null);
+            harmony.Patch(AccessTools.Method(typeof(JumpState), "Start"), new HarmonyMethod(AccessTools.Method(GetType(), nameof(CheckStart))), null);
         }
 
         private static bool PrefixRun(ref BTresult __result)
@@ -29,6 +30,12 @@ namespace JumpKing_Expansion_Blocks.Patches
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
 
             if (player != null && player.m_body.IsOnBlock<Blocks.Trampoline>())
+            {
+                __result = BTresult.Failure;
+                return false;
+            }
+
+            if (player != null && player.m_body.IsOnBlock<Blocks.RevokeJumpCharge>())
             {
                 __result = BTresult.Failure;
                 return false;
@@ -86,6 +93,23 @@ namespace JumpKing_Expansion_Blocks.Patches
                     p_intensity = 0.0f;
                     return false;
                 }
+
+                if (player.m_body.IsOnBlock<Blocks.RevokeJumpCharge>())
+                {
+                    p_intensity = 0.0f;
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool CheckStart()
+        {
+            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            if (player != null)
+            {
+                return !player.m_body.IsOnBlock<Blocks.RevokeJumpCharge>();
             }
 
             return true;
