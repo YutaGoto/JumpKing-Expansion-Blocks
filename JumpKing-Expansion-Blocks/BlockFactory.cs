@@ -20,6 +20,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_SUPER_LOW_GRAVITY,
             Constants.ColorCodes.CODE_DEEP_WATER,
             Constants.ColorCodes.CODE_ACCELERATE,
+            Constants.ColorCodes.CODE_SPEED_UP,
             Constants.ColorCodes.CODE_INFINITY_JUMP,
             Constants.ColorCodes.CODE_WALL_JUMP,
             Constants.ColorCodes.CODE_SLIPPERY_ICE,
@@ -149,6 +150,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_ACCELERATE)
             {
                 return new Accelerate(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_SPEED_UP)
+            {
+                return new SpeedUp(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_INFINITY_JUMP)
             {
