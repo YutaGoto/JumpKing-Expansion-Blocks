@@ -85,6 +85,7 @@
     <Compile Include="Behaviours\JKQPlatform.cs" />
     <Compile Include="Behaviours\SoftPlatform.cs" />
     <Compile Include="Behaviours\SpecialHighGravity.cs" />
+    <Compile Include="Behaviours\SpeedUp.cs" />
     <Compile Include="Behaviours\SuperCharge.cs" />
     <Compile Include="Behaviours\SuperLowGravity.cs" />
     <Compile Include="Behaviours\Trampoline.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Blocks\JKQPlatform.cs" />
     <Compile Include="Blocks\SoftPlatform.cs" />
     <Compile Include="Blocks\SpecialHighGravity.cs" />
+    <Compile Include="Blocks\SpeedUp.cs" />
     <Compile Include="Blocks\SuperCharge.cs" />
     <Compile Include="Blocks\SuperLowGravity.cs" />
     <Compile Include="Blocks\Trampoline.cs" />
