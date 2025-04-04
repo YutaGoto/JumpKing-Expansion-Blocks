@@ -89,6 +89,7 @@
     <Compile Include="Behaviours\SuperCharge.cs" />
     <Compile Include="Behaviours\SuperLowGravity.cs" />
     <Compile Include="Behaviours\Trampoline.cs" />
+    <Compile Include="Behaviours\TrapHopping.cs" />
     <Compile Include="Behaviours\UpSand.cs" />
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Blocks\SuperCharge.cs" />
     <Compile Include="Blocks\SuperLowGravity.cs" />
     <Compile Include="Blocks\Trampoline.cs" />
+    <Compile Include="Blocks\TrapHopping.cs" />
     <Compile Include="Blocks\UpSand.cs" />
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />
