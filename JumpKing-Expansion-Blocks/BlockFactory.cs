@@ -98,6 +98,10 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
+                if (IsTrapHoppingBlock(blockCode))
+                {
+                    return true;
+                }
 
                 return false;
             }
@@ -284,6 +288,10 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new JkqPlatform(blockRect, blockCode.B);
             }
+            else if (IsTrapHoppingBlock(blockCode))
+            {
+                return new TrapHopping(blockRect, blockCode.G);
+            }
             else
             {
                 throw new InvalidOperationException($"{typeof(BlockFactory).Name} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
@@ -335,6 +343,13 @@ namespace JumpKing_Expansion_Blocks
             return blockCode.R == Constants.JkqPlatformsCodes.JKQ_R
                     && blockCode.G <= Constants.JkqPlatformsCodes.JKQ_G
                     && (blockCode.B >= Constants.JkqPlatformsCodes.PLATFORM && blockCode.B <= Constants.JkqPlatformsCodes.CEIL);
+        }
+
+        private static bool IsTrapHoppingBlock(Color blockCode)
+        {
+            return blockCode.R == Constants.TrapHoppingCodes.TRAP_HOPPING_R
+                    && (blockCode.G >= Constants.TrapHoppingCodes.TRAP_HOPPING_G_RIGHT && blockCode.G <= Constants.TrapHoppingCodes.TRAP_HOPPING_G_RANDOM)
+                    && blockCode.B == Constants.TrapHoppingCodes.TRAP_HOPPING_B;
         }
     }
 }
