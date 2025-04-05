@@ -64,7 +64,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                     default:
                         break;
                 }
-                bodyComp.Velocity.Y = PlayerValues.JUMP * 0.2f;
+                bodyComp.Velocity.Y = PlayerValues.JUMP * 0.6f;
                 Traverse.Create(bodyComp).Field("_knocked").SetValue(true);
             }
 
