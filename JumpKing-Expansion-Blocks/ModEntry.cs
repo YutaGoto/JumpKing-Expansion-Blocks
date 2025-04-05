@@ -9,7 +9,6 @@ using JumpKing.Mods;
 using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Patches;
 using System;
-using System.Diagnostics;
 using System.Reflection;
 
 namespace JumpKing_Expansion_Blocks
@@ -91,6 +90,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.QuickMove), new Behaviours.QuickMove());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SoftPlatform), new Behaviours.SoftPlatform());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.JkqPlatform), new Behaviours.JkqPlatform());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.TrapHopping), new Behaviours.TrapHopping());
             }
         }
 
