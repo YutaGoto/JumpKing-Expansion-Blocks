@@ -4,6 +4,7 @@ using HarmonyLib;
 using JumpKing;
 using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Utils;
+using System;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
@@ -80,6 +81,11 @@ namespace JumpKing_Expansion_Blocks.Patches
                 if (player.m_body.IsOnBlock<Blocks.SuperCharge>())
                 {
                     p_intensity *= GetSuperChargePower.Power(player);
+                }
+
+                if (player.m_body.IsOnBlock<Blocks.SpeedUp>())
+                {
+                    p_intensity /= (float)Math.Sqrt(2.0);
                 }
 
                 if (player.m_body.IsOnBlock<Blocks.HeavyIce>() && p_intensity <= 0.2f)
