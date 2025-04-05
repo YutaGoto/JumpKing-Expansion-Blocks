@@ -1,6 +1,7 @@
 ﻿using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
+using System;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
@@ -33,22 +34,27 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext)
         {
-            return inputXVelocity * GetAccelerateMultiplier();
+            return inputXVelocity * GetAccelerateXMultiplier();
         }
 
         public float ModifyYVelocity(float inputYVelocity, BehaviourContext behaviourContext)
         {
-            return inputYVelocity * GetAccelerateMultiplier();
+            return inputYVelocity * GetAccelerateYMultiplier();
         }
 
         public float ModifyGravity(float inputGravity, BehaviourContext behaviourContext)
         {
-            return inputGravity * GetAccelerateMultiplier();
+            return inputGravity;
         }
 
-        public float GetAccelerateMultiplier()
+        private float GetAccelerateYMultiplier()
         {
             return IsPlayerOnBlock ? 2f : 1f;
+        }
+
+        private float GetAccelerateXMultiplier()
+        {
+            return IsPlayerOnBlock ? (float)Math.Sqrt(2.0) : 1f;
         }
     }
 }
