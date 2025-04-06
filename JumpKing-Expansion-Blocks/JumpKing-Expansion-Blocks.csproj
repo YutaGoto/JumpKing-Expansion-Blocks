@@ -63,6 +63,7 @@
     <Compile Include="Behaviours\DisabledJump.cs" />
     <Compile Include="Behaviours\DisabledSmallJump.cs" />
     <Compile Include="Behaviours\DoubleJump.cs" />
+    <Compile Include="Behaviours\ForceNeutralJump.cs" />
     <Compile Include="Behaviours\HeavyIce.cs" />
     <Compile Include="Behaviours\HighGravity.cs" />
     <Compile Include="Behaviours\InfinityJump.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Blocks\DisabledJump.cs" />
     <Compile Include="Blocks\DisabledSmallJump.cs" />
     <Compile Include="Blocks\DoubleJump.cs" />
+    <Compile Include="Blocks\ForceNeutralJump.cs" />
     <Compile Include="Blocks\HeavyIce.cs" />
     <Compile Include="Blocks\HighGravity.cs" />
     <Compile Include="Blocks\InfinityJump.cs" />
