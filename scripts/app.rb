@@ -334,6 +334,16 @@ upside_down_block_colors = [
   {r: 80, g: 80, b: 80}
 ]
 
+# Checkpoint Block
+check_point_block_colors = [
+  {r: 1, g: 238, b: 124},
+  {r: 5, g: 238, b: 124},
+  {r: 2, g: 238, b: 124},
+  {r: 3, g: 238, b: 124},
+  {r: 6, g: 238, b: 124},
+  {r: 4, g: 238, b: 124},
+]
+
 all_colors = [
   *jk_colors,
   *wind_gradient_block_colors,
@@ -348,6 +358,7 @@ all_colors = [
   *conveyor_colors,
   *forced_slope_colors,
   *upside_down_block_colors,
+  *check_point_block_colors,
   # Expansion Blocks
   *expansion_blocks_base_colors,
   *expansion_blocks_conveyor_colors,
