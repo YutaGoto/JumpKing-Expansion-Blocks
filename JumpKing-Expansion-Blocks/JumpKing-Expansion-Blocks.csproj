@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviours\Accelerate.cs" />
+    <Compile Include="Behaviours\AerialJump.cs" />
     <Compile Include="Behaviours\AirJump.cs" />
     <Compile Include="Behaviours\AntiGiantBoots.cs" />
     <Compile Include="Behaviours\CloudJump.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
     <Compile Include="Blocks\Accelerate.cs" />
+    <Compile Include="Blocks\AerialJump.cs" />
     <Compile Include="Blocks\AirJump.cs" />
     <Compile Include="Blocks\AntiGiantBoots.cs" />
     <Compile Include="Blocks\CloudJump.cs" />
