@@ -68,6 +68,7 @@
     <Compile Include="Behaviours\HeavyIce.cs" />
     <Compile Include="Behaviours\HighGravity.cs" />
     <Compile Include="Behaviours\InfinityJump.cs" />
+    <Compile Include="Behaviours\JumpStepHop.cs" />
     <Compile Include="Behaviours\MagicSand.cs" />
     <Compile Include="Behaviours\MultiWarp.cs" />
     <Compile Include="Behaviours\OneWayIce.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Blocks\HeavyIce.cs" />
     <Compile Include="Blocks\HighGravity.cs" />
     <Compile Include="Blocks\InfinityJump.cs" />
+    <Compile Include="Blocks\JumpStepHop.cs" />
     <Compile Include="Blocks\MagicSand.cs" />
     <Compile Include="Blocks\MultiWarp.cs" />
     <Compile Include="Blocks\OneWayIce.cs" />
