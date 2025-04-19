@@ -86,6 +86,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledJump), new Behaviours.DisabledJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledSmallJump), new Behaviours.DisabledSmallJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeJumpCharge), new Behaviours.RevokeJumpCharge());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeWalking), new Behaviours.RevokeWalking());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceNeutralJump), new Behaviours.ForceNeutralJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.AntiGiantBoots), new Behaviours.AntiGiantBoots());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideLock), new Behaviours.SideLock());
@@ -110,6 +111,7 @@ namespace JumpKing_Expansion_Blocks
         private static void PatchWithHarmony(Harmony harmony)
         {
             new PatchedJumpState(harmony);
+            new PatchedWalk(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });
             MethodInfo postfixIsOnBlockPostfixMethod = typeof(ModEntry).GetMethod("IsOnBlockPostfix");

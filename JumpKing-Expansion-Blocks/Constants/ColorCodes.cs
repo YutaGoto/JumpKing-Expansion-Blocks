@@ -44,6 +44,7 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_ANTI_GIANT_BOOTS = new Color(105, 143, 111);
         public static readonly Color CODE_REVOKE_JUMP_CHARGE = new Color(234, 234, 238);
         public static readonly Color CODE_FORCE_NEUTRAL_JUMP = new Color(234, 234, 239);
+        public static readonly Color CODE_REVOKE_WALKING = new Color(234, 234, 240);
 
         public static readonly Color CODE_SOFT_PLATFORM = new Color(20, 20, 20);
     }
