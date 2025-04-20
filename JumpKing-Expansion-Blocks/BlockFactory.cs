@@ -46,6 +46,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_DISABLED_JUMP,
             Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
             Constants.ColorCodes.CODE_REVOKE_JUMP_CHARGE,
+            Constants.ColorCodes.CODE_REVOKE_WALKING,
             Constants.ColorCodes.CODE_FORCE_NEUTRAL_JUMP,
             Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS,
             Constants.ColorCodes.CODE_SOFT_PLATFORM,
@@ -261,6 +262,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_REVOKE_JUMP_CHARGE)
             {
                 return new RevokeJumpCharge(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_REVOKE_WALKING)
+            {
+                return new RevokeWalking(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_FORCE_NEUTRAL_JUMP)
             {
