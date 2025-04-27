@@ -40,7 +40,6 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_ASCEND,
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
             Constants.ColorCodes.CODE_JUMP_STEP_HOP,
-            Constants.ColorCodes.CODE_AUTO_JUMP_CHARGE,
             Constants.ColorCodes.CODE_AIR_JUMP,
             Constants.ColorCodes.CODE_AERIAL_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
@@ -104,6 +103,10 @@ namespace JumpKing_Expansion_Blocks
                     return true;
                 }
                 if (IsTrapHoppingBlock(blockCode))
+                {
+                    return true;
+                }
+                if (IsAutoJumpChargeBlock(blockCode))
                 {
                     return true;
                 }
@@ -240,10 +243,6 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new JumpStepHop(blockRect);
             }
-            else if (blockCode == Constants.ColorCodes.CODE_AUTO_JUMP_CHARGE)
-            {
-                return new AutoJumpCharge(blockRect);
-            }
             else if (blockCode == Constants.ColorCodes.CODE_AERIAL_JUMP)
             {
                 return new AerialJump(blockRect);
@@ -317,6 +316,10 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new TrapHopping(blockRect, blockCode.G);
             }
+            else if (IsAutoJumpChargeBlock(blockCode))
+            {
+                return new AutoJumpCharge(blockRect, blockCode.G);
+            }
             else
             {
                 throw new InvalidOperationException($"{typeof(BlockFactory).Name} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
@@ -375,6 +378,13 @@ namespace JumpKing_Expansion_Blocks
             return blockCode.R == Constants.TrapHoppingCodes.TRAP_HOPPING_R
                     && (blockCode.G >= Constants.TrapHoppingCodes.TRAP_HOPPING_G_RIGHT && blockCode.G <= Constants.TrapHoppingCodes.TRAP_HOPPING_G_RANDOM)
                     && blockCode.B == Constants.TrapHoppingCodes.TRAP_HOPPING_B;
+        }
+
+        private static bool IsAutoJumpChargeBlock(Color blockCode)
+        {
+            return blockCode.R == Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_R
+                    && blockCode.G >= Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_CONTROLLABLE && blockCode.G <= Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_RIGHT
+                    && blockCode.B == Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_B;
         }
     }
 }
