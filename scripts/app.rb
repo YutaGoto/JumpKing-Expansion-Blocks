@@ -9,7 +9,7 @@ class ExpansionBlocks
     attr_accessor :side_lock_color_codes
     attr_accessor :super_charge_color_codes
     attr_accessor :trap_hopping_color_codes
-
+    attr_accessor :auto_jump_charge_color_codes
 
     def base_colors
       self.base_color_codes = []
@@ -152,6 +152,21 @@ class ExpansionBlocks
 
       self.trap_hopping_color_codes
     end
+
+    def auto_jump_charge_colors
+      self.auto_jump_charge_color_codes = []
+      content = File.read("JumpKing-Expansion-Blocks/Constants/AutoJumpChargeColorCodes.cs")
+
+      if match = content.match(/AUTO_JUMP_CHARGE_R = (\d+);.*AUTO_JUMP_CHARGE_G_CONTROLLABLE = (\d+);.*AUTO_JUMP_CHARGE_G_RIGHT = (\d+);.*AUTO_JUMP_CHARGE_B = (\d+);/m)
+        r, g_controllable, g_right, b = match.captures.map(&:to_i)
+      end
+
+      (g_controllable..g_right).each do |g|
+        self.auto_jump_charge_color_codes << {r: r, g: g, b: b}
+      end
+
+      self.auto_jump_charge_color_codes
+    end
   end
 end
 
@@ -164,6 +179,7 @@ expansion_blocks_reflector_wall_colors = ExpansionBlocks.reflector_wall_colors
 expansion_blocks_side_lock_colors = ExpansionBlocks.side_lock_colors
 expansion_blocks_super_charge_colors = ExpansionBlocks.super_charge_colors
 expansion_blocks_trap_hopping_colors = ExpansionBlocks.trap_hopping_colors
+expansion_blocks_auto_jump_charge_colors = ExpansionBlocks.auto_jump_charge_colors
 
 jk_colors = [
   {r: 0, g: 0, b: 0},
@@ -369,6 +385,7 @@ all_colors = [
   *expansion_blocks_side_lock_colors,
   *expansion_blocks_super_charge_colors,
   *expansion_blocks_trap_hopping_colors,
+  *expansion_blocks_auto_jump_charge_colors,
 ]
 
 unless all_colors.uniq.size == all_colors.size
