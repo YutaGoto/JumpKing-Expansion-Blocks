@@ -9,6 +9,7 @@ using JumpKing.Mods;
 using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Patches;
 using System;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace JumpKing_Expansion_Blocks
@@ -80,6 +81,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.WallJump), new Behaviours.WallJump(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DoubleJump), new Behaviours.DoubleJump(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.JumpStepHop), new Behaviours.JumpStepHop(player));
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.AutoJumpCharge), new Behaviours.AutoJumpCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.AirJump), new Behaviours.AirJump(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CloudJump), new Behaviours.CloudJump(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.AerialJump), new Behaviours.AerialJump(player));
@@ -112,6 +114,7 @@ namespace JumpKing_Expansion_Blocks
         {
             new PatchedJumpState(harmony);
             new PatchedWalk(harmony);
+            // new DrawOnBlocksList(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });
             MethodInfo postfixIsOnBlockPostfixMethod = typeof(ModEntry).GetMethod("IsOnBlockPostfix");
