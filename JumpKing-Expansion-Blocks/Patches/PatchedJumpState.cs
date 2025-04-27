@@ -2,8 +2,10 @@
 using EntityComponent;
 using HarmonyLib;
 using JumpKing;
+using JumpKing.Level;
 using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Utils;
+using System;
 
 namespace JumpKing_Expansion_Blocks.Patches
 {
@@ -11,6 +13,8 @@ namespace JumpKing_Expansion_Blocks.Patches
     internal class PatchedJumpState
     {
         private static float previous_timer { get; set; }
+        public static float t_timer { get; set; } = 0f;
+        private static InputComponent m_input;
 
         public static int JumpFrames { get; internal set; }
 
@@ -25,7 +29,7 @@ namespace JumpKing_Expansion_Blocks.Patches
             harmony.Patch(AccessTools.Method(typeof(JumpState), "Start"), new HarmonyMethod(AccessTools.Method(GetType(), nameof(CheckStart))), null);
         }
 
-        private static bool PrefixRun(ref BTresult __result)
+        private static bool PrefixRun(TickData p_data, ref BTresult __result, JumpState __instance)
         {
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
 
@@ -39,6 +43,31 @@ namespace JumpKing_Expansion_Blocks.Patches
             {
                 __result = BTresult.Failure;
                 return false;
+            }
+
+            if (player != null && player.m_body.IsOnBlock<Blocks.AutoJumpCharge>() && (player.m_body.IsOnGround || player.m_body.IsOnBlock<SandBlock>()))
+            {
+                if (t_timer <= 0.0f)
+                {
+                    AccessTools.Method(typeof(JumpState), "Start").Invoke(__instance, null);
+                }
+
+                m_input = player.GetComponent<InputComponent>();
+
+                if ((t_timer >= PlayerValues.JUMP_TIME || m_input.GetState().jump) && t_timer > 0.0f)
+                {
+                    AccessTools.Method(typeof(JumpState), "DoJump").Invoke(__instance, new object[] { Math.Min(1f, t_timer / PlayerValues.JUMP_TIME)});                    
+
+                    t_timer = 0f;
+                    __result = BTresult.Success;
+                    return false;
+                }
+                else
+                {
+                    t_timer += (1.0f / (float)PlayerValues.FPS) * player.m_body.GetMultipliers();
+                    __result = BTresult.Running;
+                    return false;
+                }
             }
 
             return true;

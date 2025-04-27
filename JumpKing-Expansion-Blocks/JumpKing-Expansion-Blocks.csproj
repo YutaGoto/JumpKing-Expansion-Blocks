@@ -57,6 +57,7 @@
     <Compile Include="Behaviours\AerialJump.cs" />
     <Compile Include="Behaviours\AirJump.cs" />
     <Compile Include="Behaviours\AntiGiantBoots.cs" />
+    <Compile Include="Behaviours\AutoJumpCharge.cs" />
     <Compile Include="Behaviours\CloudJump.cs" />
     <Compile Include="Behaviours\Conveyor.cs" />
     <Compile Include="Behaviours\CursedIce.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Blocks\AerialJump.cs" />
     <Compile Include="Blocks\AirJump.cs" />
     <Compile Include="Blocks\AntiGiantBoots.cs" />
+    <Compile Include="Blocks\AutoJumpCharge.cs" />
     <Compile Include="Blocks\CloudJump.cs" />
     <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\CursedIce.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="Constants\*.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Nodes\WalkAnimReset.cs" />
+    <Compile Include="Patches\DrawDebug.cs" />
     <Compile Include="Patches\PatchedBodyComp.cs" />
     <Compile Include="Patches\PatchedInventoryManager.cs" />
     <Compile Include="Patches\PatchedJumpState.cs" />

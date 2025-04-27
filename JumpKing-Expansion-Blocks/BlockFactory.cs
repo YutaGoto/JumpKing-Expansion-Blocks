@@ -40,6 +40,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_ASCEND,
             Constants.ColorCodes.CODE_DOUBLE_JUMP,
             Constants.ColorCodes.CODE_JUMP_STEP_HOP,
+            Constants.ColorCodes.CODE_AUTO_JUMP_CHARGE,
             Constants.ColorCodes.CODE_AIR_JUMP,
             Constants.ColorCodes.CODE_AERIAL_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
@@ -238,6 +239,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_JUMP_STEP_HOP)
             {
                 return new JumpStepHop(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_AUTO_JUMP_CHARGE)
+            {
+                return new AutoJumpCharge(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_AERIAL_JUMP)
             {
