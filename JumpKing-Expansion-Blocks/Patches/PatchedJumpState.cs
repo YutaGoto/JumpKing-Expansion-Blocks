@@ -98,6 +98,10 @@ namespace JumpKing_Expansion_Blocks.Patches
                     return false;
                 }
             }
+            else
+            {
+                t_timer = 0.0f;
+            }
 
             return true;
         }
