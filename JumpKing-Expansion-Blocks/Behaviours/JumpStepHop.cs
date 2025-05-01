@@ -60,7 +60,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (!stepFlag && hopFlag)
             {
-                if (bodyComp.Velocity.Y > -1.0f && m_input.GetState().jump && !player.m_body.IsOnGround && !tapJumpButton)
+                if (m_input.TryConsumeJump() && !tapJumpButton)
                 {
                     if (m_input.GetState().right)
                     {
@@ -83,7 +83,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             if (stepFlag && hopFlag)
             {
                 jumpVelocity = Math.Min(bodyComp.Velocity.Y, jumpVelocity);
-                if (bodyComp.Velocity.Y > -1.0f && m_input.GetState().jump && !player.m_body.IsOnGround && !tapJumpButton)
+                if (m_input.TryConsumeJump() && !tapJumpButton)
                 {
                     if (m_input.GetState().right)
                     {

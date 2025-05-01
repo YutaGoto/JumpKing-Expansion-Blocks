@@ -54,7 +54,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             }
             if (airJumpFlag && IsPlayerOnBlock && !doAirJump)
             {
-                if (bodyComp.Velocity.Y > -1.0f && m_input.GetState().jump && !tapJumpButton && !player.m_body.IsOnGround)
+                if (m_input.TryConsumeJump() && !tapJumpButton)
                 {
                     if (m_input.GetState().right)
                     {
