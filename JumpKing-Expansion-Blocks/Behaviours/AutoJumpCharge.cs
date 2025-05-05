@@ -41,13 +41,13 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 Blocks.AutoJumpCharge autoJumpCharge = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.AutoJumpCharge>().FirstOrDefault() as Blocks.AutoJumpCharge;
                 switch (autoJumpCharge.Direction)
                 {
-                    case 233:
+                    case Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_CONTROLLABLE:
                         dirctionType = Direction.Controllable;
                         return;
-                    case 234:
+                    case Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_LEFT:
                         dirctionType = Direction.Left;
                         return;
-                    case 235:
+                    case Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_RIGHT:
                         dirctionType = Direction.Right;
                         return;
                     default:
