@@ -43,7 +43,6 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_AIR_JUMP,
             Constants.ColorCodes.CODE_AERIAL_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
-            Constants.ColorCodes.CODE_DISABLED_JUMP,
             Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
             Constants.ColorCodes.CODE_REVOKE_JUMP_CHARGE,
             Constants.ColorCodes.CODE_REVOKE_WALKING,
@@ -107,6 +106,10 @@ namespace JumpKing_Expansion_Blocks
                     return true;
                 }
                 if (IsAutoJumpChargeBlock(blockCode))
+                {
+                    return true;
+                }
+                if (IsForceFramesJump(blockCode))
                 {
                     return true;
                 }
@@ -255,10 +258,6 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new CloudJump(blockRect);
             }
-            else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
-            {
-                return new DisabledJump(blockRect);
-            }
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP)
             {
                 return new DisabledSmallJump(blockRect);
@@ -319,6 +318,10 @@ namespace JumpKing_Expansion_Blocks
             else if (IsAutoJumpChargeBlock(blockCode))
             {
                 return new AutoJumpCharge(blockRect, blockCode.G);
+            }
+            else if (IsForceFramesJump(blockCode))
+            {
+                return new ForceFramesJump(blockRect, blockCode.R);
             }
             else
             {
@@ -385,6 +388,13 @@ namespace JumpKing_Expansion_Blocks
             return blockCode.R == Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_R
                     && blockCode.G >= Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_CONTROLLABLE && blockCode.G <= Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_RIGHT
                     && blockCode.B == Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_B;
+        }
+
+        private static bool IsForceFramesJump(Color blockCode)
+        {
+            return blockCode.R >= Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_R_MIN && blockCode.R <= Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_R_MAX
+                    && blockCode.G == Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_G
+                    && blockCode.B == Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_B;
         }
     }
 }
