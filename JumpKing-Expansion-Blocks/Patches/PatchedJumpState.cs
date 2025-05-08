@@ -134,9 +134,9 @@ namespace JumpKing_Expansion_Blocks.Patches
                     p_intensity = (1.0f + 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME)) - p_intensity;
                 }
 
-                if (player.m_body.IsOnBlock<Blocks.DisabledJump>())
+                if (player.m_body.IsOnBlock<Blocks.ForceFramesJump>())
                 {
-                    p_intensity = 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME);
+                    p_intensity = GetForceFrames.Frames(player) / (PlayerValues.FPS * PlayerValues.JUMP_TIME);
                 }
 
                 if (player.m_body.IsOnBlock<Blocks.SuperCharge>())

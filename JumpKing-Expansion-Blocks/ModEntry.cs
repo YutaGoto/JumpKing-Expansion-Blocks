@@ -85,7 +85,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.AirJump), new Behaviours.AirJump(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.CloudJump), new Behaviours.CloudJump(player));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.AerialJump), new Behaviours.AerialJump(player));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledJump), new Behaviours.DisabledJump());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceFramesJump), new Behaviours.ForceFramesJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledSmallJump), new Behaviours.DisabledSmallJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeJumpCharge), new Behaviours.RevokeJumpCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeWalking), new Behaviours.RevokeWalking());
