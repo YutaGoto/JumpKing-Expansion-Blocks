@@ -114,19 +114,19 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 Blocks.JkqPlatform jkqPlatform = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.JkqPlatform>().FirstOrDefault() as Blocks.JkqPlatform;
                 switch (jkqPlatform.Form)
                 {
-                    case 21:
+                    case Constants.JkqPlatformsCodes.PLATFORM:
                         formType = Form.Platform;
                         return;
-                    case 22:
+                    case Constants.JkqPlatformsCodes.RIGHT_WALL:
                         formType = Form.RightWall;
                         return;
-                    case 23:
+                    case Constants.JkqPlatformsCodes.LEFT_WALL:
                         formType = Form.LeftWall;
                         return;
-                    case 24:
+                    case Constants.JkqPlatformsCodes.BOTH_WALL:
                         formType = Form.BothWall;
                         return;
-                    case 25:
+                    case Constants.JkqPlatformsCodes.CEIL:
                         formType = Form.Ceil;
                         return;
                     default:
