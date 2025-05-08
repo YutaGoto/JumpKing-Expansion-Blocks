@@ -36,7 +36,6 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_AIR_JUMP = new Color(233, 233, 232);
         public static readonly Color CODE_CLOUD_JUMP = new Color(233, 233, 234);
         public static readonly Color CODE_DOUBLE_JUMP = new Color(233, 233, 235);
-        public static readonly Color CODE_DISABLED_JUMP = new Color(233, 233, 236);
         public static readonly Color CODE_AERIAL_JUMP = new Color(233, 233, 237);
         public static readonly Color CODE_JUMP_STEP_HOP = new Color(233, 233, 238);
 
