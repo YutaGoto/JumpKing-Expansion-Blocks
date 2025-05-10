@@ -43,6 +43,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_AIR_JUMP,
             Constants.ColorCodes.CODE_AERIAL_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
+            Constants.ColorCodes.CODE_DISABLED_JUMP,
             Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
             Constants.ColorCodes.CODE_REVOKE_JUMP_CHARGE,
             Constants.ColorCodes.CODE_REVOKE_WALKING,
@@ -257,6 +258,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_CLOUD_JUMP)
             {
                 return new CloudJump(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
+            {
+                return new ForceFramesJump(blockRect, 1);
             }
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP)
             {
