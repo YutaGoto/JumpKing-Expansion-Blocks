@@ -110,6 +110,10 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
+                if (IsForceFramesJump(blockCode))
+                {
+                    return true;
+                }
 
                 return false;
             }
@@ -257,7 +261,7 @@ namespace JumpKing_Expansion_Blocks
             }
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
             {
-                return new DisabledJump(blockRect);
+                return new ForceFramesJump(blockRect, 1);
             }
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP)
             {
@@ -319,6 +323,10 @@ namespace JumpKing_Expansion_Blocks
             else if (IsAutoJumpChargeBlock(blockCode))
             {
                 return new AutoJumpCharge(blockRect, blockCode.G);
+            }
+            else if (IsForceFramesJump(blockCode))
+            {
+                return new ForceFramesJump(blockRect, blockCode.R);
             }
             else
             {
@@ -385,6 +393,13 @@ namespace JumpKing_Expansion_Blocks
             return blockCode.R == Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_R
                     && blockCode.G >= Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_CONTROLLABLE && blockCode.G <= Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_G_RIGHT
                     && blockCode.B == Constants.AutoJumpChargeColorCodes.CODE_AUTO_JUMP_CHARGE_B;
+        }
+
+        private static bool IsForceFramesJump(Color blockCode)
+        {
+            return blockCode.R >= Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_R_MIN && blockCode.R <= Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_R_MAX
+                    && blockCode.G == Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_G
+                    && blockCode.B == Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_B;
         }
     }
 }

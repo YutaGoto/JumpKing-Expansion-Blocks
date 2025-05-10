@@ -178,7 +178,7 @@ Gravity is reversed. It effects when you are in the air and X speed is more than
 
 ### Disabled Jump
 
-`#e9e9ec` `RGB(233, 233, 236)`
+`#01e9ec` `RGB(1, 233, 236)`
 
 You can do only 1 frame jump.
 
