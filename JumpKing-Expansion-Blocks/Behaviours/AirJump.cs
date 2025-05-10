@@ -52,27 +52,25 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 airJumpFlag = false;
                 doAirJump = false;
             }
-            if (airJumpFlag && IsPlayerOnBlock && !doAirJump)
+
+            if (airJumpFlag && IsPlayerOnBlock && !doAirJump && bodyComp.Velocity.Y > -1.0f && m_input.TryConsumeJump() && !tapJumpButton)
             {
-                if (m_input.TryConsumeJump() && !tapJumpButton)
+                if (m_input.GetState().right)
                 {
-                    if (m_input.GetState().right)
-                    {
-                        bodyComp.Velocity.X = PlayerValues.SPEED;
-                    }
-                    else if (m_input.GetState().left)
-                    {
-                        bodyComp.Velocity.X = -PlayerValues.SPEED;
-                    }
-                    else
-                    {
-                        bodyComp.Velocity.X = 0f;
-                    }
-                    tapJumpButton = true;
-                    bodyComp.Velocity.Y = PlayerValues.JUMP * (2f / 3f);
-                    airJumpFlag = false;
-                    doAirJump = true;
+                    bodyComp.Velocity.X = PlayerValues.SPEED;
                 }
+                else if (m_input.GetState().left)
+                {
+                    bodyComp.Velocity.X = -PlayerValues.SPEED;
+                }
+                else
+                {
+                    bodyComp.Velocity.X = 0f;
+                }
+                tapJumpButton = true;
+                bodyComp.Velocity.Y = PlayerValues.JUMP * (2f / 3f);
+                airJumpFlag = false;
+                doAirJump = true;
             }
 
             if (!m_input.GetState().jump)

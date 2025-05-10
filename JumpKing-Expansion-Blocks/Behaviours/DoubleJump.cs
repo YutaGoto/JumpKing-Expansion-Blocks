@@ -53,7 +53,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             {
                 doubleJumpVelocity = Math.Min(bodyComp.Velocity.Y, doubleJumpVelocity);
                 m_input = player.GetComponent<InputComponent>();
-                if (m_input.TryConsumeJump())
+                if (bodyComp.Velocity.Y > -1.0f && m_input.TryConsumeJump())
                 {
                     if (m_input.GetState().right)
                     {
