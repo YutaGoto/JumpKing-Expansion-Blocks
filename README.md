@@ -135,6 +135,8 @@ Charge speed and moving are 2 times faster than normal.
 
 Charge speed and moving are 2 times slower than water block (4 times slower than normal).
 
+if putting flags/tags `DisableSplashParticle`, it will not create splash particles and sound effects.
+
 - It isn't solid.
 - You can’t walk on it.
 - You can’t slide on it.

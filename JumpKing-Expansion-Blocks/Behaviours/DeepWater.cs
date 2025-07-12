@@ -5,6 +5,7 @@ using JumpKing.Level;
 using JumpKing.Player;
 using Microsoft.Xna.Framework;
 using System.Reflection;
+using System.Linq;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
@@ -49,9 +50,12 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                     center.Y -= hitbox.Height / 2;
                 }
 
-                var spawner = Traverse.Create(bodyComp).Field("m_splashParticleSpawner").GetValue();
-                MethodInfo createWaterSplashParticle = AccessTools.TypeByName("ISplashParticleSpawner").GetMethod("CreateWaterSplashParticle");
-                createWaterSplashParticle.Invoke(spawner, new object[] { center, IsPlayerOnBlock });
+                if (!ModEntry.Tags.Contains("DisableSplashParticle"))
+                {
+                    var spawner = Traverse.Create(bodyComp).Field("m_splashParticleSpawner").GetValue();
+                    MethodInfo createWaterSplashParticle = AccessTools.TypeByName("ISplashParticleSpawner").GetMethod("CreateWaterSplashParticle");
+                    createWaterSplashParticle.Invoke(spawner, new object[] { center, IsPlayerOnBlock });
+                }
             }
 
             return true;
