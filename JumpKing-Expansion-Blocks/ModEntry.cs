@@ -1,5 +1,6 @@
 ﻿using EntityComponent;
 using HarmonyLib;
+using JumpKing;
 using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
@@ -7,9 +8,9 @@ using JumpKing.MiscEntities.WorldItems;
 using JumpKing.MiscEntities.WorldItems.Inventory;
 using JumpKing.Mods;
 using JumpKing.Player;
+using JumpKing.Workshop;
 using JumpKing_Expansion_Blocks.Patches;
 using System;
-using System.Diagnostics;
 using System.Reflection;
 
 namespace JumpKing_Expansion_Blocks
@@ -19,6 +20,8 @@ namespace JumpKing_Expansion_Blocks
     {
         private static readonly string harmonyId = "YutaGoto.JumpKing_Expansion_Blocks";
         public static readonly Harmony harmony = new Harmony(harmonyId);
+        public static string[] Tags { get; set; } = new string[0];
+
         /// <summary>
         /// Called by Jump King before the level loads
         /// </summary>
@@ -47,6 +50,7 @@ namespace JumpKing_Expansion_Blocks
         [OnLevelStart]
         public static void OnLevelStart()
         {
+            Tags = XmlSerializerHelper.Deserialize<Level.LevelSettings>($"{Game1.instance.contentManager.root}\\{Level.FileName}").Tags;
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             ICollisionQuery collisionQuery = LevelManager.Instance;
 
