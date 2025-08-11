@@ -4,16 +4,56 @@ using JumpKing.Level;
 using JumpKing.Player;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
+using System.Xml.Linq;
+using JumpKing_Expansion_Blocks;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
     internal class JkqPlatform : IBlockBehaviour
     {
+        private static ulong? cachedLevelID = null;
+
         public float BlockPriority => 2f;
 
         public bool IsPlayerOnBlock { get; set; }
         internal static bool isThroughPlatform { get; set; } = false;
         private static Form formType { get; set; }
+
+        static JkqPlatform()
+        {
+            // LevelID取得
+            ulong levelID = 0UL;
+            try
+            {
+                levelID = (ulong)typeof(ModEntry).GetField("levelID", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic)?.GetValue(null);
+            }
+            catch { }
+
+            cachedLevelID = levelID;
+
+            string xmlPath = Path.Combine(ModEntry.AssemblyPath ?? "", "YutaGoto.JumpKing_Expansion_Blocks.JkqPlatform.xml");
+            if (File.Exists(xmlPath))
+            {
+                try
+                {
+                    var doc = XDocument.Load(xmlPath);
+                    var root = doc.Element("JkqPlatform");
+                    var levelIdElem = root?.Element("LevelID");
+                    var isThroughElem = root?.Element("IsThroughPlatform");
+                    if (levelIdElem != null && isThroughElem != null && ulong.TryParse(levelIdElem.Value, out ulong fileLevelId))
+                    {
+                        if (fileLevelId == levelID)
+                        {
+                            isThroughPlatform = bool.TryParse(isThroughElem.Value, out bool val) ? val : false;
+                            return;
+                        }
+                    }
+                }
+                catch { }
+            }
+            isThroughPlatform = false;
+        }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
@@ -82,14 +122,44 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.StartOfFrameCollisionInfo.IsCollidingWith<Blocks.JkqPlatform>();
             }
 
+            bool prevIsThroughPlatform = isThroughPlatform;
+
             if (bodyComp.IsOnGround)
             {
                 isThroughPlatform = false;
             }
 
             isThroughPlatform = isThroughPlatform || IsPlayerOnBlock;
-            
+
+            // LevelID取得（キャッシュ）
+            if (!cachedLevelID.HasValue)
+            {
+                try
+                {
+                    cachedLevelID = (ulong)typeof(ModEntry).GetField("levelID", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic)?.GetValue(null);
+                }
+                catch { cachedLevelID = null; }
+            }
+
+            // isThroughPlatformが切り替わった場合のみ保存
+            if (prevIsThroughPlatform != isThroughPlatform)
+            {
+                SaveIsThroughPlatformToXml(cachedLevelID ?? 0UL, isThroughPlatform);
+            }
+
             return true;
+        }
+
+        private void SaveIsThroughPlatformToXml(ulong levelID, bool isThrough)
+        {
+            string dir = Path.Combine(ModEntry.AssemblyPath ?? "", "YutaGoto.JumpKing_Expansion_Blocks.JkqPlatform.xml");
+            var doc = new XDocument(
+                new XElement("JkqPlatform",
+                    new XElement("LevelID", levelID),
+                    new XElement("IsThroughPlatform", isThrough)
+                )
+            );
+            doc.Save(dir);
         }
 
         public float ModifyGravity(float inputGravity, BehaviourContext behaviourContext)

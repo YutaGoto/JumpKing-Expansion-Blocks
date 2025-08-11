@@ -12,6 +12,8 @@ namespace JumpKing_Expansion_Blocks
 {
     class BlockFactory: IBlockFactory
     {
+        public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
+
         private readonly HashSet<Color> supportedBlockCodes = new HashSet<Color>
         {
             Constants.ColorCodes.CODE_HIGH_GRAVITY,
@@ -143,6 +145,11 @@ namespace JumpKing_Expansion_Blocks
 
         public IBlock GetBlock(Color blockCode, Rectangle blockRect, JumpKing.Workshop.Level level, LevelTexture textureSrc, int currentScreen, int x, int y)
         {
+            if (LastUsedMapId != level.ID)
+            {
+                LastUsedMapId = level.ID;
+            }
+
             if (blockCode == Constants.ColorCodes.CODE_HIGH_GRAVITY)
             {
                 return new HighGravity(blockRect);
@@ -343,7 +350,7 @@ namespace JumpKing_Expansion_Blocks
 
         private static bool IsMultiWarpBlock(Color blockCode)
         {
-            return blockCode.G == Constants.MultiWarpColorCodes.MULTI_WARP_G 
+            return blockCode.G == Constants.MultiWarpColorCodes.MULTI_WARP_G
                     && blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B
                     && blockCode.R >= Constants.MultiWarpColorCodes.MULTI_WARP_R_MIN && blockCode.R <= Constants.MultiWarpColorCodes.MULTI_WARP_R_MAX;
         }

@@ -11,6 +11,7 @@ using JumpKing.Player;
 using JumpKing.Workshop;
 using JumpKing_Expansion_Blocks.Patches;
 using System;
+using System.IO;
 using System.Reflection;
 
 namespace JumpKing_Expansion_Blocks
@@ -21,6 +22,7 @@ namespace JumpKing_Expansion_Blocks
         private static readonly string harmonyId = "YutaGoto.JumpKing_Expansion_Blocks";
         public static readonly Harmony harmony = new Harmony(harmonyId);
         public static string[] Tags { get; set; } = new string[0];
+        public static string AssemblyPath { get; set; }
 
         /// <summary>
         /// Called by Jump King before the level loads
@@ -36,6 +38,7 @@ namespace JumpKing_Expansion_Blocks
 
             LevelManager.RegisterBlockFactory(new BlockFactory());
             PatchWithHarmony(harmony);
+            AssemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
 
         /// <summary>
@@ -50,6 +53,7 @@ namespace JumpKing_Expansion_Blocks
         [OnLevelStart]
         public static void OnLevelStart()
         {
+            ulong levelID = Game1.instance.contentManager.level.ID;
             Tags = XmlSerializerHelper.Deserialize<Level.LevelSettings>($"{Game1.instance.contentManager.root}\\{Level.FileName}").Tags;
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             ICollisionQuery collisionQuery = LevelManager.Instance;
