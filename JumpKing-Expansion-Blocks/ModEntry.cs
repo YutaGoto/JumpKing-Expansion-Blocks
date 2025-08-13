@@ -23,6 +23,7 @@ namespace JumpKing_Expansion_Blocks
         public static readonly Harmony harmony = new Harmony(harmonyId);
         public static string[] Tags { get; set; } = new string[0];
         public static string AssemblyPath { get; set; }
+        public static ulong LevelID { get; set; }
 
         /// <summary>
         /// Called by Jump King before the level loads
@@ -30,11 +31,11 @@ namespace JumpKing_Expansion_Blocks
         [BeforeLevelLoad]
         public static void BeforeLevelLoad()
         {
-//#if DEBUG
-//            Debug.WriteLine("-------");
-//            Debugger.Launch();
-//            Harmony.DEBUG = true;
-//#endif
+            //#if DEBUG
+            //            Debug.WriteLine("-------");
+            //            Debugger.Launch();
+            //            Harmony.DEBUG = true;
+            //#endif
 
             LevelManager.RegisterBlockFactory(new BlockFactory());
             PatchWithHarmony(harmony);
@@ -53,7 +54,7 @@ namespace JumpKing_Expansion_Blocks
         [OnLevelStart]
         public static void OnLevelStart()
         {
-            ulong levelID = Game1.instance.contentManager.level.ID;
+            LevelID = Game1.instance.contentManager.level.ID;
             Tags = XmlSerializerHelper.Deserialize<Level.LevelSettings>($"{Game1.instance.contentManager.root}\\{Level.FileName}").Tags;
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             ICollisionQuery collisionQuery = LevelManager.Instance;
@@ -133,7 +134,7 @@ namespace JumpKing_Expansion_Blocks
             MethodInfo postfixGetMultipliers = typeof(PatchedBodyComp).GetMethod("GetMultipliersPostfix");
             harmony.Patch(isGetMultipliers, postfix: new HarmonyMethod(postfixGetMultipliers));
 
-            MethodInfo isWearingSkin = AccessTools.TypeByName("SkinManager").GetMethod("IsWearingSkin", new Type[] {typeof(Items)});
+            MethodInfo isWearingSkin = AccessTools.TypeByName("SkinManager").GetMethod("IsWearingSkin", new Type[] { typeof(Items) });
             MethodInfo postfixIsWearingSkin = typeof(PatchedSkinManager).GetMethod("IsWearingSkinPostfix");
             harmony.Patch(isWearingSkin, postfix: new HarmonyMethod(postfixIsWearingSkin));
 

@@ -26,7 +26,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
             ulong levelID = 0UL;
             try
             {
-                levelID = (ulong)typeof(ModEntry).GetField("levelID", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic)?.GetValue(null);
+                levelID = ModEntry.LevelID;
             }
             catch { }
 
