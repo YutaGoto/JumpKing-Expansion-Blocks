@@ -54,7 +54,13 @@ namespace JumpKing_Expansion_Blocks
         [OnLevelStart]
         public static void OnLevelStart()
         {
-            LevelID = Game1.instance.contentManager.level.ID;
+            Level level = Game1.instance.contentManager.level;
+
+            if (level is null)
+            {
+                return;
+            }
+            LevelID = level.ID;
             Tags = XmlSerializerHelper.Deserialize<Level.LevelSettings>($"{Game1.instance.contentManager.root}\\{Level.FileName}").Tags;
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             ICollisionQuery collisionQuery = LevelManager.Instance;
