@@ -426,6 +426,7 @@ unless all_colors.uniq.size == all_colors.size
     puts "expansion_blocks_side_lock_colors" if expansion_blocks_side_lock_colors.include?(dup_color)
     puts "expansion_blocks_super_charge_colors" if expansion_blocks_super_charge_colors.include?(dup_color)
     puts "expansion_blocks_trap_hopping_colors" if expansion_blocks_trap_hopping_colors.include?(dup_color)
+    puts "expansion_blocks_auto_jump_charge_colors" if expansion_blocks_auto_jump_charge_colors.include?(dup_color)
   end
   exit 1
 end
