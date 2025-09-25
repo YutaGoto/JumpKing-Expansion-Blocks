@@ -3,14 +3,18 @@ using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
+using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
+
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
     internal class AirDash : IBlockBehaviour
     {
         private InputComponent m_input;
-        private readonly PlayerEntity player;
+        private readonly PlayerEntity m_player;
+        private readonly ICollisionQuery m_collisionQuery;
         private bool doAirDash = false;
         private bool releasedJumpKey = true;
 
@@ -19,9 +23,11 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
         public bool IsPlayerOnBlock { get; set; }
 
-        public AirDash(PlayerEntity player)
+        public AirDash(PlayerEntity player, ICollisionQuery collisionQuery)
         {
-            this.player = player ?? throw new ArgumentNullException("player");
+            m_player = player ?? throw new ArgumentNullException("player");
+            m_collisionQuery = collisionQuery ?? throw new ArgumentNullException("collisionQuery");
+
         }
 
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
@@ -38,14 +44,14 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
         {
             BodyComp bodyComp = behaviourContext.BodyComp;
-            m_input = player.GetComponent<InputComponent>();
+            m_input = m_player.GetComponent<InputComponent>();
 
             if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
                 IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.AirDash>();
             }
 
-            if (IsPlayerOnBlock && !player.m_body.IsOnGround && !player.m_body.IsKnocked)
+            if (IsPlayerOnBlock && !m_player.m_body.IsOnGround && !m_player.m_body.IsKnocked)
             {
                 InputComponent.State m_state = m_input.GetState();
 
@@ -54,7 +60,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                     releasedJumpKey = false;
                 }
 
-                if (!releasedJumpKey && !doAirDash)
+                if (!releasedJumpKey && !doAirDash && bodyComp.Velocity.Y > -1.0f)
                 {
                     doAirDash = true;
 
@@ -83,7 +89,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 }
             }
 
-            if (player.m_body.IsKnocked || player.m_body.IsOnGround)
+            if (m_player.m_body.IsKnocked || m_player.m_body.IsOnGround)
             {
                 doAirDash = false;
                 releasedJumpKey = true;
@@ -106,5 +112,26 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         {
             return inputYVelocity;
         }
+
+        private bool CollidingSlopBlock()
+        {
+            int num = ((m_player.m_body.Velocity.X > 0f) ? 1 : (-1));
+            m_player.m_body.Position.X -= num;
+            Rectangle hitbox2 = m_player.m_body.GetHitbox();
+            m_collisionQuery.CheckCollision(hitbox2, out Rectangle _, out AdvCollisionInfo advCollisionInfo2);
+
+            IReadOnlyList<IBlock> collidedBlocks = advCollisionInfo2.GetCollidedBlocks();
+            m_player.m_body.Position.X += num;
+            foreach (IBlock block in collidedBlocks)
+            {
+                if (block is SlopeBlock)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        
     }
 }
