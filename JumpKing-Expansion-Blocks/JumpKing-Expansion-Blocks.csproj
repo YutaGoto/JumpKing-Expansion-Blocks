@@ -75,6 +75,7 @@
     <Compile Include="Behaviours\MultiWarp.cs" />
     <Compile Include="Behaviours\OneWayIce.cs" />
     <Compile Include="Behaviours\Ascend.cs" />
+    <Compile Include="Behaviours\MoveUp.cs" />
     <Compile Include="Behaviours\RevokeJumpCharge.cs" />
     <Compile Include="Behaviours\RevokeWalking.cs" />
     <Compile Include="Behaviours\SideLock.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Blocks\MultiWarp.cs" />
     <Compile Include="Blocks\OneWayIce.cs" />
     <Compile Include="Blocks\Ascend.cs" />
+    <Compile Include="Blocks\MoveUp.cs" />
     <Compile Include="Blocks\RevokeJumpCharge.cs" />
     <Compile Include="Blocks\RevokeWalking.cs" />
     <Compile Include="Blocks\SideLock.cs" />
