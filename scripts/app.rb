@@ -56,12 +56,14 @@ class ExpansionBlocks
       multi_warp_color_codes = []
       content = File.read("JumpKing-Expansion-Blocks/Constants/MultiWarpColorCodes.cs")
 
-      if match = content.match(/MULTI_WARP_R_MIN = (\d+).*MULTI_WARP_R_MAX = (\d+).*MULTI_WARP_G = (\d+).*MULTI_WARP_B = (\d+)/m)
-        r_min, r_max, g, b = match.captures.map(&:to_i)
+      if match = content.match(/MULTI_WARP_R_MIN = (\d+).*MULTI_WARP_R_MAX = (\d+).*MULTI_WARP_G_MIN = (\d+).*MULTI_WARP_G_MAX = (\d+).*MULTI_WARP_B = (\d+)/m)
+        r_min, r_max, g_min, g_max, b = match.captures.map(&:to_i)
       end
 
       (r_min..r_max).each do |r|
-        multi_warp_color_codes << {r: r, g: g, b: b}
+        (g_min..g_max).each do |g|
+          multi_warp_color_codes << {r: r, g: g, b: b}
+        end
       end
 
       multi_warp_color_codes

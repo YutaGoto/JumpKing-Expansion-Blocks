@@ -56,7 +56,8 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 BodyComp m_bodyComp = behaviourContext.BodyComp;
                 Point center = m_bodyComp.GetHitbox().Center;
                 int num2 = -1;
-                float num = 0f;
+                int numOffset = 0;
+				float num = 0f;
                 Blocks.MultiWarp multiWarp = behaviourContext.LastFrameCollisionInfo.PreResolutionCollisionInfo.GetCollidedBlocks<Blocks.MultiWarp>().FirstOrDefault() as Blocks.MultiWarp;
 
                 if (IsPlayerOnBlock && multiWarp != null && (center.X <= 0 || center.X >= 480.0))
@@ -71,9 +72,10 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                     }
 
                     m_bodyComp.Position.X += num;
-                    num2 = multiWarp.ToScreenNo;
+                    numOffset = multiWarp.Offset;
+					num2 = multiWarp.ToScreenNo + (numOffset * 255);
 
-                    if(num2 == -1)
+					if (num2 == -1)
                     {
                         throw new InvalidOperationException($"Cannot teleport: Player Position '({m_bodyComp.Position.X},{m_bodyComp.Position.Y})' " + "however no valid Teleport Link was found!");
                     }
