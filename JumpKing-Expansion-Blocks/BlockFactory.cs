@@ -311,7 +311,7 @@ namespace JumpKing_Expansion_Blocks
             }
             else if (IsMultiWarpBlock(blockCode))
             {
-                return new MultiWarp(blockRect, blockCode.R);
+                return new MultiWarp(blockRect, blockCode.R, blockCode.G);
             }
             else if (IsQuickMoveBlock(blockCode))
             {
@@ -360,8 +360,8 @@ namespace JumpKing_Expansion_Blocks
 
         private static bool IsMultiWarpBlock(Color blockCode)
         {
-            return blockCode.G == Constants.MultiWarpColorCodes.MULTI_WARP_G
-                    && blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B
+            return blockCode.G >= Constants.MultiWarpColorCodes.MULTI_WARP_G_MIN && blockCode.G <= Constants.MultiWarpColorCodes.MULTI_WARP_G_MAX
+					&& blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B
                     && blockCode.R >= Constants.MultiWarpColorCodes.MULTI_WARP_R_MIN && blockCode.R <= Constants.MultiWarpColorCodes.MULTI_WARP_R_MAX;
         }
 
