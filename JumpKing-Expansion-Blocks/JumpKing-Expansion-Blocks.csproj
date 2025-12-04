@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -47,7 +48,8 @@
       <Private>False</Private>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Jump King\JumpKing.exe</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
+    <Reference
+      Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Jump King\MonoGame.Framework.dll</HintPath>
@@ -95,6 +97,7 @@
     <Compile Include="Behaviours\SpecialHighGravity.cs" />
     <Compile Include="Behaviours\SpeedUp.cs" />
     <Compile Include="Behaviours\SuperCharge.cs" />
+    <Compile Include="Behaviours\CeilingShift.cs" />
     <Compile Include="Behaviours\SuperLowGravity.cs" />
     <Compile Include="Behaviours\Trampoline.cs" />
     <Compile Include="Behaviours\TrapHopping.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="Blocks\SpecialHighGravity.cs" />
     <Compile Include="Blocks\SpeedUp.cs" />
     <Compile Include="Blocks\SuperCharge.cs" />
+    <Compile Include="Blocks\CeilingShift.cs" />
     <Compile Include="Blocks\SuperLowGravity.cs" />
     <Compile Include="Blocks\Trampoline.cs" />
     <Compile Include="Blocks\TrapHopping.cs" />

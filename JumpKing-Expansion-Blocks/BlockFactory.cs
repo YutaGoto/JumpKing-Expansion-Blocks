@@ -54,6 +54,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_FORCE_NEUTRAL_JUMP,
             Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS,
             Constants.ColorCodes.CODE_SOFT_PLATFORM,
+            Constants.ColorCodes.CODE_CEILING_SHIFT,
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -303,6 +304,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_SOFT_PLATFORM)
             {
                 return new SoftPlatform(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_CEILING_SHIFT)
+            {
+                return new CeilingShift(blockRect);
             }
 
             else if (IsConveyorBlock(blockCode))
