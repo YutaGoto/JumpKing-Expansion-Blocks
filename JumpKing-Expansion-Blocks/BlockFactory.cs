@@ -55,6 +55,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS,
             Constants.ColorCodes.CODE_SOFT_PLATFORM,
             Constants.ColorCodes.CODE_CEILING_SHIFT,
+            Constants.ColorCodes.CODE_CEILING_SHIFT_SOLID
         };
 
         private readonly ArrayList solidBlocksCode = new ArrayList
@@ -72,7 +73,8 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_WALL_JUMP,
             Constants.ColorCodes.CODE_RESTRAINED_ICE,
             Constants.ColorCodes.CODE_CURSED_ICE,
-            Constants.ColorCodes.CODE_REVERSED_WALK
+            Constants.ColorCodes.CODE_REVERSED_WALK,
+            Constants.ColorCodes.CODE_CEILING_SHIFT_SOLID
         };
 
         public bool CanMakeBlock(Color blockCode, Level level)
@@ -308,6 +310,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_CEILING_SHIFT)
             {
                 return new CeilingShift(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_CEILING_SHIFT_SOLID)
+            {
+                return new CeilingShiftSolid(blockRect);
             }
 
             else if (IsConveyorBlock(blockCode))

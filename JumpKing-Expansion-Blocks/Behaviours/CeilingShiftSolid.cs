@@ -5,7 +5,7 @@ using JumpKing.Player;
 
 namespace JumpKing_Expansion_Blocks.Behaviours
 {
-    internal class CeilingShift : IBlockBehaviour
+    internal class CeilingShiftSolid : IBlockBehaviour
     {
         public float BlockPriority => 2f;
 
@@ -15,12 +15,24 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         /// <inheritdoc/>
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
+            if (info.IsCollidingWith<Blocks.CeilingShiftSolid>())
+            {
+                return !IsPlayerOnBlock;
+            }
             return false;
         }
 
         /// <inheritdoc/>
         public bool AdditionalYCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
+            if (info != null && behaviourContext != null)
+            {
+                BodyComp bodyComp = behaviourContext.BodyComp;
+
+                return info.IsCollidingWith<Blocks.CeilingShiftSolid>()
+                       && !behaviourContext.CollisionInfo.StartOfFrameCollisionInfo.IsCollidingWith<Blocks.CeilingShiftSolid>()
+                       && bodyComp.Velocity.Y > 0f;
+            }
             return false;
         }
 
@@ -53,12 +65,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (behaviourContext.CollisionInfo?.PreResolutionCollisionInfo != null)
             {
-                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.CeilingShift>();
-            }
-
-            if (IsPlayerOnBlock && bodyComp.IsKnocked && bodyComp.Velocity.Y < 0)
-            {
-                bodyComp.Velocity.Y = 0f;
+                IsPlayerOnBlock = behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<Blocks.CeilingShiftSolid>();
             }
 
             return true;
