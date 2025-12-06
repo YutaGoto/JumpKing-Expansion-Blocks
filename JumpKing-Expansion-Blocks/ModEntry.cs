@@ -112,6 +112,8 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.MultiWarp), new Behaviours.MultiWarp());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.QuickMove), new Behaviours.QuickMove());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SoftPlatform), new Behaviours.SoftPlatform());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShift), new Behaviours.CeilingShift());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShiftSolid), new Behaviours.CeilingShiftSolid());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.JkqPlatform), new Behaviours.JkqPlatform());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.TrapHopping), new Behaviours.TrapHopping());
             }

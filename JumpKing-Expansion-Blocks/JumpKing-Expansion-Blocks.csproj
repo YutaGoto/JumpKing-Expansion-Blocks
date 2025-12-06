@@ -60,6 +60,7 @@
     <Compile Include="Behaviours\AirJump.cs" />
     <Compile Include="Behaviours\AntiGiantBoots.cs" />
     <Compile Include="Behaviours\AutoJumpCharge.cs" />
+    <Compile Include="Behaviours\CeilingShiftSolid.cs" />
     <Compile Include="Behaviours\CloudJump.cs" />
     <Compile Include="Behaviours\Conveyor.cs" />
     <Compile Include="Behaviours\CursedIce.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Behaviours\SpecialHighGravity.cs" />
     <Compile Include="Behaviours\SpeedUp.cs" />
     <Compile Include="Behaviours\SuperCharge.cs" />
+    <Compile Include="Behaviours\CeilingShift.cs" />
     <Compile Include="Behaviours\SuperLowGravity.cs" />
     <Compile Include="Behaviours\Trampoline.cs" />
     <Compile Include="Behaviours\TrapHopping.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Blocks\AirJump.cs" />
     <Compile Include="Blocks\AntiGiantBoots.cs" />
     <Compile Include="Blocks\AutoJumpCharge.cs" />
+    <Compile Include="Blocks\CeilingShiftSolid.cs" />
     <Compile Include="Blocks\CloudJump.cs" />
     <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\CursedIce.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="Blocks\SpecialHighGravity.cs" />
     <Compile Include="Blocks\SpeedUp.cs" />
     <Compile Include="Blocks\SuperCharge.cs" />
+    <Compile Include="Blocks\CeilingShift.cs" />
     <Compile Include="Blocks\SuperLowGravity.cs" />
     <Compile Include="Blocks\Trampoline.cs" />
     <Compile Include="Blocks\TrapHopping.cs" />
