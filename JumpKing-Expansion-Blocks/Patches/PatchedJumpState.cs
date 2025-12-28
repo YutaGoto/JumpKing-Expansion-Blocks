@@ -53,6 +53,8 @@ namespace JumpKing_Expansion_Blocks.Patches
             {
                 if (t_timer <= 0.0f)
                 {
+                    if (!player.m_body.IsOnBlock<IceBlock>())
+                        player.m_body.Velocity.X = 0f;
                     AccessTools.Method(typeof(JumpState), "Start").Invoke(__instance, null);
                 }
 
@@ -94,6 +96,12 @@ namespace JumpKing_Expansion_Blocks.Patches
                 else
                 {
                     t_timer += (1.0f / (float)PlayerValues.FPS) * player.m_body.GetMultipliers();
+
+                    if (!player.m_body.IsOnBlock<IceBlock>())
+                    {
+                        player.m_body.Velocity.X = 0f;
+                    }
+
                     __result = BTresult.Running;
                     return false;
                 }
