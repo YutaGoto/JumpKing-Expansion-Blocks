@@ -65,6 +65,7 @@
     <Compile Include="Behaviours\Conveyor.cs" />
     <Compile Include="Behaviours\CursedIce.cs" />
     <Compile Include="Behaviours\DeepWater.cs" />
+    <Compile Include="Behaviours\Flapping.cs" />
     <Compile Include="Behaviours\ForceFramesJump.cs" />
     <Compile Include="Behaviours\DisabledSmallJump.cs" />
     <Compile Include="Behaviours\DoubleJump.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Blocks\Conveyor.cs" />
     <Compile Include="Blocks\CursedIce.cs" />
     <Compile Include="Blocks\DeepWater.cs" />
+    <Compile Include="Blocks\Flapping.cs" />
     <Compile Include="Blocks\ForceFramesJump.cs" />
     <Compile Include="Blocks\DisabledSmallJump.cs" />
     <Compile Include="Blocks\DoubleJump.cs" />
