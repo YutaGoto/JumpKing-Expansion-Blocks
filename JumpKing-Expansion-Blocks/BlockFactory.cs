@@ -47,6 +47,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_AERIAL_JUMP,
             Constants.ColorCodes.CODE_CLOUD_JUMP,
             Constants.ColorCodes.CODE_AIR_DASH,
+            Constants.ColorCodes.CODE_FLAPPING,
             Constants.ColorCodes.CODE_DISABLED_JUMP,
             Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
             Constants.ColorCodes.CODE_REVOKE_JUMP_CHARGE,
@@ -278,6 +279,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_AIR_DASH)
             {
                 return new AirDash(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_FLAPPING)
+            {
+                return new Flapping(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_DISABLED_JUMP)
             {
