@@ -4,357 +4,84 @@
 
 ![thumbnail](https://steamuserimages-a.akamaihd.net/ugc/5838428307081072717/1CA52980181FF52EF1122EB3169F0AA583BB648B/)
 
-https://steamcommunity.com/sharedfiles/filedetails/?id=3214349391
+[Steam Workshop Link](https://steamcommunity.com/sharedfiles/filedetails/?id=3214349391)
 
 This mod adds custom blocks to Jump King.
 
-## Ice
-
-### SlipperyIce
-
-`#00c0ff` `RGB(0, 192, 255)`
-
-3 times slippery than normal ice.
-
-- It is solid.
-- You can walk on it.
-- You will slide on it no matter what.
-
-### ZeroFriction
-
-`#00c1ff` `RGB(0, 193, 255)`
-
-No friction at all.
-
-- It is solid.
-- You can walk on it.
-- You will slide on it no matter what.
-
-### CursedIce
-
-`#909000` `RGB(144, 144, 0)`
-
-No walk, ice platform and reverse jump.
-
-- It is solid.
-- You can't walk on it.
-- You will slide on it no matter what.
-
-### RestrainedIce
-
-`#808000` `RGB(128, 128, 0)`
-
-No walk and ice platform. Like wearing a Giant Boots.
-
-- It is solid.
-- You can't walk on it.
-- You will slide on it no matter what.
-
-### OneWay Ice
-
-`#4182ff` `RGB(65, 130, 255)`
-
-The semi-solid block is a Ice block that is solid only in one side.
-
-- It is solid. (only one side)
-- You can walk on it.
-- You will slide on it no matter what.
-
-### Heavy Ice
-
-`#00ffc8` `RGB(0, 255, 200)`
-
-Ice platform but you can't do small jump like Snow block.
-
-- It is solid.
-- You can walk on it.
-- You will slide on it no matter what.
-
-## Sand
-
-### SideSand
-
-`#ff6d00` `RGB(255, 109, 0)`
-
-You are able to enter from any side (top, left, bottom, right).
-
-- It is solid.
-- You can walk on it.
-- You can't slide on it.
-- You will sink down.
-
-### Quicksand
-
-`#ff6c00` `RGB(255, 108, 0)`
-
-Sinking speed is faster than normal sand.
-
-- It is solid.
-- You can walk on it.
-- You can't slide on it.
-- You will sink down.
-
-### UpSand
-
-`#ff6f00` `RGB(255, 111, 0)`
-
-You are able to enter from the bottom. flow up.
-
-- It is solid.
-- You can't walk in it. You can walk on it.
-- You can't slide in it. You can slide on it.
-- You will flow up.
-
-### MagicSand
-
-`#ff6e00` `RGB(255, 110, 0)`
-
-You are able to enter from any side. If it go up, it will flow up. If it go down, it will flow down.
-
-- It is solid.
-- If you sink down, you can walk on it. If you flow up, you can't walk on it.
-- You can't slide in it.
-- You will flow up or down.
-
-## Others
-
-### Accelerate
-
-`#b4ff00` `RGB(180, 255, 0)`
-
-Charge speed and moving are 2 times faster than normal.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- It affects your direction (velocity, gravity and jump charge).
-
-### DeepWater
-
-`#00acac` `RGB(0, 172, 172)`
-
-Charge speed and moving are 2 times slower than water block (4 times slower than normal).
-
-if putting flags/tags `DisableSplashParticle`, it will not create splash particles and sound effects.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- It affects your direction (velocity, gravity and jump charge).
-
-### ReversedCharge
-
-`#212121` `RGB(33, 33, 33)`
-
-1 frame charge then full jump. Maximum frame charge then the smallest jump.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- It affects your jump charge.
-
-### SuperCharge
-
-`#3230XX` `RGB(50, 48, XX)`
-
-be able to charge than normal. Blue channel is charge power.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- 1 - 35 frames charge is normal. over 35 frames charge is stronger.
-- Blue channel would be from 2 to 5.
-- A higher value will allow you to pass through solid blocks.
-- Setting it above 110 may cause the game to crash.
-
-### Reversed Gravity
-
-`#21ffff` `RGB(33, 255, 255)`
-
-Gravity is reversed. It effects when you are in the air and X speed is more than `0.1` (Neutral Jumping is not affected).
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- Gravity is reversed.
-
-### Disabled Jump
-
-`#01e9ec` `RGB(1, 233, 236)`
-
-You can do only 1 frame jump.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- You can do only 1 frame jump.
-
-### Disabled Small Jump
-
-`#eaeaed` `RGB(234, 234, 237)`
-
-You can't jump under 7 frames charging.
-
-- It isn't solid.
-- You can't walk on it.
-- You can't slide on it.
-- You can jump only 7 frames or more charging.
-
-### Multi Side Teleport block
-
-- `#0100fa` `RGB(1, 0, 250)` to `#a900fa` `RGB(169, 0, 250)`
-
-The teleport block has a range of values that goes from 1 to 169. The value is the number of frames that the player will be teleported to the next block.
-
-You must put the side. (the block checks that the player is on the side of the block)
-
-- It is not solid.
-- You can walk on it.
-- You can't slide on it.
-
-### Conveyor
-
-- left: `#011e1e` `RGB(1, 30, 30)` to `#1e1e1e` `RGB(30, 30, 30)`
-- right: `#011e1f` `RGB(1, 30, 31)` to `#1e1e1f` `RGB(30, 30, 31)`
-
-It acts like a conveyor belt.
-
-The blue channel is direction. The red channel is speed.
-
-- It is solid.
-- You can walk on it.
-- You can't slide on it.
-
-### DoubleJump
-
-`#e9e9eb` `RGB(233, 233, 235)`
-
-You can jump again while in the air.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-
-### Cloud Jump
-
-`#e9e9ea` `RGB(233, 233, 234)`
-
-same effect from Ghost of the Immortal Babe.
-
-You can jump again with automatic while in the air.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-
-### HighGravity
-
-`#800000` `RGB(128, 0, 0)`
-
-The gravity is 1.5 times stronger than normal. Vertical speed is 0.9 times than normal.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- It affects your direction (velocity, gravity and jump curve).
-
-### Super Low Gravity
-
-`#81ffff` `RGB(129, 255, 255)`
-
-The gravity is lower than that of JumpKingPlus mod's low gravity blocks.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- It affects your direction (velocity, gravity and jump curve).
-
-### InfinityJump
-
-`#40ffff` `RGB(64, 255, 255)`
-
-You can jump while on the block.
-
-note: this is ice and sand.
-
-- It is solid.
-- You can walk on it.
-- You can slide on it.
-
-### RainGravity
-
-`#ffc2c2` `RGB(255, 194, 194)`
-
-same high gravity from Ghost of the Immortal Babe.
-
-The gravity is about 1.15 times stronger than normal. 28 frames charge is full jump. and it is adjusted horizontal speed.
-
-- It isn't solid.
-- You can’t walk on it.
-- You can’t slide on it.
-- It affects your direction (velocity, gravity, jump charge and jump curve).
-
-### Reflector Wall
-
-`#c000c0` `RGB(192, 0, 192)`
-
-You knock it, it will reflect you same speed.
-
-- It is solid.
-- You can walk on it.
-- You can't slide on it.
-
-### Trampoline
-
-`#c100c1` `RGB(193, 0, 193)`
-
-You bounce back with 0.8x speed. when your Y-velocity is very small, you can stand on it.
-
-- It is solid.
-- You can walk on it.
-- You can't slide on it.
-
-### ReversedWalk
-
-`#202020` `RGB(32, 32, 32)`
-
-You can walk backward.
-
-problem: you can't hug the wall and slope. you through these.
-
-- It is solid.
-- You can walk on it.
-- You can't slide on it
-
-### WallJump
-
-`#101010` `RGB(16, 16, 16)`
-
-You can stand on the wall and jump from it. You needs at least 7 frames to jump from this block.
-
-note: this is snow and sand.
-
-- It is solid.
-- You can't walk on it.
-- You can't slide on it no matter what.
-
-### SideLock
-
-Only Right: `#620606` `RGB(98, 6, 6)`
-Only Left: `#630606` `RGB(99, 6, 6)`
-
-You are restricted from moving freely and can only proceed in the designated direction
-
-- It is not solid.
-- You can't walk on it.
-- You can't slide on it.
-
-### Anti Giant Boots
-
-`#698f6f` `RGB(105, 143, 111)`
-
-when you are on Anti Giant Boots block, Giant Boots equipment is removed.
-
-- It is not solid.
-- You can walk on it.
-- You can't slide on it.
+## Ice & Friction Blocks
+
+| Block Name | Hex | RGB | Description |
+| :--- | :--- | :--- | :--- |
+| **Slippery Ice** | `#00c0ff` | `0, 192, 255` | 3x more slippery than normal ice. |
+| **Zero Friction** | `#00c1ff` | `0, 193, 255` | No friction at all. You will slide indefinitely. |
+| **Cursed Ice** | `#909000` | `144, 144, 0` | No walk, ice platform, and reverse jump. |
+| **Restrained Ice** | `#808000` | `128, 128, 0` | No walk and ice platform. Similar to wearing Giant Boots. |
+| **OneWay Ice** | `#4182ff` | `65, 130, 255` | Semi-solid ice block that is solid only from the top. |
+| **Heavy Ice** | `#00ffc8` | `0, 255, 200` | Ice platform where you cannot perform small jumps (like Snow block). |
+
+## Sand & Sinking Blocks
+
+| Block Name | Hex | RGB | Description |
+| :--- | :--- | :--- | :--- |
+| **Side Sand** | `#ff6d00` | `255, 109, 0` | Enter from any side. You sink but cannot slide. |
+| **Quicksand** | `#ff6c00` | `255, 108, 0` | Sinks faster than normal sand. |
+| **Up Sand** | `#ff6f00` | `255, 111, 0` | Enter from bottom, flows upwards. |
+| **Magic Sand** | `#ff6e00` | `255, 110, 0` | Flows up if you go up, flows down if you go down. |
+
+## Gravity Blocks
+
+| Block Name | Hex | RGB | Description |
+| :--- | :--- | :--- | :--- |
+| **High Gravity** | `#800000` | `128, 0, 0` | Gravity is 1.5x stronger. Vertical speed is 0.9x. |
+| **Rain Gravity** | `#ffc2c2` | `255, 194, 194` | Gravity is ~1.15x stronger. 28 frames for full jump. |
+| **Super Low Gravity** | `#81ffff` | `129, 255, 255` | Gravity is lower than JumpKingPlus low gravity. |
+| **Reversed Gravity** | `#21ffff` | `33, 255, 255` | Gravity is reversed when in air and X speed > 0.1. |
+
+## Jump Modifiers
+
+| Block Name | Hex | RGB | Description |
+| :--- | :--- | :--- | :--- |
+| **Double Jump** | `#e9e9eb` | `233, 233, 235` | Allows a second jump in mid-air. |
+| **Cloud Jump** | `#e9e9ea` | `233, 233, 234` | Automatic mid-air jump (like Ghost of the Immortal Babe). |
+| **Infinity Jump** | `#40ffff` | `64, 255, 255` | You can jump while standing on this block (Ice/Sand hybrid). |
+| **Wall Jump** | `#101010` | `16, 16, 16` | Stand on the wall and jump. Requires 7+ frames charge. |
+| **Air Jump** | `#e9e9e8` | `233, 233, 232` | Allows jumping in the air. |
+| **Aerial Jump** | `#e9e9ed` | `233, 233, 237` | Another variation of air jump. |
+| **Jump Step Hop** | `#e9e9ee` | `233, 233, 238` | Step hop jump behavior. |
+| **Disabled Jump** | `#e9e9ec` | `233, 233, 236` | Limits jump to 1 frame only. |
+| **Disabled Small Jump** | `#eaeaed` | `234, 234, 237` | Cannot jump with less than 7 frames charge. |
+| **Force Neutral Jump** | `#eaeaef` | `234, 234, 239` | Forces the jump to be neutral (no X velocity). |
+| **Reversed Charge** | `#212121` | `33, 33, 33` | 1 frame = full jump, Max frames = smallest jump. |
+| **Revoke Jump Charge** | `#eaeaee` | `234, 234, 238` | Cancels any current jump charge. |
+| **Super Charge** | Range | `50, 48, 0-255` | Blue channel controls charge power. >35 frames is stronger. |
+| **Auto Jump Charge** | Range | `233, 233-235, 239` | Automatically charges jump. G controls direction/behavior. |
+| **Force Frames Jump** | Range | `1-35, 233, 236` | Forces a specific jump frame amount based on Red channel. |
+
+## Movement & Teleportation
+
+| Block Name | Hex | RGB | Description |
+| :--- | :--- | :--- | :--- |
+| **Accelerate** | `#b4ff00` | `180, 255, 0` | Charge and move 2x faster. |
+| **Speed Up** | `#b5ff00` | `181, 255, 0` | Increases movement speed. |
+| **Deep Water** | `#00acac` | `0, 172, 172` | 4x slower than normal (2x slower than water). |
+| **Reversed Walk** | `#202020` | `32, 32, 32` | Walking controls are reversed. |
+| **Revoke Walking** | `#eaeaf0` | `234, 234, 240` | Disables walking. |
+| **Ascend** | `#22ffff` | `34, 255, 255` | Moves the player upwards. |
+| **Move Up** | `#23ffff` | `35, 255, 255` | Moves the player upwards (variation). |
+| **Conveyor** | Range | `1-30, 30, 30-31` | **Left**: B=30, **Right**: B=31. Red channel = Speed. |
+| **Multi Warp** | Range | `1-255, 0-2, 250` | Teleports player. R=Frames, G=Mode. |
+| **Quick Move** | Range | `195, 1-90, 255` | Quickly moves the player. G determines speed/distance. |
+
+## Platforms & Walls
+
+| Block Name | Hex | RGB | Description |
+| :--- | :--- | :--- | :--- |
+| **Reflector Wall** | Range | `182-252, 0, 192` | Reflects the player at the same speed. |
+| **Trampoline** | `#c100c1` | `193, 0, 193` | Bounces player back with 0.8x speed. |
+| **Side Lock** | Range | `98-99, 6, 6` | Restricts movement to one direction. R=98 (Right), R=99 (Left). |
+| **Soft Platform** | `#141414` | `20, 20, 20` | Platform you can jump through from below. |
+| **Ceiling Shift** | `#161615` | `22, 22, 21` | Shifts the player when hitting the ceiling. |
+| **Ceiling Shift Solid** | `#161616` | `22, 22, 22` | Solid version of Ceiling Shift. |
+| **JKQ Platform** | Range | `20, 20, 21-25` | Various platform types (Platform, Walls, Ceil). |
+| **Trap Hopping** | Range | `193, 1-4, 193` | Trap hopping mechanics. G controls direction/randomness. |
+| **Anti Giant Boots** | `#698f6f` | `105, 143, 111` | Removes Giant Boots effect. |
