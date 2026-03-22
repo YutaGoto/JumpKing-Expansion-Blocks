@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace JumpKing_Expansion_Blocks
 {
-    class BlockFactory: IBlockFactory
+    class BlockFactory : IBlockFactory
     {
         public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
 
@@ -52,7 +52,6 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_DISABLED_SMALL_JUMP,
             Constants.ColorCodes.CODE_REVOKE_JUMP_CHARGE,
             Constants.ColorCodes.CODE_REVOKE_WALKING,
-            Constants.ColorCodes.CODE_FORCE_NEUTRAL_JUMP,
             Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS,
             Constants.ColorCodes.CODE_SOFT_PLATFORM,
             Constants.ColorCodes.CODE_CEILING_SHIFT,
@@ -122,6 +121,10 @@ namespace JumpKing_Expansion_Blocks
                 {
                     return true;
                 }
+                if (IsForceDirectionJump(blockCode))
+                {
+                    return true;
+                }
 
                 return false;
             }
@@ -131,7 +134,7 @@ namespace JumpKing_Expansion_Blocks
 
         public bool IsSolidBlock(Color blockCode)
         {
-            if (solidBlocksCode.Contains(blockCode) )
+            if (solidBlocksCode.Contains(blockCode))
             {
                 return true;
             }
@@ -300,10 +303,6 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new RevokeWalking(blockRect);
             }
-            else if (blockCode == Constants.ColorCodes.CODE_FORCE_NEUTRAL_JUMP)
-            {
-                return new ForceNeutralJump(blockRect);
-            }
             else if (blockCode == Constants.ColorCodes.CODE_ANTI_GIANT_BOOTS)
             {
                 return new AntiGiantBoots(blockRect);
@@ -361,6 +360,10 @@ namespace JumpKing_Expansion_Blocks
             {
                 return new ForceFramesJump(blockRect, blockCode.R);
             }
+            else if (IsForceDirectionJump(blockCode))
+            {
+                return new ForceDirectionJump(blockRect, blockCode.G);
+            }
             else
             {
                 throw new InvalidOperationException($"{typeof(BlockFactory).Name} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
@@ -377,7 +380,7 @@ namespace JumpKing_Expansion_Blocks
         private static bool IsMultiWarpBlock(Color blockCode)
         {
             return blockCode.G >= Constants.MultiWarpColorCodes.MULTI_WARP_G_MIN && blockCode.G <= Constants.MultiWarpColorCodes.MULTI_WARP_G_MAX
-					&& blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B
+                    && blockCode.B == Constants.MultiWarpColorCodes.MULTI_WARP_B
                     && blockCode.R >= Constants.MultiWarpColorCodes.MULTI_WARP_R_MIN && blockCode.R <= Constants.MultiWarpColorCodes.MULTI_WARP_R_MAX;
         }
 
@@ -433,6 +436,13 @@ namespace JumpKing_Expansion_Blocks
             return blockCode.R >= Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_R_MIN && blockCode.R <= Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_R_MAX
                     && blockCode.G == Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_G
                     && blockCode.B == Constants.ForceFramesJumpCodes.FORCE_FRAME_JUMP_B;
+        }
+
+        private static bool IsForceDirectionJump(Color blockCode)
+        {
+            return blockCode.R == Constants.ForceDirectionJumpCodes.CODE_FORCE_DIRECTION_JUMP_R
+                    && blockCode.G >= Constants.ForceDirectionJumpCodes.CODE_FORCE_DIRECTION_JUMP_G_LEFT && blockCode.G <= Constants.ForceDirectionJumpCodes.CODE_FORCE_DIRECTION_JUMP_G_NEUTRAL
+                    && blockCode.B == Constants.ForceDirectionJumpCodes.CODE_FORCE_DIRECTION_JUMP_B;
         }
     }
 }

@@ -11,6 +11,7 @@ using JumpKing.Player;
 using JumpKing.Workshop;
 using JumpKing_Expansion_Blocks.Patches;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -107,7 +108,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledSmallJump), new Behaviours.DisabledSmallJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeJumpCharge), new Behaviours.RevokeJumpCharge());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeWalking), new Behaviours.RevokeWalking());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceNeutralJump), new Behaviours.ForceNeutralJump());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceDirectionJump), new Behaviours.ForceDirectionJump());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.AntiGiantBoots), new Behaviours.AntiGiantBoots());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideLock), new Behaviours.SideLock());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.MultiWarp), new Behaviours.MultiWarp());
