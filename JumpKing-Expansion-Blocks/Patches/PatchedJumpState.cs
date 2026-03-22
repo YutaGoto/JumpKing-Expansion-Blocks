@@ -18,6 +18,7 @@ namespace JumpKing_Expansion_Blocks.Patches
         private static float previous_timer { get; set; }
         public static float t_timer { get; set; } = 0f;
         private static Behaviours.AutoJumpCharge _autoJumpChargeBevaviour;
+        private static Behaviours.ForceDirectionJump _forceDirectionJumpBehaviour;
         private static InputComponent m_input;
 
         public static int JumpFrames { get; internal set; }
@@ -116,6 +117,8 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static void Run(TickData p_data, BTresult __result, JumpState __instance)
         {
+            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+
             if (__result != BTresult.Failure)
             {
                 float m_timer = (float)Traverse.Create(__instance).Field("m_timer").GetValue();
@@ -129,6 +132,38 @@ namespace JumpKing_Expansion_Blocks.Patches
                 }
                 JumpFrames++;
                 previous_timer = m_timer;
+            }
+
+            if (player != null && player.m_body.IsOnBlock<Blocks.ForceDirectionJump>() && __result == BTresult.Success)
+            {
+                FieldInfo blockBehavioursField = AccessTools.Field(typeof(BodyComp), "m_blockBehaviours");
+                LinkedList<IBlockBehaviour> m_blockBehaviours = (LinkedList<IBlockBehaviour>)blockBehavioursField.GetValue(player.m_body);
+
+                using (LinkedList<IBlockBehaviour>.Enumerator enumerator = m_blockBehaviours.GetEnumerator())
+                    while (enumerator.MoveNext())
+                    {
+                        IBlockBehaviour current = enumerator.Current;
+                        if (current.GetType() == typeof(Behaviours.ForceDirectionJump))
+                        {
+                            _forceDirectionJumpBehaviour = (Behaviours.ForceDirectionJump)current;
+                        }
+                    }
+
+                if (_forceDirectionJumpBehaviour != null)
+                {
+                    if (_forceDirectionJumpBehaviour.direction == Behaviours.ForceDirectionJump.Direction.Right)
+                    {
+                        player.m_body.Velocity.X = PlayerValues.SPEED;
+                    }
+                    else if (_forceDirectionJumpBehaviour.direction == Behaviours.ForceDirectionJump.Direction.Left)
+                    {
+                        player.m_body.Velocity.X = -PlayerValues.SPEED;
+                    }
+                    else if (_forceDirectionJumpBehaviour.direction == Behaviours.ForceDirectionJump.Direction.Neutral)
+                    {
+                        player.m_body.Velocity.X = 0f;
+                    }
+                }
             }
         }
 
