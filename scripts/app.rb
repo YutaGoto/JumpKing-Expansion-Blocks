@@ -173,6 +173,21 @@ class ExpansionBlocks
 
       force_frame_jump_color_codes
     end
+
+    def force_direction_jump_colors
+      force_direction_jump_color_codes = []
+      content = File.read("JumpKing-Expansion-Blocks/Constants/ForceDirectionJumpCodes.cs")
+
+      if match = content.match(/FORCE_DIRECTION_JUMP_R = (\d+);.*FORCE_DIRECTION_JUMP_G_LEFT = (\d+);.*FORCE_DIRECTION_JUMP_G_RIGHT = (\d+);.*FORCE_DIRECTION_JUMP_B = (\d+);/m)
+        r, g_left, g_right, b = match.captures.map(&:to_i)
+      end
+
+      (g_left..g_right).each do |g|
+        force_direction_jump_color_codes << {r: r, g: g, b: b}
+      end
+
+      force_direction_jump_color_codes
+    end
   end
 end
 
@@ -187,6 +202,7 @@ expansion_blocks_super_charge_colors = ExpansionBlocks.super_charge_colors
 expansion_blocks_trap_hopping_colors = ExpansionBlocks.trap_hopping_colors
 expansion_blocks_auto_jump_charge_colors = ExpansionBlocks.auto_jump_charge_colors
 expansion_blocks_force_frame_jump_colors = ExpansionBlocks.force_frame_jump_colors
+expansion_blocks_force_direction_jump_colors = ExpansionBlocks.force_direction_jump_colors
 
 jk_colors = [
   {r: 0, g: 0, b: 0},
@@ -394,6 +410,7 @@ all_colors = [
   *expansion_blocks_trap_hopping_colors,
   *expansion_blocks_auto_jump_charge_colors,
   *expansion_blocks_force_frame_jump_colors,
+  *expansion_blocks_force_direction_jump_colors,
 ]
 
 unless all_colors.uniq.size == all_colors.size
@@ -432,3 +449,5 @@ unless all_colors.uniq.size == all_colors.size
   end
   exit 1
 end
+
+puts 'finished'
