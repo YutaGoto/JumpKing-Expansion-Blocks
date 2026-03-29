@@ -165,6 +165,24 @@ namespace JumpKing_Expansion_Blocks.Patches
                     }
                 }
             }
+
+            if (player != null && player.m_body.IsOnBlock<Blocks.DiamondHandsIce>() && __result == BTresult.Success)
+            {
+                m_input = player.GetComponent<InputComponent>();
+
+                if (m_input.GetState().right)
+                {
+                    player.m_body.Velocity.X = PlayerValues.SPEED;
+                }
+                else if (m_input.GetState().left)
+                {
+                    player.m_body.Velocity.X = -PlayerValues.SPEED;
+                }
+                else
+                {
+                    player.m_body.Velocity.X = 0f;
+                }
+            }
         }
 
         private static bool Jump(ref float p_intensity)

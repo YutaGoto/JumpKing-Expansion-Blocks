@@ -27,6 +27,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_WALL_JUMP,
             Constants.ColorCodes.CODE_SLIPPERY_ICE,
             Constants.ColorCodes.CODE_ZERO_FRICTION,
+            Constants.ColorCodes.CODE_DIAMOND_HANDS_ICE,
             Constants.ColorCodes.CODE_ONE_WAY_ICE_BLOCK,
             Constants.ColorCodes.CODE_HEAVY_ICE,
             Constants.ColorCodes.CODE_TRAMPOLINE,
@@ -62,6 +63,7 @@ namespace JumpKing_Expansion_Blocks
         {
             Constants.ColorCodes.CODE_SLIPPERY_ICE,
             Constants.ColorCodes.CODE_ZERO_FRICTION,
+            Constants.ColorCodes.CODE_DIAMOND_HANDS_ICE,
             Constants.ColorCodes.CODE_ONE_WAY_ICE_BLOCK,
             Constants.ColorCodes.CODE_HEAVY_ICE,
             Constants.ColorCodes.CODE_TRAMPOLINE,
@@ -202,6 +204,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_ZERO_FRICTION)
             {
                 return new ZeroFriction(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_DIAMOND_HANDS_ICE)
+            {
+                return new DiamondHandsIce(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_ONE_WAY_ICE_BLOCK)
             {
