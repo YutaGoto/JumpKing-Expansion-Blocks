@@ -23,6 +23,7 @@ namespace JumpKing_Expansion_Blocks.Patches
                     player.m_body.IsOnBlock<Blocks.RestrainedIce>() ||
                     player.m_body.IsOnBlock<Blocks.CursedIce>() ||
                     player.m_body.IsOnBlock<Blocks.InfinityJump>() ||
+                    player.m_body.IsOnBlock<Blocks.DiamondHandsIce>() ||
                     player.m_body.IsOnBlock<Blocks.HeavyIce>()
                 )
                 {
