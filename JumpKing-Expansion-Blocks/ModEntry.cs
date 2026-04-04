@@ -11,7 +11,6 @@ using JumpKing.Player;
 using JumpKing.Workshop;
 using JumpKing_Expansion_Blocks.Patches;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -95,6 +94,7 @@ namespace JumpKing_Expansion_Blocks
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DeepWater), new Behaviours.DeepWater());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.Accelerate), new Behaviours.Accelerate());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.SpeedUp), new Behaviours.SpeedUp());
+                player.m_body.RegisterBlockBehaviour(typeof(Blocks.MoreFallSpeed), new Behaviours.MoreFallSpeed());
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.InfinityJump), new Behaviours.InfinityJump(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.WallJump), new Behaviours.WallJump(collisionQuery));
                 player.m_body.RegisterBlockBehaviour(typeof(Blocks.DoubleJump), new Behaviours.DoubleJump(player));
@@ -136,6 +136,8 @@ namespace JumpKing_Expansion_Blocks
         {
             new PatchedJumpState(harmony);
             new PatchedWalk(harmony);
+            new PatchedApplyGravityBehaviour(harmony);
+
             // new DrawDebug(harmony);
 
             MethodInfo isOnBlockMethodBlock = typeof(BodyComp).GetMethod("IsOnBlock", new Type[] { typeof(Type) });

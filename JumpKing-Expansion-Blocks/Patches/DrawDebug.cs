@@ -1,11 +1,9 @@
 ﻿using EntityComponent;
 using HarmonyLib;
-using JumpKing;
 using JumpKing.API;
 using JumpKing.GameManager;
 using JumpKing.Level;
 using JumpKing.Player;
-using JumpKing.Util;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -29,20 +27,20 @@ namespace JumpKing_Expansion_Blocks.Patches
             collisionQuery.CheckCollision(hitbox, out Rectangle overlap, out AdvCollisionInfo advCollisionInfo);
             IReadOnlyList<IBlock> collidedBlocks = advCollisionInfo.GetCollidedBlocks();
 
-            foreach (IBlock block in collidedBlocks)
-            {
-                texts.Push(block.GetType().Name);
-            }
+            //foreach (IBlock block in collidedBlocks)
+            //{
+            //    texts.Push(block.GetType().Name);
+            //}
 
-            TextHelper.DrawString(
-                Game1.instance.contentManager.font.MenuFont,
-                //string.Join("\n", texts),
-                (advCollisionInfo.SlopeType).ToString(),
-                new Vector2(320f, 50f),
-                Color.Yellow,
-                new Vector2(0f, 0f),
-                p_is_outlined: true
-            );
+            //TextHelper.DrawString(
+            //    Game1.instance.contentManager.font.MenuFont,
+            //    //string.Join("\n", texts),
+            //    (advCollisionInfo.SlopeType).ToString(),
+            //    new Vector2(320f, 50f),
+            //    Color.Yellow,
+            //    new Vector2(0f, 0f),
+            //    p_is_outlined: true
+            //);
         }
     }
 }
