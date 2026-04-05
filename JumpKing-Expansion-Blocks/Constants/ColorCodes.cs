@@ -11,6 +11,7 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_DEEP_WATER = new Color(0, 172, 172);
         public static readonly Color CODE_ACCELERATE = new Color(180, 255, 0);
         public static readonly Color CODE_SPEED_UP = new Color(181, 255, 0);
+        public static readonly Color CODE_NO_RESET_VELOCITY = new Color(183, 255, 0);
         public static readonly Color CODE_MORE_FALL_SPEED = new Color(185, 255, 0);
 
         public static readonly Color CODE_INFINITY_JUMP = new Color(64, 255, 255);

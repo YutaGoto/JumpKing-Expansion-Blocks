@@ -23,6 +23,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_DEEP_WATER,
             Constants.ColorCodes.CODE_ACCELERATE,
             Constants.ColorCodes.CODE_SPEED_UP,
+            Constants.ColorCodes.CODE_NO_RESET_VELOCITY,
             Constants.ColorCodes.CODE_MORE_FALL_SPEED,
             Constants.ColorCodes.CODE_INFINITY_JUMP,
             Constants.ColorCodes.CODE_WALL_JUMP,
@@ -189,6 +190,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_SPEED_UP)
             {
                 return new SpeedUp(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_NO_RESET_VELOCITY)
+            {
+                return new NoResetVelocity(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_MORE_FALL_SPEED)
             {
