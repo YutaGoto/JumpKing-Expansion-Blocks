@@ -219,11 +219,6 @@ namespace JumpKing_Expansion_Blocks.Patches
                     player.m_body.Velocity.X = 0f;
                 }
             }
-
-            if (player != null && player.m_body.IsOnBlock<Blocks.NoResetVelocity>())
-            {
-
-            }
         }
 
         private static bool Jump(ref float p_intensity)
