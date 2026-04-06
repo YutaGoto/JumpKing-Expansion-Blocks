@@ -25,9 +25,7 @@ namespace JumpKing_Expansion_Blocks.Patches
 
             if (player != null && player.m_body.IsOnBlock<Blocks.NoResetVelocity>())
             {
-                var frame = new StackTrace().GetFrame(2);
-                var method = frame.GetMethod();
-                if (method.Name == "JumpKing.Player.JumpState.DoJump_Patch1")
+                if (!PatchedJumpState.ResetVelocity)
                 {
                     __result = p_val;
                     return false;
@@ -36,5 +34,7 @@ namespace JumpKing_Expansion_Blocks.Patches
 
             return true;
         }
+
+
     }
 }

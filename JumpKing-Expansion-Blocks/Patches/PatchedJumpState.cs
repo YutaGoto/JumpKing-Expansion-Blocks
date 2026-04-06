@@ -21,6 +21,7 @@ namespace JumpKing_Expansion_Blocks.Patches
         private static Behaviours.AutoJumpCharge _autoJumpChargeBevaviour;
         private static Behaviours.ForceDirectionJump _forceDirectionJumpBehaviour;
         private static InputComponent m_input;
+        public static bool ResetVelocity { get; internal set; }
 
         public static int JumpFrames { get; internal set; }
 
@@ -135,8 +136,10 @@ namespace JumpKing_Expansion_Blocks.Patches
 
                 if (m_timer >= PlayerValues.JUMP_TIME || !state.jump)
                 {
+                    ResetVelocity = false;
                     AccessTools.Method(typeof(JumpState), "DoJump").Invoke(__instance, new object[] { Math.Min(1f, m_timer / PlayerValues.JUMP_TIME) });
                     __result = BTresult.Success;
+                    ResetVelocity = true;
                     return false;
                 }
 
