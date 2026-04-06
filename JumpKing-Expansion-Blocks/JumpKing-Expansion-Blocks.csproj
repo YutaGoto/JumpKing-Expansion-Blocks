@@ -37,7 +37,13 @@
       <HintPath>..\packages\Lib.Harmony.2.3.6\lib\net35\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\NoResetVelocity.cs" />
     <Compile Include="Behaviours\MoreFallSpeed.cs" />
     <Compile Include="Behaviours\Accelerate.cs" />
     <Compile Include="Behaviours\AerialJump.cs" />
@@ -107,6 +114,7 @@
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
+    <Compile Include="Blocks\NoResetVelocity.cs" />
     <Compile Include="Blocks\MoreFallSpeed.cs" />
     <Compile Include="Blocks\Accelerate.cs" />
     <Compile Include="Blocks\AerialJump.cs" />
@@ -165,6 +173,7 @@
     <Compile Include="Patches\DrawDebug.cs" />
     <Compile Include="Patches\PatchedApplyGravityBehaviour.cs" />
     <Compile Include="Patches\PatchedBodyComp.cs" />
+    <Compile Include="Patches\PatchedEricMath.cs" />
     <Compile Include="Patches\PatchedInventoryManager.cs" />
     <Compile Include="Patches\PatchedJumpState.cs" />
     <Compile Include="Patches\PatchedResolveXCollisionBehaviour.cs" />

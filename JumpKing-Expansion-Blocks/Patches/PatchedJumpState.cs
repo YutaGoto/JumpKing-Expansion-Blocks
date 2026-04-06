@@ -1,5 +1,6 @@
 ﻿using BehaviorTree;
 using EntityComponent;
+using ErikMaths;
 using HarmonyLib;
 using JumpKing;
 using JumpKing.API;
@@ -106,6 +107,41 @@ namespace JumpKing_Expansion_Blocks.Patches
                     __result = BTresult.Running;
                     return false;
                 }
+            }
+            else if (player != null && player.m_body.IsOnBlock<Blocks.NoResetVelocity>())
+            {
+                t_timer = 0.0f;
+
+                m_input = player.GetComponent<InputComponent>();
+                InputComponent.State state = m_input.GetState();
+
+                object inputBuffer = Traverse.Create(__instance).Field("m_left_right_input_buffer").GetValue();
+                AccessTools.Method(inputBuffer.GetType(), "Push").Invoke(inputBuffer, new object[] { state });
+
+                float m_timer = (float)Traverse.Create(__instance).Field("m_timer").GetValue();
+                if (m_timer == 0f && !m_input.TryConsumeJump())
+                {
+                    __result = BTresult.Failure;
+                    return false;
+                }
+
+                if (m_timer == 0f && state.jump)
+                {
+                    AccessTools.Method(typeof(JumpState), "Start").Invoke(__instance, null);
+                }
+
+                m_timer += p_data.delta_time * __instance.body.GetMultipliers();
+                Traverse.Create(__instance).Field("m_timer").SetValue(m_timer);
+
+                if (m_timer >= PlayerValues.JUMP_TIME || !state.jump)
+                {
+                    AccessTools.Method(typeof(JumpState), "DoJump").Invoke(__instance, new object[] { Math.Min(1f, m_timer / PlayerValues.JUMP_TIME) });
+                    __result = BTresult.Success;
+                    return false;
+                }
+
+                __result = BTresult.Running;
+                return false;
             }
             else
             {
