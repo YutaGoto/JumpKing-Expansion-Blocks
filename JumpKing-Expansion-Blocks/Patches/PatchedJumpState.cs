@@ -1,12 +1,12 @@
 ﻿using BehaviorTree;
 using EntityComponent;
-using ErikMaths;
 using HarmonyLib;
 using JumpKing;
 using JumpKing.API;
 using JumpKing.Level;
 using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Utils;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -224,7 +224,7 @@ namespace JumpKing_Expansion_Blocks.Patches
             }
         }
 
-        private static bool Jump(ref float p_intensity)
+        private static bool Jump(ref float p_intensity, JumpState __instance)
         {
             PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             if (player != null)
@@ -261,6 +261,84 @@ namespace JumpKing_Expansion_Blocks.Patches
                     p_intensity = 0.0f;
                     return false;
                 }
+
+                if (player.m_body.IsOnBlock<Blocks.NoResetVelocity>())
+                {
+                    m_input = player.GetComponent<InputComponent>();
+                    int x = m_input.GetState().dpad.X;
+                    if (x == 0)
+                    {
+                        object m_left_right_input_buffer = Traverse.Create(__instance).Field("m_left_right_input_buffer").GetValue();
+                        if (m_left_right_input_buffer != null)
+                        {
+                            Type bufferType = m_left_right_input_buffer.GetType();
+                            PropertyInfo validCountProperty = AccessTools.Property(bufferType, "ValidCount") ?? AccessTools.Property(bufferType, "Count");
+                            FieldInfo validCountField = AccessTools.Field(bufferType, "ValidCount") ?? AccessTools.Field(bufferType, "m_valid_count");
+                            MethodInfo getItemMethod = AccessTools.Method(bufferType, "GetItem") ?? AccessTools.Method(bufferType, "get_Item");
+
+                            int validCount = 0;
+                            object validCountValue = validCountProperty != null
+                                ? validCountProperty.GetValue(m_left_right_input_buffer, null)
+                                : validCountField?.GetValue(m_left_right_input_buffer);
+                            if (validCountValue != null)
+                            {
+                                validCount = Convert.ToInt32(validCountValue);
+                            }
+
+                            if (getItemMethod != null && validCount > 0)
+                            {
+                                for (int i = 0; i < validCount; i++)
+                                {
+                                    object item = getItemMethod.Invoke(m_left_right_input_buffer, new object[] { i });
+                                    if (item == null)
+                                    {
+                                        continue;
+                                    }
+
+                                    Type itemType = item.GetType();
+                                    PropertyInfo dpadProperty = AccessTools.Property(itemType, "dpad");
+                                    FieldInfo dpadField = AccessTools.Field(itemType, "dpad");
+                                    object dpad = dpadProperty != null ? dpadProperty.GetValue(item, null) : dpadField?.GetValue(item);
+                                    if (dpad == null)
+                                    {
+                                        continue;
+                                    }
+
+                                    Type dpadType = dpad.GetType();
+                                    PropertyInfo xProperty = AccessTools.Property(dpadType, "X");
+                                    FieldInfo xField = AccessTools.Field(dpadType, "X");
+                                    object xValue = xProperty != null ? xProperty.GetValue(dpad, null) : xField?.GetValue(dpad);
+                                    if (xValue == null)
+                                    {
+                                        continue;
+                                    }
+
+                                    int bufferedX = Convert.ToInt32(xValue);
+                                    if (bufferedX != 0)
+                                    {
+                                        x = bufferedX;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    player.m_body.Velocity.Y = PlayerValues.JUMP * p_intensity;
+                    player.m_body.Velocity.X += (float)x * PlayerValues.SPEED;
+                    player.SetDirection(x);
+                    Type bodyCompType = player.m_body.GetType();
+
+                    AccessTools.Method(typeof(JumpState), "Reset").Invoke(__instance, null);
+                    HandleParticles(player.m_body);
+                    HandleSounds(player.m_body);
+
+                    if (PlayerEntity.OnJumpCall != null)
+                    {
+                        PlayerEntity.OnJumpCall();
+                    }
+
+                    return false;
+                }
             }
 
             return true;
@@ -275,6 +353,54 @@ namespace JumpKing_Expansion_Blocks.Patches
             }
 
             return true;
+        }
+
+        private static void HandleSounds(BodyComp bodycomp)
+        {
+            if (bodycomp.IsOnBlock(typeof(WaterBlock)))
+            {
+                Game1.instance?.contentManager?.audio?.player?.WaterJump?.PlayOneShot();
+                return;
+            }
+            if (bodycomp.IsOnBlock(typeof(IceBlock)))
+            {
+                Game1.instance?.contentManager?.audio?.player?.IceJump?.PlayOneShot();
+                return;
+            }
+            if (bodycomp.IsOnBlock(typeof(SnowBlock)))
+            {
+                Game1.instance?.contentManager?.audio?.player?.SnowJump?.PlayOneShot();
+                return;
+            }
+
+            Game1.instance?.contentManager?.audio?.player?.Jump?.PlayOneShot();
+        }
+
+        private static void HandleParticles(BodyComp bodycomp)
+        {
+            Rectangle hitbox = bodycomp.GetHitbox();
+            Type jumpParticleEntityType = AccessTools.TypeByName("JumpParticleEntity");
+            if (jumpParticleEntityType != null)
+            {
+                Type particleSpawnerType = jumpParticleEntityType.GetNestedType("ParticleSpawner", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+                if (particleSpawnerType != null)
+                {
+                    if (bodycomp.IsOnBlock(typeof(WaterBlock)))
+                    {
+                        MethodInfo createWaterParticle = AccessTools.Method(particleSpawnerType, "CreateWaterParticle");
+                        if (createWaterParticle != null)
+                        {
+                            createWaterParticle.Invoke(null, new object[] { hitbox.Center.X, hitbox.Bottom });
+                            return;
+                        }
+                    }
+                    MethodInfo createParticle = AccessTools.Method(particleSpawnerType, "CreateParticle");
+                    if (createParticle != null)
+                    {
+                        createParticle.Invoke(null, new object[] { hitbox.Center.X, hitbox.Bottom });
+                    }
+                }
+            }
         }
     }
 }
