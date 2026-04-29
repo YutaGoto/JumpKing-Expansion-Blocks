@@ -24,6 +24,7 @@ namespace JumpKing_Expansion_Blocks
         public static string[] Tags { get; set; } = new string[0];
         public static string AssemblyPath { get; set; }
         public static ulong LevelID { get; set; }
+        public static PlayerEntity Player { get; set; }
 
         /// <summary>
         /// Called by Jump King before the level loads
@@ -62,64 +63,64 @@ namespace JumpKing_Expansion_Blocks
             }
             LevelID = level.ID;
             Tags = XmlSerializerHelper.Deserialize<Level.LevelSettings>($"{Game1.instance.contentManager.root}\\{Level.FileName}").Tags;
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            Player = EntityManager.instance.Find<PlayerEntity>();
             ICollisionQuery collisionQuery = LevelManager.Instance;
 
-            if (player != null && collisionQuery != null)
+            if (Player != null && collisionQuery != null)
             {
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.HighGravity), new Behaviours.HighGravity());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.RainGravity), new Behaviours.RainGravity());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SpecialHighGravity), new Behaviours.SpecialHighGravity());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SuperLowGravity), new Behaviours.SuperLowGravity());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SlipperyIce), new Behaviours.SlipperyIce());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ZeroFriction), new Behaviours.ZeroFriction());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.DiamondHandsIce), new Behaviours.DiamondHandsIce());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.OneWayIce), new Behaviours.OneWayIce());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.HeavyIce), new Behaviours.HeavyIce());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Quicksand), new Behaviours.Quicksand(collisionQuery));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideSand), new Behaviours.SideSand(collisionQuery));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.MagicSand), new Behaviours.MagicSand(collisionQuery));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.UpSand), new Behaviours.UpSand(collisionQuery));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.RestrainedIce), new Behaviours.RestrainedIce());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CursedIce), new Behaviours.CursedIce());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedWalk), new Behaviours.ReversedWalk());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedCharge), new Behaviours.ReversedCharge());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SuperCharge), new Behaviours.SuperCharge());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedGravity), new Behaviours.ReversedGravity());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Ascend), new Behaviours.Ascend());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.MoveUp), new Behaviours.MoveUp());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Trampoline), new Behaviours.Trampoline());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.DeepWater), new Behaviours.DeepWater());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Accelerate), new Behaviours.Accelerate());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SpeedUp), new Behaviours.SpeedUp());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.NoResetVelocity), new Behaviours.NoResetVelocity());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.MoreFallSpeed), new Behaviours.MoreFallSpeed());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.InfinityJump), new Behaviours.InfinityJump(collisionQuery));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.WallJump), new Behaviours.WallJump(collisionQuery));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.DoubleJump), new Behaviours.DoubleJump(player));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.JumpStepHop), new Behaviours.JumpStepHop(player));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.AutoJumpCharge), new Behaviours.AutoJumpCharge());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.AirJump), new Behaviours.AirJump(player));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.AirDash), new Behaviours.AirDash(player, collisionQuery));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.Flapping), new Behaviours.Flapping(player));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CloudJump), new Behaviours.CloudJump(player));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.AerialJump), new Behaviours.AerialJump(player));
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceFramesJump), new Behaviours.ForceFramesJump());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledSmallJump), new Behaviours.DisabledSmallJump());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeJumpCharge), new Behaviours.RevokeJumpCharge());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeWalking), new Behaviours.RevokeWalking());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceDirectionJump), new Behaviours.ForceDirectionJump());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.AntiGiantBoots), new Behaviours.AntiGiantBoots());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideLock), new Behaviours.SideLock());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.MultiWarp), new Behaviours.MultiWarp());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.QuickMove), new Behaviours.QuickMove());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.SoftPlatform), new Behaviours.SoftPlatform());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShift), new Behaviours.CeilingShift());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShiftSolid), new Behaviours.CeilingShiftSolid());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.JkqPlatform), new Behaviours.JkqPlatform());
-                player.m_body.RegisterBlockBehaviour(typeof(Blocks.TrapHopping), new Behaviours.TrapHopping());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.HighGravity), new Behaviours.HighGravity());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.RainGravity), new Behaviours.RainGravity());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SpecialHighGravity), new Behaviours.SpecialHighGravity());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SuperLowGravity), new Behaviours.SuperLowGravity());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SlipperyIce), new Behaviours.SlipperyIce());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.ZeroFriction), new Behaviours.ZeroFriction());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.DiamondHandsIce), new Behaviours.DiamondHandsIce());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.OneWayIce), new Behaviours.OneWayIce());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.HeavyIce), new Behaviours.HeavyIce());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.Quicksand), new Behaviours.Quicksand(collisionQuery));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideSand), new Behaviours.SideSand(collisionQuery));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.MagicSand), new Behaviours.MagicSand(collisionQuery));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.UpSand), new Behaviours.UpSand(collisionQuery));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.RestrainedIce), new Behaviours.RestrainedIce());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.CursedIce), new Behaviours.CursedIce());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedWalk), new Behaviours.ReversedWalk());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedCharge), new Behaviours.ReversedCharge());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SuperCharge), new Behaviours.SuperCharge());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.ReversedGravity), new Behaviours.ReversedGravity());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.Ascend), new Behaviours.Ascend());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.MoveUp), new Behaviours.MoveUp());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.Reflector), new Behaviours.Reflector());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.Trampoline), new Behaviours.Trampoline());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.Conveyor), new Behaviours.Conveyor());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.DeepWater), new Behaviours.DeepWater());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.Accelerate), new Behaviours.Accelerate());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SpeedUp), new Behaviours.SpeedUp());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.NoResetVelocity), new Behaviours.NoResetVelocity());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.MoreFallSpeed), new Behaviours.MoreFallSpeed());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.InfinityJump), new Behaviours.InfinityJump(collisionQuery));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.WallJump), new Behaviours.WallJump(collisionQuery));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.DoubleJump), new Behaviours.DoubleJump(Player));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.JumpStepHop), new Behaviours.JumpStepHop(Player));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.AutoJumpCharge), new Behaviours.AutoJumpCharge());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.AirJump), new Behaviours.AirJump(Player));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.AirDash), new Behaviours.AirDash(Player, collisionQuery));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.Flapping), new Behaviours.Flapping(Player));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.CloudJump), new Behaviours.CloudJump(Player));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.AerialJump), new Behaviours.AerialJump(Player));
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceFramesJump), new Behaviours.ForceFramesJump());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.DisabledSmallJump), new Behaviours.DisabledSmallJump());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeJumpCharge), new Behaviours.RevokeJumpCharge());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.RevokeWalking), new Behaviours.RevokeWalking());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.ForceDirectionJump), new Behaviours.ForceDirectionJump());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.AntiGiantBoots), new Behaviours.AntiGiantBoots());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SideLock), new Behaviours.SideLock());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.MultiWarp), new Behaviours.MultiWarp());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.QuickMove), new Behaviours.QuickMove());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SoftPlatform), new Behaviours.SoftPlatform());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShift), new Behaviours.CeilingShift());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShiftSolid), new Behaviours.CeilingShiftSolid());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.JkqPlatform), new Behaviours.JkqPlatform());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.TrapHopping), new Behaviours.TrapHopping());
             }
         }
 
@@ -127,7 +128,10 @@ namespace JumpKing_Expansion_Blocks
         /// Called by Jump King when the Level Ends
         /// </summary>
         [OnLevelEnd]
-        public static void OnLevelEnd() { }
+        public static void OnLevelEnd()
+        {
+            Player = null;
+        }
 
         /// <summary>
         /// Setups the Harmony patching

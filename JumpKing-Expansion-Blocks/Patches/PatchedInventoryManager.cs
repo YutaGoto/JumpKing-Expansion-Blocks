@@ -13,10 +13,10 @@ namespace JumpKing_Expansion_Blocks.Patches
         /// <param name="p_item"></param>
         public static void HasItemEnabledPostfix(ref bool __result, Items p_item)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
-            if (player != null)
-            {
-                if (
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return;
+
+            if (
                     player.m_body.IsOnBlock<Blocks.SlipperyIce>() ||
                     player.m_body.IsOnBlock<Blocks.ZeroFriction>() ||
                     player.m_body.IsOnBlock<Blocks.OneWayIce>() ||
@@ -27,10 +27,9 @@ namespace JumpKing_Expansion_Blocks.Patches
                     player.m_body.IsOnBlock<Blocks.HeavyIce>()
                 )
                 {
-                    if (p_item == Items.SnakeRing)
-                    {
-                        __result = false;
-                    }
+                if (p_item == Items.SnakeRing)
+                {
+                    __result = false;
                 }
             }
         }

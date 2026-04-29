@@ -21,9 +21,10 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static bool PrefixRun(ref BTresult __result)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return true;
 
-            if (player != null && player.m_body.IsOnBlock<Blocks.RevokeWalking>() && player.m_body.IsOnGround)
+            if (player.m_body.IsOnBlock<Blocks.RevokeWalking>() && player.m_body.IsOnGround)
             {
                 __result = BTresult.Failure;
 

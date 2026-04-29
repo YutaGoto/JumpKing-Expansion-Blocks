@@ -11,8 +11,10 @@ namespace JumpKing_Expansion_Blocks.Patches
     {
         public static void GetMultipliersPostfix(ref float __result)
         {
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return;
+
             ICollisionQuery collisionQuery = LevelManager.Instance;
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
             Rectangle hitbox = player.m_body.GetHitbox();
             collisionQuery.CheckCollision(hitbox, out Rectangle _, out AdvCollisionInfo info);
 
