@@ -27,6 +27,7 @@ namespace JumpKing_Expansion_Blocks
             Constants.ColorCodes.CODE_MORE_FALL_SPEED,
             Constants.ColorCodes.CODE_INFINITY_JUMP,
             Constants.ColorCodes.CODE_WALL_JUMP,
+            Constants.ColorCodes.CODE_LIGHT_WALL_JUMP,
             Constants.ColorCodes.CODE_SLIPPERY_ICE,
             Constants.ColorCodes.CODE_ZERO_FRICTION,
             Constants.ColorCodes.CODE_DIAMOND_HANDS_ICE,
@@ -206,6 +207,10 @@ namespace JumpKing_Expansion_Blocks
             else if (blockCode == Constants.ColorCodes.CODE_WALL_JUMP)
             {
                 return new WallJump(blockRect);
+            }
+            else if (blockCode == Constants.ColorCodes.CODE_LIGHT_WALL_JUMP)
+            {
+                return new LightWallJump(blockRect);
             }
             else if (blockCode == Constants.ColorCodes.CODE_SLIPPERY_ICE)
             {

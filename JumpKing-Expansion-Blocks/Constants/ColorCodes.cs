@@ -16,6 +16,7 @@ namespace JumpKing_Expansion_Blocks.Constants
 
         public static readonly Color CODE_INFINITY_JUMP = new Color(64, 255, 255);
         public static readonly Color CODE_WALL_JUMP = new Color(16, 16, 16);
+        public static readonly Color CODE_LIGHT_WALL_JUMP = new Color(16, 16, 17);
         public static readonly Color CODE_ONE_WAY_ICE_BLOCK = new Color(65, 130, 255);
 
         public static readonly Color CODE_SLIPPERY_ICE = new Color(0, 192, 255);

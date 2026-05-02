@@ -111,6 +111,7 @@
     <Compile Include="Behaviours\Trampoline.cs" />
     <Compile Include="Behaviours\TrapHopping.cs" />
     <Compile Include="Behaviours\UpSand.cs" />
+    <Compile Include="Behaviours\LightWallJump.cs" />
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Blocks\Trampoline.cs" />
     <Compile Include="Blocks\TrapHopping.cs" />
     <Compile Include="Blocks\UpSand.cs" />
+    <Compile Include="Blocks\LightWallJump.cs" />
     <Compile Include="Blocks\WallJump.cs" />
     <Compile Include="Blocks\ZeroFriction.cs" />
     <Compile Include="Constants\*.cs" />
