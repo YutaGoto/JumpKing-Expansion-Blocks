@@ -18,7 +18,8 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static void Draw(GameLoop __instance)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return;
             ICollisionQuery collisionQuery = LevelManager.Instance;
             Stack<string> texts = new Stack<string>();
 

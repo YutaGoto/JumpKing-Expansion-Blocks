@@ -21,9 +21,10 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static bool PrefixClamp(float p_val, float p_min, float p_max, ref float __result)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return true;
 
-            if (player != null && player.m_body.IsOnBlock<Blocks.NoResetVelocity>())
+            if (player.m_body.IsOnBlock<Blocks.NoResetVelocity>())
             {
                 if (!PatchedJumpState.ResetVelocity)
                 {

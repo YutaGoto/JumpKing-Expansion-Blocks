@@ -31,7 +31,9 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static bool ExecuteBehaviourPrefix(ApplyGravityBehaviour __instance, BehaviourContext behaviourContext, ref bool __result)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return true;
+
             ICollisionQuery collisionQuery = LevelManager.Instance;
             Rectangle hitbox = player.m_body.GetHitbox();
             collisionQuery.CheckCollision(hitbox, out Rectangle _, out AdvCollisionInfo info);
@@ -41,7 +43,7 @@ namespace JumpKing_Expansion_Blocks.Patches
                 return true;
             }
 
-            
+
             LinkedList<IBlockBehaviour> blockBehaviours = (LinkedList<IBlockBehaviour>)blockBehavioursField.GetValue(__instance);
 
             foreach (IBlockBehaviour blockBehaviour in blockBehaviours)

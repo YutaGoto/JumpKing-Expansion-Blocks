@@ -38,9 +38,10 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static bool PrefixRun(TickData p_data, ref BTresult __result, JumpState __instance)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return true;
 
-            if (player != null && player.m_body.IsOnBlock<Blocks.Trampoline>())
+            if (player.m_body.IsOnBlock<Blocks.Trampoline>())
             {
                 __result = BTresult.Failure;
                 return false;
@@ -156,7 +157,8 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static void Run(TickData p_data, BTresult __result, JumpState __instance)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return;
 
             if (__result != BTresult.Failure)
             {
@@ -226,12 +228,12 @@ namespace JumpKing_Expansion_Blocks.Patches
 
         private static bool Jump(ref float p_intensity, JumpState __instance)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
-            if (player != null)
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return true;
+
+            if (player.m_body.IsOnBlock<Blocks.ReversedCharge>())
             {
-                if (player.m_body.IsOnBlock<Blocks.ReversedCharge>())
-                {
-                    p_intensity = (1.0f + 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME)) - p_intensity;
+                p_intensity = (1.0f + 2.0f / (PlayerValues.FPS * PlayerValues.JUMP_TIME)) - p_intensity;
                 }
 
                 if (player.m_body.IsOnBlock<Blocks.ForceFramesJump>())
@@ -339,17 +341,18 @@ namespace JumpKing_Expansion_Blocks.Patches
 
                     return false;
                 }
-            }
 
             return true;
         }
 
         private static bool CheckStart()
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
-            if (player != null)
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return true;
+
+            if (player.m_body.IsOnBlock<Blocks.RevokeJumpCharge>())
             {
-                return !player.m_body.IsOnBlock<Blocks.RevokeJumpCharge>();
+                return false;
             }
 
             return true;

@@ -13,23 +13,22 @@ namespace JumpKing_Expansion_Blocks.Patches
         /// <param name="p_item"></param>
         public static void IsWearingSkinPostfix(ref bool __result, Items p_item)
         {
-            PlayerEntity player = EntityManager.instance.Find<PlayerEntity>();
-            if (player != null)
+            PlayerEntity player = ModEntry.Player;
+            if (player == null) return;
+
+            if (player.m_body.IsOnBlock<Blocks.RestrainedIce>() && p_item == Items.GiantBoots)
             {
-                if (player.m_body.IsOnBlock<Blocks.RestrainedIce>() && p_item == Items.GiantBoots)
-                {
-                    __result = true;
-                }
+                __result = true;
+            }
 
-                if (player.m_body.IsOnBlock<Blocks.CursedIce>() && p_item == Items.GiantBoots)
-                {
-                    __result = true;
-                }
+            if (player.m_body.IsOnBlock<Blocks.CursedIce>() && p_item == Items.GiantBoots)
+            {
+                __result = true;
+            }
 
-                if (player.m_body.IsOnBlock<Blocks.AntiGiantBoots>() && p_item == Items.GiantBoots)
-                {
-                    __result = false;
-                }
+            if (player.m_body.IsOnBlock<Blocks.AntiGiantBoots>() && p_item == Items.GiantBoots)
+            {
+                __result = false;
             }
         }
     }
