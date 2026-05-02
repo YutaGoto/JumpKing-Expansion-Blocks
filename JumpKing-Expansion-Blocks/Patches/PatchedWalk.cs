@@ -1,5 +1,4 @@
 ﻿using BehaviorTree;
-using EntityComponent;
 using HarmonyLib;
 using JumpKing.Level;
 using JumpKing.Player;
@@ -32,6 +31,12 @@ namespace JumpKing_Expansion_Blocks.Patches
                 {
                     player.m_body.Velocity.X = 0f;
                 }
+                return false;
+            }
+
+            if (player.m_body.IsOnBlock<Blocks.LightWallJump>() && player.m_body.IsOnGround)
+            {
+                __result = BTresult.Failure;
                 return false;
             }
 
