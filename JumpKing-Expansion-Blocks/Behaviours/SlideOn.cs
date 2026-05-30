@@ -1,11 +1,11 @@
-﻿using ErikMaths;
-using HarmonyLib;
+﻿using HarmonyLib;
 using JumpKing;
 using JumpKing.API;
 using JumpKing.BodyCompBehaviours;
 using JumpKing.Level;
 using JumpKing.Player;
 using JumpKing_Expansion_Blocks.Patches;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -20,12 +20,55 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         private bool isSliding { get; set; } = false;
         private bool OnSlideWall { get; set; } = true;
         private PlayerEntity Player = ModEntry.Player;
+        private Vector2 TargetPosition { get; set; } = new Vector2(0, 0);
+
+        private float UpdateAxisVelocity(float currentVelocity, float currentPosition, float targetPosition, float deceleration, float slowDownDistance, float snapDistance, float minNearSpeed)
+        {
+            float distanceToTarget = targetPosition - currentPosition;
+            float absDistance = Math.Abs(distanceToTarget);
+
+            if (absDistance <= 1f)
+            {
+                return 0f;
+            }
+
+            float direction = Math.Sign(distanceToTarget);
+            float targetSpeed = (float)Math.Sqrt(2f * deceleration * absDistance);
+            float nearFactor = Math.Min(absDistance / slowDownDistance, 1f);
+            targetSpeed *= nearFactor;
+            targetSpeed = Math.Max(targetSpeed, minNearSpeed);
+            targetSpeed = Math.Min(targetSpeed, PlayerValues.SPEED);
+            float desiredVelocity = direction * targetSpeed;
+
+            if (absDistance <= snapDistance)
+            {
+                return desiredVelocity;
+            }
+
+            if (currentVelocity < desiredVelocity)
+            {
+                return Math.Min(currentVelocity + deceleration, desiredVelocity);
+            }
+
+            return Math.Max(currentVelocity - deceleration, desiredVelocity);
+        }
 
         /// <inheritdoc/>
         public bool AdditionalXCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
             if (info.IsCollidingWith<Blocks.SlideOn>())
             {
+                Vector2 pos = TargetPosition;
+                int baseFrame = PatchedJumpState.JumpFrames;
+                if (Player.m_body.Velocity.Y < 0f)
+                {
+                    pos.Y = Player.m_body.Position.Y - (baseFrame * 8f);
+                }
+                else
+                {
+                    pos.Y = Player.m_body.Position.Y + (baseFrame * 8f);
+                }
+                TargetPosition = pos;
                 OnSlideWall = true;
                 return !IsPlayerOnBlock;
             }
@@ -37,7 +80,19 @@ namespace JumpKing_Expansion_Blocks.Behaviours
         public bool AdditionalYCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
             if (info.IsCollidingWith<Blocks.SlideOn>())
-            {
+            {   
+                Vector2 pos = TargetPosition;
+                int baseFrame = PatchedJumpState.JumpFrames;
+                SpriteEffects spriteEffect = Traverse.Create(Player).Field("m_flip").GetValue<SpriteEffects>();
+                if (spriteEffect == SpriteEffects.FlipHorizontally)
+                {
+                    pos.X = Player.m_body.Position.X - (baseFrame * 8f);
+                }
+                else
+                {
+                    pos.X = Player.m_body.Position.X + (baseFrame * 8f);
+                }
+                TargetPosition = pos;
                 OnSlideWall = false;
                 return !IsPlayerOnBlock;
             }
@@ -110,20 +165,53 @@ namespace JumpKing_Expansion_Blocks.Behaviours
 
             if (isSliding)
             {
-                int baseFrame = PatchedJumpState.JumpFrames;
+                float deceleration = PlayerValues.ICE_FRICTION / 4f;
+                float slowDownDistance = 32f;
+                float snapDistance = 4f;
+                float minNearSpeed = PlayerValues.SPEED * 0.2f;
+
                 if (OnSlideWall)
                 {
-                    Player.m_body.Velocity.Y = ErikMath.MoveTowards(Player.m_body.Velocity.Y, 0f, (PlayerValues.ICE_FRICTION / 2f) * (6.0f / baseFrame));
+                    Player.m_body.Velocity.Y = UpdateAxisVelocity(
+                        Player.m_body.Velocity.Y,
+                        Player.m_body.Position.Y,
+                        TargetPosition.Y,
+                        deceleration,
+                        slowDownDistance,
+                        snapDistance,
+                        minNearSpeed);
                 }
                 else
                 {
-                    Player.m_body.Velocity.X = ErikMath.MoveTowards(Player.m_body.Velocity.X, 0f, (PlayerValues.ICE_FRICTION / 2f) * (6.0f / baseFrame));
+                    Player.m_body.Velocity.X = UpdateAxisVelocity(
+                        Player.m_body.Velocity.X,
+                        Player.m_body.Position.X,
+                        TargetPosition.X,
+                        deceleration,
+                        slowDownDistance,
+                        snapDistance,
+                        minNearSpeed);
                 }
             }
 
             if (isSliding && !IsPlayerOnBlock && ((!OnSlideWall && (Player.m_body.IsKnocked || Player.m_body.Velocity.X == 0f)) || (OnSlideWall && Player.m_body.Velocity.Y == 0f)))
             {
                 isSliding = false;
+            }
+
+            if (isSliding)
+            {
+                if (OnSlideWall && (Player.m_body.Velocity.Y > 0 && Player.m_body.Position.Y >= TargetPosition.Y || Player.m_body.Velocity.Y < 0 && Player.m_body.Position.Y <= TargetPosition.Y))
+                {
+                    isSliding = false;
+                    TargetPosition = new Vector2(0, 0);
+                }
+
+                if (!OnSlideWall && (Player.m_body.Velocity.X > 0 && Player.m_body.Position.X >= TargetPosition.X || Player.m_body.Velocity.X < 0 && Player.m_body.Position.X <= TargetPosition.X))
+                {
+                    isSliding = false;
+                    TargetPosition = new Vector2(0, 0);
+                }
             }
 
             return true;
