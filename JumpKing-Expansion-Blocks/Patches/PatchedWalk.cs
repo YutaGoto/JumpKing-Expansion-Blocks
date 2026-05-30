@@ -1,5 +1,4 @@
 ﻿using BehaviorTree;
-using EntityComponent;
 using HarmonyLib;
 using JumpKing.Level;
 using JumpKing.Player;

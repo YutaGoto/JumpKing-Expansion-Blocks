@@ -57,5 +57,6 @@ namespace JumpKing_Expansion_Blocks.Constants
         public static readonly Color CODE_SOFT_PLATFORM = new Color(20, 20, 20);
         public static readonly Color CODE_CEILING_SHIFT = new Color(22, 22, 21);
         public static readonly Color CODE_CEILING_SHIFT_SOLID = new Color(22, 22, 22);
+        public static readonly Color CODE_SLIDE_ON = new Color(22, 22, 23);
     }
 }
