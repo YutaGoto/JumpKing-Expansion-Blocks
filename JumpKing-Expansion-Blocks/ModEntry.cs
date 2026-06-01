@@ -119,6 +119,7 @@ namespace JumpKing_Expansion_Blocks
                 Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SoftPlatform), new Behaviours.SoftPlatform());
                 Player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShift), new Behaviours.CeilingShift());
                 Player.m_body.RegisterBlockBehaviour(typeof(Blocks.CeilingShiftSolid), new Behaviours.CeilingShiftSolid());
+                Player.m_body.RegisterBlockBehaviour(typeof(Blocks.SlideOn), new Behaviours.SlideOn());
                 Player.m_body.RegisterBlockBehaviour(typeof(Blocks.JkqPlatform), new Behaviours.JkqPlatform());
                 Player.m_body.RegisterBlockBehaviour(typeof(Blocks.TrapHopping), new Behaviours.TrapHopping());
             }

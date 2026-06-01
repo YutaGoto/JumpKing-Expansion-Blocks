@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\SlideOn.cs" />
     <Compile Include="Behaviours\NoResetVelocity.cs" />
     <Compile Include="Behaviours\MoreFallSpeed.cs" />
     <Compile Include="Behaviours\Accelerate.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Behaviours\WallJump.cs" />
     <Compile Include="Behaviours\ZeroFriction.cs" />
     <Compile Include="BlockFactory.cs" />
+    <Compile Include="Blocks\SlideOn.cs" />
     <Compile Include="Blocks\NoResetVelocity.cs" />
     <Compile Include="Blocks\MoreFallSpeed.cs" />
     <Compile Include="Blocks\Accelerate.cs" />
