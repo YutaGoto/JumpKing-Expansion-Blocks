@@ -96,6 +96,7 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 OnSlideWall = false;
                 return !IsPlayerOnBlock;
             }
+
             return false;
         }
 
@@ -208,6 +209,18 @@ namespace JumpKing_Expansion_Blocks.Behaviours
                 }
 
                 if (!OnSlideWall && (Player.m_body.Velocity.X > 0 && Player.m_body.Position.X >= TargetPosition.X || Player.m_body.Velocity.X < 0 && Player.m_body.Position.X <= TargetPosition.X))
+                {
+                    isSliding = false;
+                    TargetPosition = new Vector2(0, 0);
+                }
+
+                if (!OnSlideWall && (Player.m_body.Position.X < 0 || Player.m_body.Position.X > 462))
+                {
+                    isSliding = false;
+                    TargetPosition = new Vector2(0, 0);
+                }
+
+                if (OnSlideWall && (Player.m_body.Position.Y > TargetPosition.Y && Player.m_body.Velocity.Y >= -0.1f))
                 {
                     isSliding = false;
                     TargetPosition = new Vector2(0, 0);
