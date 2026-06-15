@@ -34,6 +34,12 @@ namespace JumpKing_Expansion_Blocks.Patches
                 return false;
             }
 
+            if (player.m_body.IsOnBlock<Blocks.LightWallJump>() && player.m_body.IsOnGround)
+            {
+                __result = BTresult.Failure;
+                return false;
+            }
+
             return true;
         }
     }
